@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>УрФУ — Контакты, приёмная комиссия, горячие линии и справочник корпусов</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="urfu-core.js" defer></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    };
+    (function() {
+      try {
+        if (localStorage.getItem('urfu_theme') === 'dark') document.documentElement.classList.add('dark');
+        if (localStorage.getItem('urfu_a11y') === 'true') document.documentElement.classList.add('a11y-mode');
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; line-height: 1.5; }
+    html.a11y-mode { font-size: 112.5%; }
+    :focus-visible { outline: 3px solid #FF1E6D; outline-offset: 2px; border-radius: 0.5rem; }
+    .urfu-gradient { background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 45%, #FF7A2F 100%); }
+    .urfu-text-gradient {
+      background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 50%, #FF7A2F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bento-card {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -15px rgba(15, 20, 32, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-[#F4F5F8] dark:bg-[#0F1420] text-[#1A1D24] dark:text-white transition-colors duration-300 antialiased selection:bg-[#FF1E6D] selection:text-white">
+
+  <a href="#main-content" data-i18n="skip_link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#FF1E6D] focus:text-white focus:font-extrabold focus:text-xs shadow-lg">
+    Перейти к основному содержимому
+  </a>
+
+  <!-- ================= ЕДИНАЯ ШАПКА САЙТА (П. 3.3 ТЗ) ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#171E2E]/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2">
+      <a href="index.html" aria-label="УрФУ — На главную страницу" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-10 h-10 rounded-xl urfu-gradient flex items-center justify-center shadow-md shadow-[#FF1E6D]/25 group-hover:scale-105 transition-transform">
+          <span class="text-white font-black text-2xl leading-none select-none">У</span>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight text-[#1A1D24] dark:text-white">УрФУ</span>
+      </a>
+
+      <nav aria-label="Основная навигация" class="hidden lg:flex items-center gap-1 xl:gap-4 text-sm font-semibold whitespace-nowrap">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D] transition-colors">Главная</a>
+        <a href="school.html" data-i18n="nav_school" class="hover:text-[#FF1E6D] transition-colors">Школьникам</a>
+        <a href="applicants.html" data-i18n="nav_applicants" class="hover:text-[#FF1E6D] transition-colors">Абитуриентам</a>
+        <a href="institutes.html" data-i18n="nav_institutes" class="hover:text-[#FF1E6D] transition-colors">Институты</a>
+        <a href="schedule.html" data-i18n="nav_students" class="hover:text-[#FF1E6D] transition-colors">Студентам</a>
+        <a href="campus.html" data-i18n="nav_campus" class="hover:text-[#FF1E6D] transition-colors">Кампус</a>
+        <a href="science.html" data-i18n="nav_science" class="hover:text-[#FF1E6D] transition-colors">Наука</a>
+        <a href="partners.html" data-i18n="nav_partners" class="hover:text-[#FF1E6D] transition-colors">Партнёрам</a>
+        <a href="contacts.html" data-i18n="nav_contacts" class="text-[#FF1E6D] font-extrabold border-b-2 border-[#FF1E6D] py-6">Контакты</a>
+      </nav>
+
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" onclick="openSearchModal()" aria-label="Открыть умный поиск (нажмите /)" title="Поиск по сайту (/)" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 text-[#FF1E6D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+
+        <button type="button" onclick="toggleA11y()" aria-label="Версия для слабовидящих (увеличить шрифт)" title="Версия для слабовидящих" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-black hover:border-[#FF1E6D] transition">
+          А+
+        </button>
+
+        <div class="relative">
+          <button type="button" onclick="toggleLangMenu()" aria-label="Выбрать язык интерфейса" class="h-9 px-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-[#FF1E6D] flex items-center gap-1 text-xs font-bold transition">
+            <span id="currentLangLabel">RU</span>
+            <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="langDropdown" class="hidden absolute right-0 mt-2 w-44 bg-white dark:bg-[#1E273B] rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700 py-1.5 z-50 text-xs font-semibold">
+            <button type="button" onclick="setLanguage('RU')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇷🇺 Русский</span><span>RU</span></button>
+            <button type="button" onclick="setLanguage('EN')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇬🇧 English</span><span>EN</span></button>
+            <button type="button" onclick="setLanguage('ZH')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇨🇳 中文</span><span>ZH</span></button>
+            <button type="button" onclick="setLanguage('AR')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇦🇪 العربية</span><span>AR</span></button>
+          </div>
+        </div>
+
+        <button type="button" onclick="toggleTheme()" aria-label="Переключить светлую или тёмную тему" title="Светлая / Темная тема" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+          <svg class="w-4 h-4 block dark:hidden text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+
+        <a href="index.html" data-i18n="btn_back_home" class="hidden sm:flex h-9 px-3.5 rounded-xl bg-[#3D4047] hover:bg-[#1A1D24] dark:bg-white dark:text-[#1A1D24] text-white text-xs font-bold items-center transition">
+          ← На главную
+        </a>
+
+        <button type="button" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" aria-label="Открыть мобильное меню всех разделов" class="lg:hidden w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileMenu" aria-label="Мобильная навигация" class="hidden lg:hidden border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-[#171E2E] px-4 py-4 space-y-1.5 text-xs font-bold shadow-xl">
+      <a href="index.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">1. Главная страница УрФУ</a>
+      <a href="school.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">2. Школьникам (5–11 класс)</a>
+      <a href="applicants.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">3. Абитуриентам (Калькулятор ИД)</a>
+      <a href="institutes.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">4. Каталог 13 институтов</a>
+      <a href="schedule.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">5. Студентам: Расписание и БРС</a>
+      <a href="campus.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">6. Кампус «Новокольцовский»</a>
+      <a href="students-brand.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">7. Айдентика и мерч Reflective</a>
+      <a href="science.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">8. Наука и НИОКР</a>
+      <a href="partners.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">9. Партнёрам и Эндаумент</a>
+      <a href="media.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">10. Медиацентр и афиша</a>
+      <a href="contacts.html" class="block px-3.5 py-2 rounded-xl bg-pink-50 dark:bg-slate-800 text-[#FF1E6D]">11. Контакты и корпуса</a>
+      <a href="pres.html" class="block px-3.5 py-2 rounded-xl urfu-gradient text-white">🎯 Презентация проекта (13 слайдов)</a>
+    </nav>
+  </header>
+
+  <!-- ================= ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ КОНТАКТОВ ================= -->
+  <main id="main-content" class="max-w-[1380px] mx-auto px-4 sm:px-6 pt-6 pb-16 space-y-12">
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-200/70 dark:border-slate-800 pb-4">
+      <div class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-2">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D]">Главная</a>
+        <span>/</span>
+        <span data-i18n="ct_bc" class="text-[#1A1D24] dark:text-white font-bold">Контакты, справочник и обратная связь</span>
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 text-xs font-bold">
+        <a href="#hotlines" class="px-3.5 py-1.5 rounded-xl urfu-gradient text-white">Горячие линии</a>
+        <a href="#directory" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Справочник корпусов</a>
+        <a href="#feedback" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Цифровая приёмная</a>
+      </div>
+    </div>
+
+    <!-- ================= 1. ГЛАВНЫЕ ГОРЯЧИЕ ЛИНИИ УрФУ ================= -->
+    <section id="hotlines" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-white dark:bg-[#171E2E] rounded-[28px] p-6 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between space-y-4">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-50 dark:bg-pink-950/60 text-[#FF1E6D]">Абитуриентам</span>
+          <h2 class="font-extrabold text-lg mt-3 text-[#1A1D24] dark:text-white">Приёмная комиссия УрФУ</h2>
+          <a href="tel:+73433754474" class="block text-2xl font-black urfu-text-gradient mt-2">+7 (343) 375-44-74</a>
+          <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Екатеринбург, ул. Мира, 19, ауд. ГУК-100</p>
+        </div>
+        <div class="pt-3 border-t border-gray-100 dark:border-slate-800 text-xs font-bold flex justify-between">
+          <span class="text-gray-500">priem@urfu.ru</span>
+          <span class="text-[#FF1E6D]">Пн–Сб 09:00–18:00</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-[#171E2E] rounded-[28px] p-6 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between space-y-4">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-50 dark:bg-orange-950/60 text-[#FF6B35]">Бесплатно по РФ</span>
+          <h2 class="font-extrabold text-lg mt-3 text-[#1A1D24] dark:text-white">Единый контакт-центр</h2>
+          <a href="tel:88001005044" class="block text-2xl font-black text-[#1A1D24] dark:text-white mt-2">8 (800) 100-50-44</a>
+          <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Многоканальная справочная линия университета</p>
+        </div>
+        <div class="pt-3 border-t border-gray-100 dark:border-slate-800 text-xs font-bold flex justify-between">
+          <span class="text-gray-500">contact@urfu.ru</span>
+          <span class="text-emerald-700 dark:text-emerald-400">Линия активна</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-[#171E2E] rounded-[28px] p-6 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between space-y-4">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 dark:bg-purple-950/60 text-purple-700">Студентам</span>
+          <h2 class="font-extrabold text-lg mt-3 text-[#1A1D24] dark:text-white">Многофункциональный центр (МФЦ УрФУ)</h2>
+          <a href="tel:+73433759306" class="block text-2xl font-black text-[#1A1D24] dark:text-white mt-2">+7 (343) 375-93-06</a>
+          <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Справки, стипендии, кампусные карты и документы</p>
+        </div>
+        <div class="pt-3 border-t border-gray-100 dark:border-slate-800 text-xs font-bold flex justify-between">
+          <span class="text-gray-500">ул. Мира, 19 (ГУК-109)</span>
+          <span class="text-[#FF1E6D]">Единое окно</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-[#171E2E] rounded-[28px] p-6 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between space-y-4">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 dark:bg-blue-950/60 text-blue-700">Официально</span>
+          <h2 class="font-extrabold text-lg mt-3 text-[#1A1D24] dark:text-white">Канцелярия и Пресс-служба</h2>
+          <a href="tel:+73433754507" class="block text-2xl font-black text-[#1A1D24] dark:text-white mt-2">+7 (343) 375-45-07</a>
+          <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Для СМИ, государственных органов и партнёров</p>
+        </div>
+        <div class="pt-3 border-t border-gray-100 dark:border-slate-800 text-xs font-bold flex justify-between">
+          <span class="text-gray-500">rektorat@urfu.ru</span>
+          <span class="text-[#FF6B35]">Пресс-центр</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. ИНТЕРАКТИВНЫЙ СПРАВОЧНИК КОРПУСОВ И ДЕКАНАТОВ ================= -->
+    <section id="directory" class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 bento-card space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Навигация по подразделениям</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mt-1">Адреса учебных корпусов и дирекций институтов УрФУ</h2>
+        </div>
+
+        <label for="dirSearch" class="sr-only">Поиск по справочнику корпусов</label>
+        <input id="dirSearch" type="text" oninput="renderDirectory()" placeholder="Поиск по институту, улице или телефону (например: Мира, 32 или ИРИТ)..." class="w-full md:w-96 px-4 py-3 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800 text-xs sm:text-sm focus:outline-none border border-transparent focus:border-[#FF1E6D]" />
+      </div>
+
+      <div id="selectedBuildingBanner" aria-live="polite" class="hidden p-4 rounded-2xl bg-pink-50/80 dark:bg-slate-800 border border-[#FF1E6D]/40 flex items-center justify-between text-xs font-bold">
+        <span id="selectedBuildingText" class="text-[#1A1D24] dark:text-white"></span>
+        <button type="button" onclick="document.getElementById('selectedBuildingBanner').classList.add('hidden')" aria-label="Закрыть уведомление" class="text-[#FF1E6D]">Закрыть ✕</button>
+      </div>
+
+      <div id="directoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- ================= 3. ЦИФРОВАЯ ПРИЁМНАЯ + КАРТА ПРОЕЗДА ================= -->
+    <section id="feedback" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-6 bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-8 border border-gray-100 dark:border-slate-800 bento-card space-y-5">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Обратная связь 24/7</span>
+          <h3 class="text-2xl font-extrabold mt-1 text-[#1A1D24] dark:text-white">Цифровая приёмная УрФУ</h3>
+          <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Задайте вопрос приёмной комиссии, деканату или службе поддержки кампуса — ответ придёт на почту.</p>
+        </div>
+
+        <form onsubmit="submitFeedback(event)" class="space-y-3.5 text-xs sm:text-sm">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label for="ctNameInput" class="sr-only">Ваше ФИО</label>
+            <input id="ctNameInput" required type="text" placeholder="Ваше ФИО" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+            <label for="ctEmailInput" class="sr-only">Email для ответа</label>
+            <input id="ctEmailInput" required type="email" placeholder="Email для ответа" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+          </div>
+          <label for="ctTopicSelect" class="sr-only">Тема обращения</label>
+          <select id="ctTopicSelect" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none font-semibold">
+            <option>Вопрос по поступлению в УрФУ (Приёмная комиссия)</option>
+            <option>Вопрос от студента (Деканат / МФЦ УрФУ)</option>
+            <option>Запрос от компании-партнёра или СМИ</option>
+            <option>Иностранным гражданам (Визово-миграционный отдел)</option>
+          </select>
+          <label for="ctMessageArea" class="sr-only">Текст вопроса</label>
+          <textarea id="ctMessageArea" required rows="3" placeholder="Опишите ваш вопрос..." class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none"></textarea>
+          <button type="submit" class="w-full py-3.5 rounded-xl urfu-gradient text-white font-bold text-sm shadow-md hover:opacity-95 transition">
+            Отправить обращение в УрФУ
+          </button>
+        </form>
+        <div id="feedbackSuccess" aria-live="polite" class="hidden p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold"></div>
+      </div>
+
+      <div class="lg:col-span-6 bg-[#1A1D24] text-white rounded-[32px] p-7 sm:p-8 bento-card flex flex-col justify-between space-y-6">
+        <div class="space-y-3">
+          <span class="px-3 py-1 rounded-full text-xs font-bold urfu-gradient">Маршруты по Екатеринбургу</span>
+          <h3 class="text-2xl font-extrabold">Как добраться до главных корпусов УрФУ</h3>
+          <p class="text-xs sm:text-sm text-gray-300">
+            Учебные корпуса и студенческие городки связаны прямыми маршрутами общественного транспорта с ж/д вокзалом, станцией метро «Площадь 1905 года» и аэропортом «Кольцово».
+          </p>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-4 rounded-2xl bg-white/10 border border-white/10">
+            <div class="font-bold text-sm text-[#FF6B35]">Главный учебный корпус (ГУК) — ул. Мира, 19</div>
+            <div class="text-gray-300 mt-1">Остановка «УрФУ»: автобусы № 28, 50, 54, 60; трамваи № 4, 13, 15, 18, 20.</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/10 border border-white/10">
+            <div class="font-bold text-sm text-[#FF1E6D]">Корпус на пр. Ленина, 51 (УГИ / ИЕНиМ)</div>
+            <div class="text-gray-300 mt-1">Остановка «Оперный театр»: автобусы № 28, 48, 50; трамваи № 2, 6, 13, 15, 18.</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/10 border border-white/10">
+            <div class="font-bold text-sm text-white">Кампус «Новокольцовский» — ул. Универсиады, 7</div>
+            <div class="text-gray-300 mt-1">Специальные шаттлы и городские автобусные маршруты № 44, 56 и 65 от корпусов УрФУ.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= ПОДВАЛ ================= -->
+  <footer class="bg-white dark:bg-[#171E2E] border-t border-gray-200/80 dark:border-slate-800 py-10">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600 dark:text-gray-300">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg urfu-gradient flex items-center justify-center text-white font-black">У</div>
+        <span class="font-extrabold text-base text-[#1A1D24] dark:text-white">УрФУ</span>
+        <span>• Контакты и справочник корпусов</span>
+      </div>
+      <div class="flex items-center gap-4 font-bold">
+        <a href="pres.html" class="text-[#FF6B35] hover:underline">🎯 Презентация проекта</a>
+        <a href="index.html" data-i18n="btn_back_home" class="text-[#FF1E6D] hover:underline">← На главную</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.URFU_I18N) {
+        Object.assign(window.URFU_I18N.RU, {
+          ct_bc: 'Контакты, справочник и обратная связь'
+        });
+        Object.assign(window.URFU_I18N.EN, {
+          ct_bc: 'Contacts, Directory & Feedback'
+        });
+        Object.assign(window.URFU_I18N.ZH, {
+          ct_bc: '联系方式、指南与在线反馈'
+        });
+        Object.assign(window.URFU_I18N.AR, {
+          ct_bc: 'جهات الاتصال والدليل ونظام الاستجابة'
+        });
+        const lang = window.urfuStorage ? window.urfuStorage.get(window.URFU_KEYS.LANG, 'RU') : 'RU';
+        window.setLanguage(lang);
+      }
+    });
+
+    const campusDirectory = [
+      { inst: 'ГУК УрФУ (Ректорат, ИнЭУ, ИНМТ)', addr: 'ул. Мира, 19', phone: '+7 (343) 375-44-74', room: 'Главный учебный корпус', route: 'Остановка «УрФУ» (Втузгородок), вход через центральные колонны по пропуску или паспорту.' },
+      { inst: 'ИРИТ-РтФ (Радиофак УрФУ)', addr: 'ул. Мира, 32', phone: '+7 (343) 375-44-59', room: 'Корпус Р (ауд. Р-223)', route: 'Перекресток ул. Мира — Малышева, 5 минут пешком от Главного учебного корпуса.' },
+      { inst: 'УГИ и ИЕНиМ (Здание на Ленина)', addr: 'пр. Ленина, 51', phone: '+7 (343) 389-94-22', room: 'Исторический корпус', route: 'Центр города, остановка «Оперный театр», 10 минут от ст. метро «Площадь 1905 года».' },
+      { inst: 'ФТИ (Физико-технологический)', addr: 'ул. Мира, 21', phone: '+7 (343) 375-47-11', room: 'Физтех корпус (ФТ-216)', route: 'Соседнее здание справа от Главного учебного корпуса УрФУ, соединено теплым переходом.' },
+      { inst: 'УралЭНИН (Энергетический институт)', addr: 'ул. Софьи Ковалевской, 5', phone: '+7 (343) 375-48-84', room: 'Теплофак корпус (Т-908)', route: 'Студенческий квартал Втузгородка, вход со стороны ул. Софьи Ковалевской.' },
+      { inst: 'ХТИ (Химико-технологический)', addr: 'ул. Мира, 28', phone: '+7 (343) 375-46-32', room: 'Третий учебный корпус (Х-319)', route: 'Напротив Главного учебного корпуса через площадь Кирова.' },
+      { inst: 'ИСА (Строительство и архитектура)', addr: 'ул. Мира, 17', phone: '+7 (343) 374-33-56', room: 'Стройфак корпус (СП-208)', route: 'Левое крыло университетского комплекса на ул. Мира, 17.' },
+      { inst: 'СУНЦ УрФУ (Академический лицей)', addr: 'ул. Данилы Зверева, 30', phone: '+7 (343) 341-55-76', room: 'Кампус СУНЦ УрФУ', route: 'Учебный корпус и новый комплекс в кампусе «Новокольцовский».' },
+      { inst: 'Кампус «Новокольцовский»', addr: 'ул. Универсиады, 1–11', phone: '+7 (343) 375-41-90', room: 'Новые корпуса и общежития', route: 'Автобусы № 44, 56, 65 до ост. «Кампус УрФУ / Дворец водных видов спорта».' }
+    ];
+
+    function renderDirectory() {
+      const q = document.getElementById('dirSearch').value.trim().toLowerCase();
+      const grid = document.getElementById('directoryGrid');
+      const filtered = campusDirectory.filter(d =>
+        !q || d.inst.toLowerCase().includes(q) || d.addr.toLowerCase().includes(q) || d.phone.includes(q)
+      );
+
+      grid.innerHTML = filtered.map((d) => `
+        <div class="p-5 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 flex flex-col justify-between gap-3">
+          <div>
+            <div class="text-xs font-extrabold text-[#FF1E6D]">${d.room}</div>
+            <h4 class="font-bold text-sm mt-1 text-[#1A1D24] dark:text-white">${d.inst}</h4>
+            <div class="text-xs text-gray-600 dark:text-gray-300 mt-1">📍 Екатеринбург, ${d.addr}</div>
+          </div>
+          <div class="pt-2.5 border-t border-gray-200 dark:border-slate-700 flex items-center justify-between text-xs font-bold">
+            <span class="text-gray-700 dark:text-gray-300">📞 ${d.phone}</span>
+            <button type="button" onclick="showRouteInfo('${d.inst}', '${d.addr}', '${d.route}')" class="text-[#FF6B35] hover:underline cursor-pointer">Маршрут →</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function showRouteInfo(inst, addr, route) {
+      const banner = document.getElementById('selectedBuildingBanner');
+      const text = document.getElementById('selectedBuildingText');
+      text.textContent = `🧭 ${inst} (${addr}): ${route}`;
+      banner.classList.remove('hidden');
+    }
+
+    function submitFeedback(e) {
+      e.preventDefault();
+      const ticketId = 'URFU-' + Math.floor(100000 + Math.random() * 900000);
+      const box = document.getElementById('feedbackSuccess');
+      box.textContent = `✓ Ваше обращение зарегистрировано в системе документооборота УрФУ под номером #${ticketId}!`;
+      box.classList.remove('hidden');
+      e.target.reset();
+    }
+
+    renderDirectory();
+  </script>
+</body>
+</html>

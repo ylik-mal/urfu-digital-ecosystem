@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>УрФУ — Школьникам: Олимпиада «Изумруд», СУНЦ и довузовская подготовка</title>
+  <meta name="description" content="Довузовская экосистема УрФУ для школьников 5–11 классов: олимпиада «Изумруд» (право БВИ), поступление в СУНЦ УрФУ, проектные смены в Сириусе и курсы ЕГЭ/ОГЭ." />
+  <meta name="keywords" content="школьникам УрФУ, олимпиада Изумруд, СУНЦ УрФУ, тест-драйв в УрФУ, курсы ЕГЭ УрФУ" />
+  <link rel="canonical" href="https://urfu.ru/school.html" />
+  <meta property="og:title" content="УрФУ — Школьникам: Олимпиады, СУНЦ и проектные смены" />
+  <meta property="og:description" content="Персональный навигатор школьника 5–11 классов, олимпиада «Изумруд» (БВИ) и СУНЦ УрФУ." />
+  <meta property="og:image" content="/assets/images/og-school.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="urfu-core.js" defer></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    };
+    (function() {
+      try {
+        if (localStorage.getItem('urfu_theme') === 'dark') document.documentElement.classList.add('dark');
+        if (localStorage.getItem('urfu_a11y') === 'true') document.documentElement.classList.add('a11y-mode');
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; line-height: 1.5; }
+    html.a11y-mode { font-size: 112.5%; }
+    html.a11y-mode body { letter-spacing: 0.015em; }
+    :focus-visible { outline: 3px solid #FF1E6D; outline-offset: 2px; border-radius: 0.5rem; }
+    .urfu-gradient { background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 45%, #FF7A2F 100%); }
+    .urfu-text-gradient {
+      background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 50%, #FF7A2F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bento-card {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -15px rgba(15, 20, 32, 0.08);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .bento-card:hover { transform: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#F4F5F8] dark:bg-[#0F1420] text-[#1A1D24] dark:text-white transition-colors duration-300 antialiased selection:bg-[#FF1E6D] selection:text-white">
+
+  <a href="#main-content" data-i18n="skip_link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#FF1E6D] focus:text-white focus:font-extrabold focus:text-xs shadow-lg">
+    Перейти к основному содержимому
+  </a>
+
+  <!-- ================= ЕДИНАЯ ШАПКА САЙТА (П. 3.3 ТЗ) ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#171E2E]/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2">
+      <a href="index.html" aria-label="УрФУ — На главную страницу" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-10 h-10 rounded-xl urfu-gradient flex items-center justify-center shadow-md shadow-[#FF1E6D]/25 group-hover:scale-105 transition-transform">
+          <span class="text-white font-black text-2xl leading-none select-none">У</span>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight text-[#1A1D24] dark:text-white">УрФУ</span>
+      </a>
+
+      <nav aria-label="Основная навигация" class="hidden lg:flex items-center gap-1 xl:gap-4 text-sm font-semibold whitespace-nowrap">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D] transition-colors">Главная</a>
+        <a href="school.html" data-i18n="nav_school" class="text-[#FF1E6D] font-extrabold border-b-2 border-[#FF1E6D] py-6">Школьникам</a>
+        <a href="applicants.html" data-i18n="nav_applicants" class="hover:text-[#FF1E6D] transition-colors">Абитуриентам</a>
+        <a href="institutes.html" data-i18n="nav_institutes" class="hover:text-[#FF1E6D] transition-colors">Институты</a>
+        <a href="schedule.html" data-i18n="nav_students" class="hover:text-[#FF1E6D] transition-colors">Студентам</a>
+        <a href="campus.html" data-i18n="nav_campus" class="hover:text-[#FF1E6D] transition-colors">Кампус</a>
+        <a href="science.html" data-i18n="nav_science" class="hover:text-[#FF1E6D] transition-colors">Наука</a>
+        <a href="partners.html" data-i18n="nav_partners" class="hover:text-[#FF1E6D] transition-colors">Партнёрам</a>
+        <a href="contacts.html" data-i18n="nav_contacts" class="hover:text-[#FF1E6D] transition-colors">Контакты</a>
+      </nav>
+
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" onclick="openSearchModal()" aria-label="Открыть умный поиск (нажмите /)" title="Поиск по сайту (/)" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 text-[#FF1E6D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+
+        <button type="button" onclick="toggleA11y()" aria-label="Версия для слабовидящих (увеличить шрифт)" title="Версия для слабовидящих" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-black hover:border-[#FF1E6D] transition">
+          А+
+        </button>
+
+        <div class="relative">
+          <button type="button" onclick="toggleLangMenu()" aria-label="Выбрать язык интерфейса" class="h-9 px-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-[#FF1E6D] flex items-center gap-1 text-xs font-bold transition">
+            <span id="currentLangLabel">RU</span>
+            <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="langDropdown" class="hidden absolute right-0 mt-2 w-44 bg-white dark:bg-[#1E273B] rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700 py-1.5 z-50 text-xs font-semibold">
+            <button type="button" onclick="setLanguage('RU')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇷🇺 Русский</span><span>RU</span></button>
+            <button type="button" onclick="setLanguage('EN')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇬🇧 English</span><span>EN</span></button>
+            <button type="button" onclick="setLanguage('ZH')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇨🇳 中文</span><span>ZH</span></button>
+            <button type="button" onclick="setLanguage('AR')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇦🇪 العربية</span><span>AR</span></button>
+          </div>
+        </div>
+
+        <button type="button" onclick="toggleTheme()" aria-label="Переключить светлую или тёмную тему" title="Светлая / Темная тема" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+          <svg class="w-4 h-4 block dark:hidden text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+
+        <a href="index.html" data-i18n="btn_back_home" class="hidden sm:flex h-9 px-3.5 rounded-xl bg-[#3D4047] hover:bg-[#1A1D24] dark:bg-white dark:text-[#1A1D24] text-white text-xs font-bold items-center transition">
+          ← На главную
+        </a>
+
+        <button type="button" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" aria-label="Открыть мобильное меню всех разделов" class="lg:hidden w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileMenu" aria-label="Мобильная навигация" class="hidden lg:hidden border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-[#171E2E] px-4 py-4 space-y-1.5 text-xs font-bold shadow-xl">
+      <a href="index.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">1. Главная страница УрФУ</a>
+      <a href="school.html" class="block px-3.5 py-2 rounded-xl bg-pink-50 dark:bg-slate-800 text-[#FF1E6D]">2. Школьникам (5–11 класс)</a>
+      <a href="applicants.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">3. Абитуриентам (Калькулятор ИД)</a>
+      <a href="institutes.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">4. Каталог 13 институтов</a>
+      <a href="schedule.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">5. Студентам: Расписание и БРС</a>
+      <a href="students-brand.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">6. Айдентика и мерч Reflective</a>
+      <a href="campus.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">7. Кампус «Новокольцовский»</a>
+      <a href="science.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">8. Наука и НИОКР</a>
+      <a href="partners.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">9. Партнёрам и Эндаумент</a>
+      <a href="media.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">10. Медиацентр и афиша</a>
+      <a href="contacts.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">11. Контакты и корпуса</a>
+      <a href="pres.html" class="block px-3.5 py-2 rounded-xl urfu-gradient text-white">🎯 Презентация проекта (13 слайдов)</a>
+    </nav>
+  </header>
+
+  <!-- ================= КОНТЕНТ СТРАНИЦЫ ШКОЛЬНИКАМ ================= -->
+  <main id="main-content" class="max-w-[1380px] mx-auto px-4 sm:px-6 pt-6 pb-16 space-y-12">
+
+    <div class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200/70 dark:border-slate-800 pb-4">
+      <div class="flex items-center gap-2">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D]">Главная</a>
+        <span>/</span>
+        <span data-i18n="sc_bc" class="text-[#1A1D24] dark:text-white font-bold">Школьникам и довузовская подготовка</span>
+      </div>
+      <a href="applicants.html" data-i18n="sc_top_link" class="text-[#FF1E6D] font-bold hover:underline">Уже в 11 классе? Перейти в раздел Абитуриентам →</a>
+    </div>
+
+    <!-- HERO-БЛОК -->
+    <section class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 bento-card">
+      <div class="max-w-2xl space-y-3">
+        <span data-i18n="sc_hero_tag" class="px-3 py-1 rounded-full text-xs font-extrabold bg-pink-50 dark:bg-pink-950/60 text-[#FF1E6D]">Довузовская экосистема УрФУ</span>
+        <h1 data-i18n="sc_hero_title" class="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight leading-tight">
+          Твой путь в УрФУ начинается в школе: олимпиады, СУНЦ и проектные смены
+        </h1>
+        <p data-i18n="sc_hero_desc" class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+          Участвуй в перечневых олимпиадах «Изумруд» для поступления без вступительных испытаний (БВИ), учись у профессоров университета в СУНЦ УрФУ и создавай первые инженерные и IT-проекты.
+        </p>
+      </div>
+      <div class="flex flex-col gap-3 shrink-0 w-full sm:w-auto">
+        <a href="#grade-navigator" data-i18n="sc_btn_nav" class="urfu-gradient text-white font-bold px-7 py-3.5 rounded-2xl text-center text-sm shadow-lg shadow-[#FF1E6D]/25 hover:opacity-95 transition">
+          Подобрать траекторию по классу
+        </a>
+        <a href="#sunc-block" data-i18n="sc_btn_sunc" class="bg-[#F4F5F8] dark:bg-slate-800 font-bold px-7 py-3.5 rounded-2xl text-center text-sm hover:text-[#FF1E6D] transition">
+          Узнать про СУНЦ УрФУ ↓
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= ИНТЕРАКТИВНЫЙ НАВИГАТОР ШКОЛЬНИКА ПО КЛАССАМ ================= -->
+    <section id="grade-navigator" class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 bento-card space-y-7">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span data-i18n="sc_nav_tag" class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Персональный маршрут школьника</span>
+          <h2 data-i18n="sc_nav_title" class="text-2xl sm:text-3xl font-extrabold mt-1">Выбери свой класс — узнай доступные возможности УрФУ</h2>
+        </div>
+        <div class="flex flex-wrap gap-2 bg-[#F4F5F8] dark:bg-slate-800 p-1.5 rounded-2xl text-xs sm:text-sm font-bold">
+          <button type="button" onclick="setGrade('all')" id="grade_all" class="px-4 py-2 rounded-xl urfu-gradient text-white transition">Все классы</button>
+          <button type="button" onclick="setGrade('5-7')" id="grade_5-7" class="px-4 py-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">5–7 класс</button>
+          <button type="button" onclick="setGrade('8-9')" id="grade_8-9" class="px-4 py-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">8–9 класс</button>
+          <button type="button" onclick="setGrade('10-11')" id="grade_10-11" class="px-4 py-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">10–11 класс</button>
+        </div>
+      </div>
+
+      <div id="schoolProgramsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </section>
+
+    <!-- ================= СУНЦ УрФУ И ПРОЕКТЫ ================= -->
+    <section id="sunc-block" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-7 bg-[#1A1D24] text-white rounded-[32px] p-8 flex flex-col justify-between bento-card relative overflow-hidden">
+        <div class="absolute -right-12 -bottom-12 w-64 h-64 rounded-full urfu-gradient opacity-20 blur-3xl pointer-events-none"></div>
+        <div class="space-y-4 relative z-10">
+          <span class="px-3 py-1 rounded-full text-xs font-bold urfu-gradient text-white">Лицей при университете</span>
+          <h3 data-i18n="sc_sunc_title" class="text-2xl sm:text-3xl font-extrabold">СУНЦ УрФУ — Специализированный учебно-научный центр</h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            Академический лицей УрФУ для учеников 8–11 классов со всей России. Погружение в университетскую науку, лекции и практикумы от профессоров УрФУ, проживание в кампусе и подготовка к Всероссийской олимпиаде школьников.
+          </p>
+          <button type="button" onclick="openSchoolModal('Поступление в СУНЦ УрФУ (8–11 класс)')" class="inline-flex items-center px-5 py-2.5 rounded-xl bg-white text-[#1A1D24] text-xs font-extrabold hover:bg-gray-100 transition">
+            Подать заявку на конкурсный отбор в СУНЦ →
+          </button>
+        </div>
+        <div class="grid grid-cols-3 gap-4 pt-8 mt-6 border-t border-white/10 relative z-10 text-xs">
+          <div>
+            <div class="text-xl font-black text-[#FF6B35]">Топ-10</div>
+            <div class="text-gray-300 mt-0.5">школ России по конкурентоспособности</div>
+          </div>
+          <div>
+            <div class="text-xl font-black text-[#FF1E6D]">6 профилей</div>
+            <div class="text-gray-300 mt-0.5">Физ-мат, IT, хим-био, соц-эконом, гуманитарный</div>
+          </div>
+          <div>
+            <div class="text-xl font-black text-white">Кампус</div>
+            <div class="text-gray-300 mt-0.5">Проживание для иногородних лицеистов</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 space-y-5 flex flex-col justify-between">
+        <div id="izumrud" class="bg-white dark:bg-[#171E2E] rounded-[28px] p-6 border border-gray-100 dark:border-slate-800 bento-card space-y-3">
+          <div class="flex items-center justify-between text-xs font-bold text-[#FF1E6D]">
+            <span>ОЛИМПИАДА РСОШ</span>
+            <span>Право БВИ или 100 баллов</span>
+          </div>
+          <h4 class="font-extrabold text-lg">Многопрофильная олимпиада «Изумруд»</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-300">Отборочный этап проходит онлайн, заключительный — на площадках УрФУ и городов-партнеров. Дает право поступления без экзаменов при подтверждении ЕГЭ от 75 баллов.</p>
+          <button type="button" onclick="openSchoolModal('Олимпиада школьников «Изумруд»')" class="text-xs font-extrabold text-[#FF1E6D] hover:underline">
+            Зарегистрироваться на отборочный этап →
+          </button>
+        </div>
+
+        <div id="testdrive" class="bg-white dark:bg-[#171E2E] rounded-[28px] p-6 border border-gray-100 dark:border-slate-800 bento-card space-y-3">
+          <div class="flex items-center justify-between text-xs font-bold text-[#FF6B35]">
+            <span>ВСЕРОССИЙСКИЙ ПРОЕКТ</span>
+            <span>Для команд старшеклассников</span>
+          </div>
+          <h4 class="font-extrabold text-lg">Акция «Тест-драйв в УрФУ»</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-300">Стань настоящим студентом УрФУ на 2 дня во время каникул: протестируй аудитории, лаборатории, студенческую столовую и живи в кампусе «Новокольцовский».</p>
+          <button type="button" onclick="openSchoolModal('Всероссийский проект «Тест-драйв в УрФУ»')" class="text-xs font-extrabold text-[#FF6B35] hover:underline">
+            Зарегистрировать школьную команду →
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= МОДАЛЬНОЕ ОКНО РЕГИСТРАЦИИ ШКОЛЬНИКА (П. 3.6 И 5 ТЗ) ================= -->
+  <div id="schoolModal" role="dialog" aria-modal="true" aria-labelledby="schoolModalTitle" aria-hidden="true" onclick="closeSchoolModal()" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#1E273B] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-gray-100 dark:border-slate-700 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between">
+        <h4 id="schoolModalTitle" class="font-extrabold text-lg">Регистрация участника</h4>
+        <button type="button" onclick="closeSchoolModal()" aria-label="Закрыть модальное окно" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center text-sm font-bold">✕</button>
+      </div>
+      <p class="text-xs text-gray-600 dark:text-gray-300">
+        Заполните анкету школьника — инструкции и ссылка на личный кабинет участника придут на электронную почту.
+      </p>
+      <form onsubmit="submitSchoolForm(event)" class="space-y-3 text-xs sm:text-sm">
+        <label for="scName" class="sr-only">ФИО школьника</label>
+        <input id="scName" required type="text" placeholder="ФИО школьника" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+        <div class="grid grid-cols-2 gap-3">
+          <label for="scGradeSelect" class="sr-only">Класс обучения</label>
+          <select id="scGradeSelect" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none font-semibold">
+            <option>10–11 класс</option>
+            <option>8–9 класс</option>
+            <option>5–7 класс</option>
+          </select>
+          <label for="scCity" class="sr-only">Город и школа</label>
+          <input id="scCity" required type="text" placeholder="Город и школа" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+        </div>
+        <label for="scEmail" class="sr-only">Email для получения приглашения</label>
+        <input id="scEmail" required type="email" placeholder="Email для получения приглашения" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+        <button type="submit" class="w-full py-3.5 rounded-xl urfu-gradient text-white font-bold text-sm shadow-md hover:opacity-95 transition">
+          Подтвердить участие в программе УрФУ
+        </button>
+      </form>
+      <div id="schoolSuccess" aria-live="polite" class="hidden p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
+        ✓ Вы успешно зарегистрированы! Материалы для подготовки отправлены на ваш Email.
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ПОДВАЛ ================= -->
+  <footer class="bg-white dark:bg-[#171E2E] border-t border-gray-200/80 dark:border-slate-800 py-10">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600 dark:text-gray-300">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg urfu-gradient flex items-center justify-center text-white font-black">У</div>
+        <span class="font-extrabold text-base text-[#1A1D24] dark:text-white">УрФУ</span>
+        <span>• Раздел «Школьникам и довузовская подготовка»</span>
+      </div>
+      <div class="flex items-center gap-4 font-bold">
+        <a href="pres.html" class="text-[#FF6B35] hover:underline">🎯 Презентация проекта</a>
+        <a href="index.html" data-i18n="btn_back_home" class="text-[#FF1E6D] hover:underline">← На главную</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Регистрация переводов страницы Школьникам (Вариант А — п. 3.5 ТЗ)
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.URFU_I18N) {
+        Object.assign(window.URFU_I18N.RU, {
+          sc_bc: 'Школьникам и довузовская подготовка', sc_top_link: 'Уже в 11 классе? Перейти в раздел Абитуриентам →',
+          sc_hero_tag: 'Довузовская экосистема УрФУ', sc_hero_title: 'Твой путь в УрФУ начинается в школе: олимпиады, СУНЦ и проектные смены',
+          sc_hero_desc: 'Участвуй в перечневых олимпиадах «Изумруд» для поступления без вступительных испытаний (БВИ), учись у профессоров университета в СУНЦ УрФУ и создавай первые инженерные и IT-проекты.',
+          sc_btn_nav: 'Подобрать траекторию по классу', sc_btn_sunc: 'Узнать про СУНЦ УрФУ ↓',
+          sc_nav_tag: 'Персональный маршрут школьника', sc_nav_title: 'Выбери свой класс — узнай доступные возможности УрФУ',
+          sc_sunc_title: 'СУНЦ УрФУ — Специализированный учебно-научный центр'
+        });
+        Object.assign(window.URFU_I18N.EN, {
+          sc_bc: 'High School Students & Pre-University Track', sc_top_link: 'In 11th Grade? Go to Admissions →',
+          sc_hero_tag: 'UrFU Pre-University Ecosystem', sc_hero_title: 'Your Path to UrFU Starts at School: Olympiads, SESC & Project Camps',
+          sc_hero_desc: 'Compete in the Izumrud Olympiad for exam-free admission, study with university professors at SESC UrFU, and build your first engineering and IT prototypes.',
+          sc_btn_nav: 'Select Track by Grade', sc_btn_sunc: 'Explore SESC UrFU Lyceum ↓',
+          sc_nav_tag: 'Personal School Student Navigator', sc_nav_title: 'Choose Your School Grade to Discover UrFU Programs',
+          sc_sunc_title: 'SESC UrFU — Specialized Educational and Scientific Center'
+        });
+        Object.assign(window.URFU_I18N.ZH, {
+          sc_bc: '高中生与大学预科项目', sc_top_link: '高三毕业生？前往招生版块 →',
+          sc_hero_tag: '乌拉尔联邦大学预科生态系统', sc_hero_title: '您的乌拉尔联大之路始于中学：奥林匹克竞赛、附属理科中学与项目营',
+          sc_hero_desc: '参加“绿宝石”奥林匹克竞赛获得免试入学资格 (BVI)，在大学附属中学跟随教授学习并开发首个IT与工程项目。',
+          sc_btn_nav: '按年级匹配成长轨迹', sc_btn_sunc: '了解乌拉尔联大附中 (SUNC) ↓',
+          sc_nav_tag: '中学生专属路线图', sc_nav_title: '选择您的年级 — 查看可参与的大学项目',
+          sc_sunc_title: '乌拉尔联邦大学专门教育科学中心 (SUNC)'
+        });
+        Object.assign(window.URFU_I18N.AR, {
+          sc_bc: 'لطلبة المدارس والإعداد الجامعي', sc_top_link: 'في الصف الحادي عشر؟ انتقل إلى القبول ←',
+          sc_hero_tag: 'منظومة ما قبل الجامعة في UrFU', sc_hero_title: 'طريقك إلى UrFU يبدأ في المدرسة: الأولمبياد والمركز العلمي والمخيمات',
+          sc_hero_desc: 'شارك في أولمبياد "زمرد" للقبول بدون امتحانات، وتعلم على يد أساتذة الجامعة في المركز العلمي التخصصي.',
+          sc_btn_nav: 'اختر المسار حسب الصف', sc_btn_sunc: 'تعرف على مدرسة الجامعة ↓',
+          sc_nav_tag: 'المسار الشخصي للطالب', sc_nav_title: 'اختر صفك الدراسي لاكتشاف الفرص المتاحة',
+          sc_sunc_title: 'المركز التعليمي والعلمي التخصصي (SUNC UrFU)'
+        });
+        const lang = window.urfuStorage ? window.urfuStorage.get(window.URFU_KEYS.LANG, 'RU') : 'RU';
+        window.setLanguage(lang);
+      }
+    });
+
+    const schoolTracks = [
+      { title: 'Олимпиада школьников «Изумруд»', grades: ['8-9', '10-11'], badge: 'БВИ / +5 баллов ИД', desc: 'Перечневая олимпиада УрФУ по 9 предметам. Победители и призеры получают право БВИ или дополнительные баллы.', cost: 'Бесплатно' },
+      { title: 'Поступление в СУНЦ УрФУ', grades: ['8-9', '10-11'], badge: 'Набор в 8, 9 и 10 классы', desc: 'Конкурсный отбор в специализированный учебно-научный центр УрФУ с проживанием в кампусе.', cost: 'Бюджетные места' },
+      { title: 'Уральская проектная смена в «Сириусе» и «Таватуе»', grades: ['8-9', '10-11'], badge: '+4 балла ИД к ЕГЭ', desc: 'Разработка реальных прототипов в сфере медицины, ИТ, энергетики и новых материалов под руководством наставников УрФУ.', cost: 'Грантовый отбор' },
+      { title: 'Подготовительные курсы к ОГЭ и ЕГЭ', grades: ['8-9', '10-11'], badge: 'Эксперты комиссий', desc: 'Системная очная и онлайн-подготовка по математике, физике, информатике, русскому языку и обществознанию.', cost: 'Набор открыт' },
+      { title: 'Детский и Юношеский университет УрФУ', grades: ['5-7', '8-9'], badge: 'Ранняя профориентация', desc: 'Инженерные мастер-классы, кружки робототехники, программирования и занимательной химии по выходным.', cost: 'Бесплатно' },
+      { title: 'Вузовско-академическая олимпиада по информатике', grades: ['5-7', '8-9', '10-11'], badge: 'ИТ и алгоритмы', desc: 'Перечневые соревнования по спортивному программированию от тренеров чемпионов мира из ИРИТ-РтФ УрФУ.', cost: 'Бесплатно' }
+    ];
+
+    let activeGrade = 'all';
+
+    function renderSchoolTracks() {
+      const grid = document.getElementById('schoolProgramsGrid');
+      const filtered = schoolTracks.filter(t => activeGrade === 'all' || t.grades.includes(activeGrade));
+      grid.innerHTML = filtered.map(t => `
+        <div class="p-6 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 flex flex-col justify-between gap-4">
+          <div>
+            <div class="flex items-center justify-between text-xs font-bold">
+              <span class="text-[#FF1E6D]">${t.grades.join(', ')} класс</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200">${t.badge}</span>
+            </div>
+            <h4 class="font-extrabold text-base mt-2.5">${t.title}</h4>
+            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1.5 leading-relaxed">${t.desc}</p>
+          </div>
+          <div class="pt-3 border-t border-gray-200/60 dark:border-slate-700 flex justify-between items-center text-xs font-bold">
+            <span class="text-gray-600 dark:text-gray-300">${t.cost}</span>
+            <button type="button" onclick="openSchoolModal('${t.title}')" class="text-[#FF1E6D] hover:underline">Участвовать →</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function setGrade(grade) {
+      activeGrade = grade;
+      ['all', '5-7', '8-9', '10-11'].forEach(g => {
+        const btn = document.getElementById('grade_' + g);
+        btn.className = g === grade
+          ? 'px-4 py-2 rounded-xl urfu-gradient text-white transition'
+          : 'px-4 py-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition';
+      });
+      renderSchoolTracks();
+    }
+
+    function openSchoolModal(programName) {
+      document.getElementById('schoolSuccess').classList.add('hidden');
+      document.getElementById('schoolModalTitle').textContent = programName;
+      if (window.trapModalFocus) window.trapModalFocus('schoolModal');
+      else document.getElementById('schoolModal').classList.remove('hidden');
+    }
+
+    function closeSchoolModal() {
+      const m = document.getElementById('schoolModal');
+      m.classList.add('hidden');
+      m.setAttribute('aria-hidden', 'true');
+      if (window.restoreModalFocus) window.restoreModalFocus();
+    }
+
+    function submitSchoolForm(e) {
+      e.preventDefault();
+      document.getElementById('schoolSuccess').classList.remove('hidden');
+      e.target.reset();
+      setTimeout(() => closeSchoolModal(), 1500);
+    }
+
+    renderSchoolTracks();
+  </script>
+</body>
+</html>

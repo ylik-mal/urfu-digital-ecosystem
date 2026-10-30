@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>УрФУ — Медиацентр, новости науки, пресс-релизы и афиша событий</title>
+  <meta name="description" content="Медиацентр Уральского федерального университета: свежие новости науки, репортажи из лабораторий Новокольцовского кампуса, анонсы олимпиад и форумов." />
+  <meta name="keywords" content="новости УрФУ, медиацентр УрФУ, пресс-служба УрФУ, события Екатеринбург, олимпиада Изумруд" />
+  <link rel="canonical" href="https://urfu.ru/media.html" />
+  <meta property="og:title" content="УрФУ — Медиацентр, новости и афиша событий" />
+  <meta property="og:description" content="Главные новости УрФУ, научные прорывы и анонсы дней открытых дверей." />
+  <meta property="og:image" content="/assets/images/og-media.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="urfu-core.js" defer></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    };
+    (function() {
+      try {
+        if (localStorage.getItem('urfu_theme') === 'dark') document.documentElement.classList.add('dark');
+        if (localStorage.getItem('urfu_a11y') === 'true') document.documentElement.classList.add('a11y-mode');
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; line-height: 1.5; }
+    html.a11y-mode { font-size: 112.5%; }
+    html.a11y-mode body { letter-spacing: 0.015em; }
+    :focus-visible { outline: 3px solid #FF1E6D; outline-offset: 2px; border-radius: 0.5rem; }
+    .urfu-gradient { background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 45%, #FF7A2F 100%); }
+    .urfu-text-gradient {
+      background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 50%, #FF7A2F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bento-card {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -15px rgba(15, 20, 32, 0.08);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .bento-card:hover { transform: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#F4F5F8] dark:bg-[#0F1420] text-[#1A1D24] dark:text-white transition-colors duration-300 antialiased selection:bg-[#FF1E6D] selection:text-white">
+
+  <a href="#main-content" data-i18n="skip_link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#FF1E6D] focus:text-white focus:font-extrabold focus:text-xs shadow-lg">
+    Перейти к основному содержимому
+  </a>
+
+  <!-- ================= ЕДИНАЯ ШАПКА САЙТА (П. 3.3 ТЗ) ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#171E2E]/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2">
+      <a href="index.html" aria-label="УрФУ — На главную страницу" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-10 h-10 rounded-xl urfu-gradient flex items-center justify-center shadow-md shadow-[#FF1E6D]/25 group-hover:scale-105 transition-transform">
+          <span class="text-white font-black text-2xl leading-none select-none">У</span>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight text-[#1A1D24] dark:text-white">УрФУ</span>
+      </a>
+
+      <nav aria-label="Основная навигация" class="hidden lg:flex items-center gap-1 xl:gap-4 text-sm font-semibold whitespace-nowrap">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D] transition-colors">Главная</a>
+        <a href="school.html" data-i18n="nav_school" class="hover:text-[#FF1E6D] transition-colors">Школьникам</a>
+        <a href="applicants.html" data-i18n="nav_applicants" class="hover:text-[#FF1E6D] transition-colors">Абитуриентам</a>
+        <a href="institutes.html" data-i18n="nav_institutes" class="hover:text-[#FF1E6D] transition-colors">Институты</a>
+        <a href="schedule.html" data-i18n="nav_students" class="hover:text-[#FF1E6D] transition-colors">Студентам</a>
+        <a href="campus.html" data-i18n="nav_campus" class="hover:text-[#FF1E6D] transition-colors">Кампус</a>
+        <a href="science.html" data-i18n="nav_science" class="hover:text-[#FF1E6D] transition-colors">Наука</a>
+        <a href="partners.html" data-i18n="nav_partners" class="hover:text-[#FF1E6D] transition-colors">Партнёрам</a>
+        <a href="contacts.html" data-i18n="nav_contacts" class="hover:text-[#FF1E6D] transition-colors">Контакты</a>
+      </nav>
+
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" onclick="openSearchModal()" aria-label="Открыть умный поиск (нажмите /)" title="Поиск по сайту (/)" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 text-[#FF1E6D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+
+        <button type="button" onclick="toggleA11y()" aria-label="Версия для слабовидящих (увеличить шрифт)" title="Версия для слабовидящих" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-black hover:border-[#FF1E6D] transition">
+          А+
+        </button>
+
+        <div class="relative">
+          <button type="button" onclick="toggleLangMenu()" aria-label="Выбрать язык интерфейса" class="h-9 px-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-[#FF1E6D] flex items-center gap-1 text-xs font-bold transition">
+            <span id="currentLangLabel">RU</span>
+            <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="langDropdown" class="hidden absolute right-0 mt-2 w-44 bg-white dark:bg-[#1E273B] rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700 py-1.5 z-50 text-xs font-semibold">
+            <button type="button" onclick="setLanguage('RU')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇷🇺 Русский</span><span>RU</span></button>
+            <button type="button" onclick="setLanguage('EN')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇬🇧 English</span><span>EN</span></button>
+            <button type="button" onclick="setLanguage('ZH')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇨🇳 中文</span><span>ZH</span></button>
+            <button type="button" onclick="setLanguage('AR')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇦🇪 العربية</span><span>AR</span></button>
+          </div>
+        </div>
+
+        <button type="button" onclick="toggleTheme()" aria-label="Переключить светлую или тёмную тему" title="Светлая / Темная тема" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+          <svg class="w-4 h-4 block dark:hidden text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+
+        <a href="index.html" data-i18n="btn_back_home" class="hidden sm:flex h-9 px-3.5 rounded-xl bg-[#3D4047] hover:bg-[#1A1D24] dark:bg-white dark:text-[#1A1D24] text-white text-xs font-bold items-center transition">
+          ← На главную
+        </a>
+
+        <button type="button" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" aria-label="Открыть мобильное меню всех разделов" class="lg:hidden w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileMenu" aria-label="Мобильная навигация" class="hidden lg:hidden border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-[#171E2E] px-4 py-4 space-y-1.5 text-xs font-bold shadow-xl">
+      <a href="index.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">1. Главная страница УрФУ</a>
+      <a href="school.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">2. Школьникам (5–11 класс)</a>
+      <a href="applicants.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">3. Абитуриентам (Калькулятор ИД)</a>
+      <a href="institutes.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">4. Каталог 13 институтов</a>
+      <a href="schedule.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">5. Студентам: Расписание и БРС</a>
+      <a href="campus.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">6. Кампус «Новокольцовский»</a>
+      <a href="students-brand.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">7. Айдентика и мерч Reflective</a>
+      <a href="science.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">8. Наука и НИОКР</a>
+      <a href="partners.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">9. Партнёрам и Эндаумент</a>
+      <a href="media.html" class="block px-3.5 py-2 rounded-xl bg-pink-50 dark:bg-slate-800 text-[#FF1E6D]">10. Медиацентр и афиша</a>
+      <a href="contacts.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">11. Контакты и корпуса</a>
+      <a href="pres.html" class="block px-3.5 py-2 rounded-xl urfu-gradient text-white">🎯 Презентация проекта (13 слайдов)</a>
+    </nav>
+  </header>
+
+  <!-- ================= КОНТЕНТ МЕДИАЦЕНТРА УрФУ ================= -->
+  <main id="main-content" class="max-w-[1380px] mx-auto px-4 sm:px-6 pt-6 pb-16 space-y-12">
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-200/70 dark:border-slate-800 pb-4">
+      <div class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-2">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D]">Главная</a>
+        <span>/</span>
+        <span data-i18n="md_bc" class="text-[#1A1D24] dark:text-white font-bold">Медиацентр, новости и афиша УрФУ</span>
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 bg-white dark:bg-slate-800 p-1.5 rounded-2xl border border-gray-200/60 dark:border-slate-700 text-xs font-bold">
+        <button type="button" onclick="filterNews('all')" id="ncat_all" class="px-3.5 py-1.5 rounded-xl urfu-gradient text-white transition">Все материалы</button>
+        <button type="button" onclick="filterNews('campus')" id="ncat_campus" class="px-3.5 py-1.5 rounded-xl text-gray-700 dark:text-gray-300 transition">Кампус и образование</button>
+        <button type="button" onclick="filterNews('science')" id="ncat_science" class="px-3.5 py-1.5 rounded-xl text-gray-700 dark:text-gray-300 transition">Научные открытия</button>
+        <button type="button" onclick="filterNews('events')" id="ncat_events" class="px-3.5 py-1.5 rounded-xl text-gray-700 dark:text-gray-300 transition">Анонсы и события</button>
+      </div>
+    </div>
+
+    <!-- ГЛАВНАЯ НОВОСТЬ ДНЯ + ДАЙДЖЕСТ -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-8 bg-[#1A1D24] text-white rounded-[32px] p-8 sm:p-10 bento-card flex flex-col justify-between relative overflow-hidden min-h-[340px]">
+        <div class="absolute -right-12 -bottom-12 w-72 h-72 rounded-full urfu-gradient opacity-25 blur-3xl pointer-events-none"></div>
+        <div class="space-y-3 relative z-10 max-w-2xl">
+          <span class="px-3 py-1 rounded-full text-xs font-bold urfu-gradient">Главный репортаж недели</span>
+          <h1 class="text-2xl sm:text-4xl font-black leading-tight">
+            Новые корпуса кампуса УрФУ в Новокольцовском открыты для проектных команд и лабораторий ИИ
+          </h1>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            Студенты ИРИТ-РтФ, ИнЭУ и СУНЦ УрФУ приступили к разработке индустриальных проектов в новых коворкингах и исследовательских центрах кампуса мирового уровня.
+          </p>
+        </div>
+        <div class="pt-6 mt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-400 relative z-10">
+          <span>Пресс-служба УрФУ • Екатеринбург</span>
+          <a href="campus.html" class="font-bold text-[#FF6B35] hover:underline">Смотреть инфраструктуру кампуса →</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 bg-white dark:bg-[#171E2E] rounded-[32px] p-7 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between space-y-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Календарь мероприятий</span>
+          <h2 class="text-xl font-extrabold mt-1 text-[#1A1D24] dark:text-white">Ближайшие события УрФУ</h2>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-3.5 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 space-y-1">
+            <div class="font-extrabold text-[#FF1E6D]">БЛИЖАЙШАЯ СУББОТА • 11:00</div>
+            <div class="font-bold text-sm text-[#1A1D24] dark:text-white">День открытых дверей УрФУ в ГУК</div>
+            <div class="text-gray-600 dark:text-gray-300">ул. Мира, 19 • Экскурсии по 13 институтам</div>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 space-y-1">
+            <div class="font-extrabold text-[#FF6B35]">ФОРУМ КАРЬЕРЫ • 14:00</div>
+            <div class="font-bold text-sm text-[#1A1D24] dark:text-white">Ярмарка вакансий «Пик IT» и «Время карьеры»</div>
+            <div class="text-gray-600 dark:text-gray-300">Стенды 60+ работодателей и экспресс-собеседования</div>
+          </div>
+        </div>
+
+        <button type="button" onclick="openMediaEventModal()" class="w-full py-3 rounded-xl urfu-gradient text-white font-bold text-xs hover:opacity-95 transition cursor-pointer">
+          Зарегистрироваться на событие →
+        </button>
+      </div>
+    </section>
+
+    <!-- СЕТКА НОВОСТЕЙ И РЕЛИЗОВ -->
+    <section class="space-y-6">
+      <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+  </main>
+
+  <!-- ================= МОДАЛЬНОЕ ОКНО ЧТЕНИЯ НОВОСТИ И РЕГИСТРАЦИИ (П. 3.6 И 5 ТЗ) ================= -->
+  <div id="mediaModal" role="dialog" aria-modal="true" aria-labelledby="mediaModalTitle" aria-hidden="true" onclick="closeMediaModal()" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#1E273B] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-gray-100 dark:border-slate-700 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between">
+        <span id="mediaModalTag" class="px-3 py-1 rounded-full text-xs font-extrabold urfu-gradient text-white">ПРЕСС-ЦЕНТР УрФУ</span>
+        <button type="button" onclick="closeMediaModal()" aria-label="Закрыть модальное окно" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center text-sm font-bold">✕</button>
+      </div>
+      <h4 id="mediaModalTitle" class="font-extrabold text-lg leading-snug">Заголовок материала</h4>
+      <p id="mediaModalBody" class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed"></p>
+      <div id="mediaEventFormBox" class="hidden pt-2 border-t border-gray-100 dark:border-slate-700">
+        <form onsubmit="submitMediaEvent(event)" class="space-y-2.5 text-xs sm:text-sm">
+          <label for="mdNameInput" class="sr-only">Ваше ФИО</label>
+          <input id="mdNameInput" required type="text" placeholder="Ваше ФИО" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+          <label for="mdEmailInput" class="sr-only">Ваш Email для пропуска</label>
+          <input id="mdEmailInput" required type="email" placeholder="Ваш Email для пропуска в корпус" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+          <button type="submit" class="w-full py-3 rounded-xl urfu-gradient text-white font-bold text-xs">Получить электронный билет УрФУ</button>
+        </form>
+      </div>
+      <div id="mediaEventSuccess" aria-live="polite" class="hidden p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
+        ✓ Электронное приглашение с QR-кодом отправлено на вашу почту!
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ПОДВАЛ ================= -->
+  <footer class="bg-white dark:bg-[#171E2E] border-t border-gray-200/80 dark:border-slate-800 py-10">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600 dark:text-gray-300">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg urfu-gradient flex items-center justify-center text-white font-black">У</div>
+        <span class="font-extrabold text-base text-[#1A1D24] dark:text-white">УрФУ</span>
+        <span>• Медиацентр и пресс-служба</span>
+      </div>
+      <div class="flex items-center gap-4 font-bold">
+        <a href="pres.html" class="text-[#FF6B35] hover:underline">🎯 Презентация проекта</a>
+        <a href="index.html" data-i18n="btn_back_home" class="text-[#FF1E6D] hover:underline">← На главную</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.URFU_I18N) {
+        Object.assign(window.URFU_I18N.RU, {
+          md_bc: 'Медиацентр, новости и афиша УрФУ'
+        });
+        Object.assign(window.URFU_I18N.EN, {
+          md_bc: 'Media Center, News & Events'
+        });
+        Object.assign(window.URFU_I18N.ZH, {
+          md_bc: '媒体中心、新闻与活动预告'
+        });
+        Object.assign(window.URFU_I18N.AR, {
+          md_bc: 'المركز الإعلامي والأخبار والفعاليات'
+        });
+        const lang = window.urfuStorage ? window.urfuStorage.get(window.URFU_KEYS.LANG, 'RU') : 'RU';
+        window.setLanguage(lang);
+      }
+    });
+
+    const newsItems = [
+      { cat: 'science', tag: 'НАУКА • ИИ', date: 'Сегодня', title: 'Инженеры УрФУ представили ИИ-систему диагностики энергетических турбин', desc: 'Разработка ученых УралЭНИН и ИРИТ-РтФ позволяет предсказывать износ узлов электростанций с точностью до 98% на основе анализа нейросетевых данных в реальном времени.' },
+      { cat: 'campus', tag: 'АБИТУРИЕНТАМ • ПРИЕМ', date: 'Вчера', title: 'УрФУ открыл навигатор образовательных программ с учетом до +10 баллов за ИД', desc: 'Школьники и выпускники могут рассчитать свои конкурсные баллы за аттестат с отличием, знак ГТО, проектные смены и олимпиады и подобрать направление в один клик.' },
+      { cat: 'science', tag: 'МАТЕРИАЛОВЕДЕНИЕ', date: '2 дня назад', title: 'Химики УрФУ синтезировали новые люминесцентные соединения для медицины', desc: 'Исследование ученых Химико-технологического института опубликовано в ведущем международном научном журнале и поддержано грантом Российского научного фонда.' },
+      { cat: 'events', tag: 'ШКОЛЬНИКАМ • ОЛИМПИАДА', date: 'На этой неделе', title: 'Стартовала регистрация на отборочный этап олимпиады школьников «Изумруд»', desc: 'Победители и призеры заключительного этапа получают право поступления в УрФУ без вступительных испытаний (БВИ) или +5 баллов в качестве индивидуального достижения.' },
+      { cat: 'campus', tag: 'СТУДЕНТАМ • БРЕНД', date: 'Дайджест', title: 'Новая коллекция мерча УрФУ со светоотражающей серией Reflective уже в кампусе', desc: 'Фирменные графитовые свитшоты, термокружки Soft-touch и NFC-ланъярды со светоотражающим пигментом доступны студентам всех 13 институтов.' },
+      { cat: 'events', tag: 'ПАРТНЁРАМ • ПРОЕКТЫ', date: 'Анонс', title: 'Более 1 200 студенческих команд УрФУ защитят ИТ и инженерные проекты для бизнеса', desc: 'Эксперты СКБ Контур, Сбера, Росатома, Яндекса и ТМК оценят рабочие прототипы, созданные студентами в рамках семестрового проектного практикума.' }
+    ];
+
+    let currentNewsCat = 'all';
+
+    function filterNews(cat) {
+      currentNewsCat = cat;
+      ['all', 'campus', 'science', 'events'].forEach(c => {
+        const btn = document.getElementById('ncat_' + c);
+        btn.className = c === cat
+          ? 'px-3.5 py-1.5 rounded-xl urfu-gradient text-white transition'
+          : 'px-3.5 py-1.5 rounded-xl text-gray-700 dark:text-gray-300 transition';
+      });
+
+      const list = newsItems.filter(n => currentNewsCat === 'all' || n.cat === currentNewsCat);
+      document.getElementById('newsGrid').innerHTML = list.map((n, idx) => `
+        <div onclick="openArticleModal(${idx})" class="cursor-pointer bg-white dark:bg-[#171E2E] rounded-[28px] p-6 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between gap-4">
+          <div>
+            <div class="flex items-center justify-between text-xs font-bold">
+              <span class="text-[#FF1E6D]">${n.tag}</span>
+              <span class="text-gray-500">${n.date}</span>
+            </div>
+            <h3 class="font-extrabold text-base mt-2.5 leading-snug text-[#1A1D24] dark:text-white">${n.title}</h3>
+            <p class="text-xs text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">${n.desc}</p>
+          </div>
+          <div class="pt-3 border-t border-gray-100 dark:border-slate-800 text-xs font-bold text-[#FF1E6D]">
+            Читать материал →
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openArticleModal(idx) {
+      const list = newsItems.filter(n => currentNewsCat === 'all' || n.cat === currentNewsCat);
+      const item = list[idx];
+      document.getElementById('mediaEventSuccess').classList.add('hidden');
+      document.getElementById('mediaEventFormBox').classList.add('hidden');
+      document.getElementById('mediaModalTag').textContent = item.tag + ' • ' + item.date;
+      document.getElementById('mediaModalTitle').textContent = item.title;
+      document.getElementById('mediaModalBody').textContent = item.desc + ' Материал подготовлен Медиацентром УрФУ совместно с профильными институтами университета.';
+      if (window.trapModalFocus) window.trapModalFocus('mediaModal');
+      else document.getElementById('mediaModal').classList.remove('hidden');
+    }
+
+    function openMediaEventModal() {
+      document.getElementById('mediaEventSuccess').classList.add('hidden');
+      document.getElementById('mediaEventFormBox').classList.remove('hidden');
+      document.getElementById('mediaModalTag').textContent = 'АФИША СОБЫТИЙ УрФУ';
+      document.getElementById('mediaModalTitle').textContent = 'Регистрация на День открытых дверей и форум «Время карьеры»';
+      document.getElementById('mediaModalBody').textContent = 'Укажите ваши данные, чтобы получить именной QR-пропуск для прохода в Главный учебный корпус (ул. Мира, 19).';
+      if (window.trapModalFocus) window.trapModalFocus('mediaModal');
+      else document.getElementById('mediaModal').classList.remove('hidden');
+    }
+
+    function submitMediaEvent(e) {
+      e.preventDefault();
+      document.getElementById('mediaEventSuccess').classList.remove('hidden');
+      setTimeout(() => closeMediaModal(), 1500);
+    }
+
+    function closeMediaModal() {
+      const m = document.getElementById('mediaModal');
+      m.classList.add('hidden');
+      m.setAttribute('aria-hidden', 'true');
+      if (window.restoreModalFocus) window.restoreModalFocus();
+    }
+
+    filterNews('all');
+  </script>
+</body>
+</html>

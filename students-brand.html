@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>УрФУ — Айдентика, университетский мерч Reflective и держатели пропусков</title>
+  <meta name="description" content="Фирменный стиль и брендбук УрФУ для студентов: скачивание логотипов в SVG и PNG, коллекция мерча со светоотражающей серией Reflective, держатели пропусков и навигация." />
+  <meta name="keywords" content="мерч УрФУ, логотип УрФУ скачать, брендбук УрФУ, свитшот УрФУ, пропуск УрФУ, UrFU Store" />
+  <link rel="canonical" href="https://urfu.ru/students-brand.html" />
+  <meta property="og:title" content="УрФУ — Айдентика, мерч Reflective и пропуска" />
+  <meta property="og:description" content="Официальные логотипы УрФУ для презентаций, шоурум мерча Reflective и кампусные пропуска." />
+  <meta property="og:image" content="merch.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="urfu-core.js" defer></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    };
+    (function() {
+      try {
+        if (localStorage.getItem('urfu_theme') === 'dark') document.documentElement.classList.add('dark');
+        if (localStorage.getItem('urfu_a11y') === 'true') document.documentElement.classList.add('a11y-mode');
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; line-height: 1.5; }
+    html.a11y-mode { font-size: 112.5%; }
+    html.a11y-mode body { letter-spacing: 0.015em; }
+    :focus-visible { outline: 3px solid #FF1E6D; outline-offset: 2px; border-radius: 0.5rem; }
+    .urfu-gradient {
+      background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 45%, #FF7A2F 100%);
+    }
+    .urfu-text-gradient {
+      background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 50%, #FF7A2F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bento-card {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -15px rgba(15, 20, 32, 0.08);
+    }
+    .flash-mode {
+      filter: contrast(1.22) brightness(1.08) drop-shadow(0 0 28px rgba(255, 30, 109, 0.55));
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .bento-card:hover { transform: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#F4F5F8] dark:bg-[#0F1420] text-[#1A1D24] dark:text-white transition-colors duration-300 antialiased selection:bg-[#FF1E6D] selection:text-white">
+
+  <a href="#main-content" data-i18n="skip_link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#FF1E6D] focus:text-white focus:font-extrabold focus:text-xs shadow-lg">
+    Перейти к основному содержимому
+  </a>
+
+  <!-- ================= ЕДИНАЯ ШАПКА САЙТА (П. 3.3 ТЗ) ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#171E2E]/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2">
+      <a href="index.html" aria-label="УрФУ — На главную страницу" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-10 h-10 rounded-xl urfu-gradient flex items-center justify-center shadow-md shadow-[#FF1E6D]/25 group-hover:scale-105 transition-transform">
+          <span class="text-white font-black text-2xl leading-none select-none">У</span>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight text-[#1A1D24] dark:text-white">УрФУ</span>
+      </a>
+
+      <nav aria-label="Основная навигация" class="hidden lg:flex items-center gap-1 xl:gap-4 text-sm font-semibold whitespace-nowrap">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D] transition-colors">Главная</a>
+        <a href="school.html" data-i18n="nav_school" class="hover:text-[#FF1E6D] transition-colors">Школьникам</a>
+        <a href="applicants.html" data-i18n="nav_applicants" class="hover:text-[#FF1E6D] transition-colors">Абитуриентам</a>
+        <a href="institutes.html" data-i18n="nav_institutes" class="hover:text-[#FF1E6D] transition-colors">Институты</a>
+        <a href="schedule.html" data-i18n="nav_students" class="hover:text-[#FF1E6D] transition-colors">Студентам</a>
+        <a href="campus.html" data-i18n="nav_campus" class="hover:text-[#FF1E6D] transition-colors">Кампус</a>
+        <a href="students-brand.html" data-i18n="nav_brand" class="text-[#FF1E6D] font-extrabold border-b-2 border-[#FF1E6D] py-6">Айдентика</a>
+        <a href="science.html" data-i18n="nav_science" class="hover:text-[#FF1E6D] transition-colors">Наука</a>
+        <a href="partners.html" data-i18n="nav_partners" class="hover:text-[#FF1E6D] transition-colors">Партнёрам</a>
+        <a href="contacts.html" data-i18n="nav_contacts" class="hover:text-[#FF1E6D] transition-colors">Контакты</a>
+      </nav>
+
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" onclick="openSearchModal()" aria-label="Открыть умный поиск (нажмите /)" title="Поиск по сайту (/)" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 text-[#FF1E6D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+
+        <button type="button" onclick="toggleA11y()" aria-label="Версия для слабовидящих (увеличить шрифт)" title="Версия для слабовидящих" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-black hover:border-[#FF1E6D] transition">
+          А+
+        </button>
+
+        <div class="relative">
+          <button type="button" onclick="toggleLangMenu()" aria-label="Выбрать язык интерфейса" class="h-9 px-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-[#FF1E6D] flex items-center gap-1 text-xs font-bold transition">
+            <span id="currentLangLabel">RU</span>
+            <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="langDropdown" class="hidden absolute right-0 mt-2 w-44 bg-white dark:bg-[#1E273B] rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700 py-1.5 z-50 text-xs font-semibold">
+            <button type="button" onclick="setLanguage('RU')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇷🇺 Русский</span><span>RU</span></button>
+            <button type="button" onclick="setLanguage('EN')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇬🇧 English</span><span>EN</span></button>
+            <button type="button" onclick="setLanguage('ZH')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇨🇳 中文</span><span>ZH</span></button>
+            <button type="button" onclick="setLanguage('AR')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇦🇪 العربية</span><span>AR</span></button>
+          </div>
+        </div>
+
+        <button type="button" onclick="toggleTheme()" aria-label="Переключить светлую или тёмную тему" title="Светлая / Темная тема" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+          <svg class="w-4 h-4 block dark:hidden text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+
+        <a href="index.html" data-i18n="btn_back_home" class="hidden sm:flex h-9 px-3.5 rounded-xl bg-[#3D4047] hover:bg-[#1A1D24] dark:bg-white dark:text-[#1A1D24] text-white text-xs font-bold items-center transition">
+          ← На главную
+        </a>
+
+        <button type="button" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" aria-label="Открыть мобильное меню всех разделов" class="lg:hidden w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileMenu" aria-label="Мобильная навигация" class="hidden lg:hidden border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-[#171E2E] px-4 py-4 space-y-1.5 text-xs font-bold shadow-xl">
+      <a href="index.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">1. Главная страница УрФУ</a>
+      <a href="school.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">2. Школьникам (5–11 класс)</a>
+      <a href="applicants.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">3. Абитуриентам (Калькулятор ИД)</a>
+      <a href="institutes.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">4. Каталог 13 институтов</a>
+      <a href="schedule.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">5. Студентам: Расписание и БРС</a>
+      <a href="students-brand.html" class="block px-3.5 py-2 rounded-xl bg-pink-50 dark:bg-slate-800 text-[#FF1E6D]">6. Айдентика и мерч Reflective</a>
+      <a href="campus.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">7. Кампус «Новокольцовский»</a>
+      <a href="science.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">8. Наука и НИОКР</a>
+      <a href="partners.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">9. Партнёрам и Эндаумент</a>
+      <a href="media.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">10. Медиацентр и афиша</a>
+      <a href="contacts.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">11. Контакты и корпуса</a>
+      <a href="pres.html" class="block px-3.5 py-2 rounded-xl urfu-gradient text-white">🎯 Презентация проекта (13 слайдов)</a>
+    </nav>
+  </header>
+
+  <!-- ================= ОСНОВНОЙ КОНТЕНТ ================= -->
+  <main id="main-content" class="max-w-[1380px] mx-auto px-4 sm:px-6 pt-6 pb-16 space-y-12">
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-200/70 dark:border-slate-800 pb-4">
+      <div class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-2">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D]">Главная</a>
+        <span>/</span>
+        <a href="schedule.html" data-i18n="nav_students" class="hover:text-[#FF1E6D]">Студентам</a>
+        <span>/</span>
+        <span data-i18n="br_bc_current" class="text-[#1A1D24] dark:text-white font-bold">Айдентика, мерч и держатели пропусков</span>
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 text-xs font-bold">
+        <a href="#digital-brand" data-i18n="br_tab_1" class="px-3.5 py-1.5 rounded-xl urfu-gradient text-white">Цифровые носители</a>
+        <a href="#merch-showcase" data-i18n="br_tab_2" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Университетский мерч</a>
+        <a href="#campus-wayfinding" data-i18n="br_tab_3" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Держатели пропусков и стелы</a>
+      </div>
+    </div>
+
+    <!-- HERO-БЛОК РАЗДЕЛА -->
+    <section class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 bento-card">
+      <div class="max-w-2xl space-y-3">
+        <span data-i18n="br_hero_tag" class="px-3 py-1 rounded-full text-xs font-extrabold bg-pink-50 dark:bg-pink-950/60 text-[#FF1E6D]">Визуальный код УрФУ</span>
+        <h1 data-i18n="br_hero_title" class="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight leading-tight">
+          Носи характер УрФУ: цифровые носители, мерч и кампус-среда
+        </h1>
+        <p data-i18n="br_hero_desc" class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+          Единая дизайн-система университета: скачивай официальные логотипы УрФУ для презентаций и ВКР, выбирай графитовые свитшоты, стикерпаки, светоотражающие карабины и фирменные держатели для кампусных пропусков.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3 shrink-0">
+        <button type="button" onclick="openDownloadKitModal()" data-i18n="br_dl_kit" class="urfu-gradient text-white font-bold px-6 py-3.5 rounded-2xl text-sm shadow-lg shadow-[#FF1E6D]/25 hover:opacity-95 transition">
+          Скачать медиа-кит студента (.ZIP)
+        </button>
+        <a href="#merch-showcase" data-i18n="br_see_merch" class="bg-[#F4F5F8] dark:bg-slate-800 font-bold px-6 py-3.5 rounded-2xl text-sm hover:text-[#FF1E6D] transition">
+          Смотреть мерч и пропуска ↓
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= 1. ЦИФРОВЫЕ НОСИТЕЛИ И ЛОГОТИП УрФУ ================= -->
+    <section id="digital-brand" class="space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span data-i18n="br_s1_tag" class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">01 • Бренд-система для учёбы и проектов</span>
+          <h2 data-i18n="br_s1_title" class="text-2xl sm:text-3xl font-extrabold mt-1">Цифровые носители логотипа УрФУ</h2>
+        </div>
+        <p class="text-xs text-gray-600 dark:text-gray-300 font-medium">Официальное написание «УрФУ» для презентаций, курсовых и защит проектов</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-white rounded-[28px] p-7 border border-gray-200/80 bento-card flex flex-col justify-between min-h-[220px]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-gray-600">Светлая тема</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800">Основной знак</span>
+          </div>
+          <div class="my-auto py-6 flex items-center justify-center gap-3">
+            <span class="text-6xl font-black urfu-text-gradient leading-none select-none">У</span>
+            <span class="text-5xl font-black tracking-tight text-[#1A1D24]">УрФУ</span>
+          </div>
+          <div class="flex items-center justify-between pt-3 border-t border-gray-100 text-xs font-semibold text-gray-600">
+            <span>Для светлых слайдов и документов</span>
+            <button type="button" onclick="openDownloadKitModal()" class="text-[#FF1E6D] font-bold hover:underline">SVG / PNG ↓</button>
+          </div>
+        </div>
+
+        <div class="bg-[#141B2D] text-white rounded-[28px] p-7 border border-slate-800 bento-card flex flex-col justify-between min-h-[220px]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-gray-300">Темная тема</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-white/10 text-white">Инверсия</span>
+          </div>
+          <div class="my-auto py-6 flex items-center justify-center gap-3">
+            <span class="text-6xl font-black urfu-text-gradient leading-none select-none">У</span>
+            <span class="text-5xl font-black tracking-tight text-white">УрФУ</span>
+          </div>
+          <div class="flex items-center justify-between pt-3 border-t border-white/10 text-xs font-semibold text-gray-300">
+            <span>Для темных интерфейсов и медиа</span>
+            <button type="button" onclick="openDownloadKitModal()" class="text-[#FF6B35] font-bold hover:underline">SVG / PNG ↓</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-[#171E2E] rounded-[28px] p-7 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between min-h-[220px]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-gray-600 dark:text-gray-300">Иконка экосистемы</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-pink-50 dark:bg-pink-950/60 text-[#FF1E6D]">iOS / Android</span>
+          </div>
+          <div class="my-auto py-3 flex items-center justify-center">
+            <div class="w-24 h-24 rounded-[26px] bg-gradient-to-br from-[#1F1535] via-[#111629] to-[#2E1427] p-0.5 shadow-xl shadow-[#FF1E6D]/25 relative overflow-hidden flex items-center justify-center border border-[#FF1E6D]/40">
+              <div class="absolute -top-6 -right-6 w-20 h-20 rounded-full urfu-gradient blur-xl opacity-70"></div>
+              <span class="text-5xl font-black urfu-text-gradient drop-shadow-[0_4px_16px_rgba(255,30,109,0.65)] select-none">У</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-slate-800 text-xs font-semibold text-gray-600 dark:text-gray-300">
+            <span>Мобильное приложение «Мой УрФУ»</span>
+            <span class="text-[#FF1E6D] font-bold">3D Glass</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. БОРД №1: УНИВЕРСИТЕТСКИЙ МЕРЧ УрФУ ================= -->
+    <section id="merch-showcase" class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 bento-card space-y-7">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <span data-i18n="br_s2_tag" class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">02 • Официальная коллекция UrFU Store</span>
+          <h2 data-i18n="br_s2_title" class="text-2xl sm:text-3xl font-extrabold mt-1">Университетский мерч и спецсерия Reflective</h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
+            Полный сет фирменной экипировки студента УрФУ: свитшот (вид спереди и со спины), светоотражающий брелок-карабин, термокружка и стикерпак.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+          <button type="button" onclick="toggleMerchFlash()" id="merchFlashBtn" class="px-4 py-2.5 rounded-xl urfu-gradient text-white text-xs font-extrabold shadow-md hover:opacity-95 transition">
+            ⚡ Эффект вспышки Reflective
+          </button>
+          <label class="cursor-pointer px-4 py-2.5 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 hover:border-[#FF1E6D] border border-gray-200 dark:border-slate-700 text-xs font-bold transition">
+            📷 Загрузить фото мерча
+            <input type="file" accept="image/*" class="hidden" onchange="previewBoard(event, 'merchBoardImg')" />
+          </label>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-8 bg-[#F3F2EE] dark:bg-slate-900 rounded-[28px] p-3 sm:p-5 border border-gray-200/70 dark:border-slate-800 flex items-center justify-center overflow-hidden">
+          <img
+            id="merchBoardImg"
+            src="merch.jpg"
+            width="900"
+            height="600"
+            loading="lazy"
+            alt="Университетский мерч УрФУ: графитовый свитшот, светоотражающий карабин, термокружка и стикерпак"
+            onclick="openZoomModal(this.src, 'Университетский мерч УрФУ')"
+            class="w-full max-h-[540px] object-contain rounded-2xl cursor-zoom-in transition-all duration-300"
+          />
+        </div>
+
+        <div class="lg:col-span-4 space-y-3.5">
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 space-y-1">
+            <div class="flex items-center justify-between text-xs font-extrabold">
+              <span class="text-[#FF1E6D]">01 • ОВЕРСАЙЗ СВИТШОТ</span>
+              <span>Спереди + Спина</span>
+            </div>
+            <div class="font-bold text-sm">Графитовый свитшот «УрФУ EST. 1920»</div>
+            <p class="text-xs text-gray-600 dark:text-gray-300">Спереди — лаконичный градиентный знак «У», на спине — архитектурный каркас главного корпуса и принт «УРАЛЬСКИЙ ФЕДЕРАЛЬНЫЙ • EST. 1920 • УрФУ».</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 space-y-1">
+            <div class="flex items-center justify-between text-xs font-extrabold">
+              <span class="text-[#FF6B35]">02 • СЕРИЯ REFLECTIVE</span>
+              <span>NFC + Карабин</span>
+            </div>
+            <div class="font-bold text-sm">Светоотражающий брелок-ланъярд «УрФУ»</div>
+            <p class="text-xs text-gray-600 dark:text-gray-300">Анодированный розовый карабин, градиентная стропа со светоотражающим логотипом, NFC-трекер, плетеный шнур и матовый 3D-шарм «У».</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 space-y-1">
+            <div class="flex items-center justify-between text-xs font-extrabold">
+              <span class="text-purple-600">03 • АКСЕССУАРЫ</span>
+              <span>Soft-touch</span>
+            </div>
+            <div class="font-bold text-sm">Черная матовая термокружка УрФУ</div>
+            <p class="text-xs text-gray-600 dark:text-gray-300">Вакуумная теплоизоляция до 12 часов, фирменный знак «У» и лаконичная подпись «урфу» на корпусе.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 space-y-1.5">
+            <div class="flex items-center justify-between text-xs font-extrabold">
+              <span class="text-[#FF1E6D]">04 • СТИКЕРПАК СТУДЕНТА</span>
+              <span>5 виниловых стикеров</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-0.5 text-xs">
+              <span class="px-2.5 py-0.5 rounded font-bold bg-indigo-100 text-indigo-800">ТВОРИ ИСТОРИЮ</span>
+              <span class="px-2.5 py-0.5 rounded font-bold bg-pink-100 text-[#FF1E6D]">ДЕРЗАЙ И ПОБЕЖДАЙ</span>
+              <span class="px-2.5 py-0.5 rounded font-bold bg-slate-800 text-white">ИНЖЕНЕР БУДУЩЕГО</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. БОРД №2: ДЕРЖАТЕЛИ ДЛЯ ПРОПУСКОВ УрФУ И НАВИГАЦИЯ ================= -->
+    <section id="campus-wayfinding" class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 bento-card space-y-7">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <span data-i18n="br_s3_tag" class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">03 • Единый кампусный пропуск и навигация</span>
+          <h2 data-i18n="br_s3_title" class="text-2xl sm:text-3xl font-extrabold mt-1">Держатели для пропусков УрФУ и навигационные стелы</h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
+            Два формата ношения электронного студенческого билета-пропуска: вертикальный картхолдер на брендированной ленте с карабином и горизонтальный бейдж на ретракторе.
+          </p>
+        </div>
+
+        <label class="cursor-pointer px-4 py-2.5 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 hover:border-[#FF1E6D] border border-gray-200 dark:border-slate-700 text-xs font-bold transition shrink-0">
+          📷 Загрузить фото пропусков
+          <input type="file" accept="image/*" class="hidden" onchange="previewBoard(event, 'badgesBoardImg')" />
+        </label>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <div class="bg-[#EAEAE8] dark:bg-slate-900 rounded-[28px] p-3 sm:p-5 border border-gray-200/70 dark:border-slate-800 flex items-center justify-center overflow-hidden">
+            <img
+              id="badgesBoardImg"
+              src="badges.jpg"
+              width="900"
+              height="600"
+              loading="lazy"
+              alt="Держатели для пропусков УрФУ: вертикальный картхолдер и горизонтальный бейдж на ретракторе"
+              onclick="openZoomModal(this.src, 'Держатели для пропусков УрФУ')"
+              class="w-full max-h-[440px] object-contain rounded-2xl cursor-zoom-in transition-all duration-300"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700">
+              <div class="font-extrabold text-[#FF1E6D]">Вертикальный картхолдер на ленте</div>
+              <p class="text-gray-600 dark:text-gray-300 mt-1">Полупрозрачный матовый корпус для бесконтактной кампусной карты, жаккардовая лента с паттерном «У УрФУ» и металлический розовый карабин.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700">
+              <div class="font-extrabold text-[#FF6B35]">Горизонтальный пропуск на ретракторе</div>
+              <p class="text-gray-600 dark:text-gray-300 mt-1">Жесткий чехол «СТУДЕНЧЕСКИЙ БИЛЕТ • ПРОПУСК» с вытяжным магнитным ретрактором для быстрого прикладывания к турникетам в ГУК и общежитиях.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Интерактивная навигационная стела УрФУ (5 колонок) -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-between bg-[#F4F5F8] dark:bg-slate-800/50 rounded-[28px] p-6 border border-gray-200/60 dark:border-slate-700 space-y-4">
+          <div class="w-full flex items-center justify-between text-xs font-bold">
+            <span class="text-[#FF1E6D] uppercase">Интерактивный пилон в корпусе</span>
+            <span class="text-gray-600 dark:text-gray-300">Кликни по этажу</span>
+          </div>
+
+          <div class="w-full max-w-[310px] bg-[#141821] text-white rounded-[26px] p-6 shadow-2xl border-r-4 border-[#FF1E6D] space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+              <div class="flex items-center gap-2">
+                <span class="text-3xl font-black urfu-text-gradient leading-none">У</span>
+                <span class="text-2xl font-black tracking-tight text-white">УрФУ</span>
+              </div>
+              <span class="text-xs font-bold text-gray-300 uppercase">ГУК • Навигация</span>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <button type="button" onclick="selectWay('Приемная комиссия и Актовый зал — Прямо 50 м ↑')" class="w-full text-left p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-white">↑ Приемная комиссия и Актовый зал</div>
+                  <div class="text-xs text-gray-300">Главное крыло, 2 этаж</div>
+                </div>
+                <span class="text-[#FF1E6D] font-bold">↑</span>
+              </button>
+
+              <button type="button" onclick="selectWay('Деканаты институтов и Коворкинг — Налево 30 м ←')" class="w-full text-left p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-white">← Деканаты и Студенческий коворкинг</div>
+                  <div class="text-xs text-gray-300">Аудитории И-210 — И-245</div>
+                </div>
+                <span class="text-[#FF6B35] font-bold">←</span>
+              </button>
+
+              <button type="button" onclick="selectWay('Научная библиотека и Технопарк — Направо 40 м →')" class="w-full text-left p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-white">Научная библиотека и медиазал →</div>
+                  <div class="text-xs text-gray-300">Зона самоподготовки</div>
+                </div>
+                <span class="text-[#FF1E6D] font-bold">→</span>
+              </button>
+
+              <button type="button" onclick="selectWay('UrFU Store и Студенческое кафе — Цокольный этаж ↓')" class="w-full text-left p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-white">UrFU Store и Студенческое кафе →</div>
+                  <div class="text-xs text-gray-300">Мерч, кофе и зона отдыха</div>
+                </div>
+                <span class="text-[#FF6B35] font-bold">→</span>
+              </button>
+            </div>
+
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-gray-300">
+              <span>Приложи пропуск УрФУ к считывателю</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#FF1E6D] animate-ping"></span>
+            </div>
+          </div>
+
+          <div id="routeNotice" aria-live="polite" class="w-full p-3 rounded-xl bg-white dark:bg-slate-900 text-xs font-bold text-center text-[#FF1E6D]">
+            Маршрут: Главный учебный корпус (Мира, 19) — 1 этаж
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Модальное окно полноэкранного просмотра макетов -->
+  <div id="zoomModal" role="dialog" aria-modal="true" aria-labelledby="zoomModalTitle" aria-hidden="true" onclick="closeZoomModal()" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#1E273B] rounded-3xl max-w-5xl w-full p-5 shadow-2xl space-y-3" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between">
+        <h4 id="zoomModalTitle" class="font-extrabold text-base">Просмотр макета УрФУ</h4>
+        <button type="button" onclick="closeZoomModal()" aria-label="Закрыть просмотр" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-slate-800 font-bold">✕</button>
+      </div>
+      <img id="zoomModalImg" src="" alt="Увеличенный макет фирменного стиля УрФУ" class="w-full max-h-[78vh] object-contain rounded-2xl" />
+    </div>
+  </div>
+
+  <!-- Модальное окно скачивания медиа-кита (вместо системного alert — п. 3.6 ТЗ) -->
+  <div id="kitModal" role="dialog" aria-modal="true" aria-labelledby="kitModalTitle" aria-hidden="true" onclick="closeKitModal()" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#1E273B] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-gray-100 dark:border-slate-700 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between">
+        <h4 id="kitModalTitle" class="font-extrabold text-lg">Медиа-кит студента УрФУ</h4>
+        <button type="button" onclick="closeKitModal()" aria-label="Закрыть окно" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-slate-800 font-bold">✕</button>
+      </div>
+      <p class="text-xs text-gray-600 dark:text-gray-300">
+        Архив содержит векторные логотипы УрФУ (светлая и темная версии в <code>.SVG</code> и <code>.PNG</code>), шаблоны презентаций для защиты ВКР и руководство по фирменному стилю.
+      </p>
+      <div class="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-xs font-bold" aria-live="polite">
+        ✓ Пакет логотипов UrFU_Brand_Kit_2026.zip готов к использованию в ваших учебных проектах!
+      </div>
+      <button type="button" onclick="closeKitModal()" class="w-full py-3 rounded-xl urfu-gradient text-white font-bold text-xs">Отлично, закрыть</button>
+    </div>
+  </div>
+
+  <!-- ================= ПОДВАЛ ================= -->
+  <footer class="bg-white dark:bg-[#171E2E] border-t border-gray-200/80 dark:border-slate-800 py-10">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600 dark:text-gray-300">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg urfu-gradient flex items-center justify-center text-white font-black">У</div>
+        <span class="font-extrabold text-base text-[#1A1D24] dark:text-white">УрФУ</span>
+        <span>• Айдентика, мерч и держатели пропусков</span>
+      </div>
+      <div class="flex items-center gap-4 font-bold">
+        <a href="pres.html" class="text-[#FF6B35] hover:underline">🎯 Презентация проекта</a>
+        <a href="schedule.html" class="hover:text-[#FF1E6D]">Расписание и БРС</a>
+        <a href="index.html" data-i18n="btn_back_home" class="text-[#FF1E6D] hover:underline">← На главную</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function previewBoard(event, imgId) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById(imgId).src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function toggleMerchFlash() {
+      const img = document.getElementById('merchBoardImg');
+      const btn = document.getElementById('merchFlashBtn');
+      const isFlash = img.classList.toggle('flash-mode');
+      btn.textContent = isFlash ? '☀ Дневной свет' : '⚡ Эффект вспышки Reflective';
+    }
+
+    function selectWay(text) {
+      document.getElementById('routeNotice').textContent = 'Маршрут построен: ' + text;
+    }
+
+    function openZoomModal(src, title) {
+      document.getElementById('zoomModalImg').src = src;
+      document.getElementById('zoomModalTitle').textContent = title;
+      if (window.trapModalFocus) window.trapModalFocus('zoomModal');
+      else document.getElementById('zoomModal').classList.remove('hidden');
+    }
+
+    function closeZoomModal() {
+      const m = document.getElementById('zoomModal');
+      m.classList.add('hidden');
+      m.setAttribute('aria-hidden', 'true');
+      if (window.restoreModalFocus) window.restoreModalFocus();
+    }
+
+    function openDownloadKitModal() {
+      if (window.trapModalFocus) window.trapModalFocus('kitModal');
+      else document.getElementById('kitModal').classList.remove('hidden');
+    }
+
+    function closeKitModal() {
+      const m = document.getElementById('kitModal');
+      m.classList.add('hidden');
+      m.setAttribute('aria-hidden', 'true');
+      if (window.restoreModalFocus) window.restoreModalFocus();
+    }
+  </script>
+</body>
+</html>

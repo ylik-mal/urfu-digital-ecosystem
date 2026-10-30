@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>УрФУ — Партнёрам и бизнесу: Проектное обучение, Центр карьеры и Эндаумент-фонд</title>
+  <meta name="description" content="Сотрудничество с УрФУ для бизнеса и работодателей: проектное обучение студентов, заказ контрактных НИОКР, Центр карьеры и инвестиции в Эндаумент-фонд." />
+  <meta name="keywords" content="партнеры УрФУ, Центр карьеры УрФУ, проектное обучение, Эндаумент-фонд УрФУ, СКБ Контур, Сбер" />
+  <link rel="canonical" href="https://urfu.ru/partners.html" />
+  <meta property="og:title" content="УрФУ — Партнёрам, бизнесу и работодателям" />
+  <meta property="og:description" content="Индустриальная экосистема УрФУ: найм талантливых выпускников, R&D контракты и целевой капитал." />
+  <meta property="og:image" content="/assets/images/og-partners.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="urfu-core.js" defer></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    };
+    (function() {
+      try {
+        if (localStorage.getItem('urfu_theme') === 'dark') document.documentElement.classList.add('dark');
+        if (localStorage.getItem('urfu_a11y') === 'true') document.documentElement.classList.add('a11y-mode');
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; line-height: 1.5; }
+    html.a11y-mode { font-size: 112.5%; }
+    html.a11y-mode body { letter-spacing: 0.015em; }
+    :focus-visible { outline: 3px solid #FF1E6D; outline-offset: 2px; border-radius: 0.5rem; }
+    input[type="range"] { min-height: 44px; }
+    .urfu-gradient { background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 45%, #FF7A2F 100%); }
+    .urfu-text-gradient {
+      background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 50%, #FF7A2F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bento-card {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -15px rgba(15, 20, 32, 0.08);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .bento-card:hover { transform: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#F4F5F8] dark:bg-[#0F1420] text-[#1A1D24] dark:text-white transition-colors duration-300 antialiased selection:bg-[#FF1E6D] selection:text-white">
+
+  <a href="#main-content" data-i18n="skip_link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#FF1E6D] focus:text-white focus:font-extrabold focus:text-xs shadow-lg">
+    Перейти к основному содержимому
+  </a>
+
+  <!-- ================= ЕДИНАЯ ШАПКА САЙТА (П. 3.3 ТЗ) ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#171E2E]/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2">
+      <a href="index.html" aria-label="УрФУ — На главную страницу" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-10 h-10 rounded-xl urfu-gradient flex items-center justify-center shadow-md shadow-[#FF1E6D]/25 group-hover:scale-105 transition-transform">
+          <span class="text-white font-black text-2xl leading-none select-none">У</span>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight text-[#1A1D24] dark:text-white">УрФУ</span>
+      </a>
+
+      <nav aria-label="Основная навигация" class="hidden lg:flex items-center gap-1 xl:gap-4 text-sm font-semibold whitespace-nowrap">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D] transition-colors">Главная</a>
+        <a href="school.html" data-i18n="nav_school" class="hover:text-[#FF1E6D] transition-colors">Школьникам</a>
+        <a href="applicants.html" data-i18n="nav_applicants" class="hover:text-[#FF1E6D] transition-colors">Абитуриентам</a>
+        <a href="institutes.html" data-i18n="nav_institutes" class="hover:text-[#FF1E6D] transition-colors">Институты</a>
+        <a href="schedule.html" data-i18n="nav_students" class="hover:text-[#FF1E6D] transition-colors">Студентам</a>
+        <a href="campus.html" data-i18n="nav_campus" class="hover:text-[#FF1E6D] transition-colors">Кампус</a>
+        <a href="science.html" data-i18n="nav_science" class="hover:text-[#FF1E6D] transition-colors">Наука</a>
+        <a href="partners.html" data-i18n="nav_partners" class="text-[#FF1E6D] font-extrabold border-b-2 border-[#FF1E6D] py-6">Партнёрам</a>
+        <a href="contacts.html" data-i18n="nav_contacts" class="hover:text-[#FF1E6D] transition-colors">Контакты</a>
+      </nav>
+
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" onclick="openSearchModal()" aria-label="Открыть умный поиск (нажмите /)" title="Поиск по сайту (/)" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 text-[#FF1E6D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+
+        <button type="button" onclick="toggleA11y()" aria-label="Версия для слабовидящих (увеличить шрифт)" title="Версия для слабовидящих" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-black hover:border-[#FF1E6D] transition">
+          А+
+        </button>
+
+        <div class="relative">
+          <button type="button" onclick="toggleLangMenu()" aria-label="Выбрать язык интерфейса" class="h-9 px-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-[#FF1E6D] flex items-center gap-1 text-xs font-bold transition">
+            <span id="currentLangLabel">RU</span>
+            <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="langDropdown" class="hidden absolute right-0 mt-2 w-44 bg-white dark:bg-[#1E273B] rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700 py-1.5 z-50 text-xs font-semibold">
+            <button type="button" onclick="setLanguage('RU')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇷🇺 Русский</span><span>RU</span></button>
+            <button type="button" onclick="setLanguage('EN')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇬🇧 English</span><span>EN</span></button>
+            <button type="button" onclick="setLanguage('ZH')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇨🇳 中文</span><span>ZH</span></button>
+            <button type="button" onclick="setLanguage('AR')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇦🇪 العربية</span><span>AR</span></button>
+          </div>
+        </div>
+
+        <button type="button" onclick="toggleTheme()" aria-label="Переключить светлую или тёмную тему" title="Светлая / Темная тема" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+          <svg class="w-4 h-4 block dark:hidden text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+
+        <a href="index.html" data-i18n="btn_back_home" class="hidden sm:flex h-9 px-3.5 rounded-xl bg-[#3D4047] hover:bg-[#1A1D24] dark:bg-white dark:text-[#1A1D24] text-white text-xs font-bold items-center transition">
+          ← На главную
+        </a>
+
+        <button type="button" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" aria-label="Открыть мобильное меню всех разделов" class="lg:hidden w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileMenu" aria-label="Мобильная навигация" class="hidden lg:hidden border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-[#171E2E] px-4 py-4 space-y-1.5 text-xs font-bold shadow-xl">
+      <a href="index.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">1. Главная страница УрФУ</a>
+      <a href="school.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">2. Школьникам (5–11 класс)</a>
+      <a href="applicants.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">3. Абитуриентам (Калькулятор ИД)</a>
+      <a href="institutes.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">4. Каталог 13 институтов</a>
+      <a href="schedule.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">5. Студентам: Расписание и БРС</a>
+      <a href="campus.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">6. Кампус «Новокольцовский»</a>
+      <a href="students-brand.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">7. Айдентика и мерч Reflective</a>
+      <a href="science.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">8. Наука и НИОКР</a>
+      <a href="partners.html" class="block px-3.5 py-2 rounded-xl bg-pink-50 dark:bg-slate-800 text-[#FF1E6D]">9. Партнёрам и Эндаумент</a>
+      <a href="media.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">10. Медиацентр и афиша</a>
+      <a href="contacts.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">11. Контакты и корпуса</a>
+      <a href="pres.html" class="block px-3.5 py-2 rounded-xl urfu-gradient text-white">🎯 Презентация проекта (13 слайдов)</a>
+    </nav>
+  </header>
+
+  <!-- ================= ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ ПАРТНЁРАМ ================= -->
+  <main id="main-content" class="max-w-[1380px] mx-auto px-4 sm:px-6 pt-6 pb-16 space-y-12">
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-200/70 dark:border-slate-800 pb-4">
+      <div class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-2">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D]">Главная</a>
+        <span>/</span>
+        <span data-i18n="pr_bc" class="text-[#1A1D24] dark:text-white font-bold">Партнёрам, бизнесу и работодателям</span>
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 text-xs font-bold">
+        <a href="#formats" class="px-3.5 py-1.5 rounded-xl urfu-gradient text-white">Форматы сотрудничества</a>
+        <a href="#partners-grid" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Генеральные партнёры</a>
+        <a href="#career-center" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Центр карьеры</a>
+        <a href="#endowment" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Эндаумент-фонд УрФУ</a>
+      </div>
+    </div>
+
+    <!-- HERO-БЛОК -->
+    <section class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 bento-card">
+      <div class="max-w-2xl space-y-3">
+        <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-pink-50 dark:bg-pink-950/60 text-[#FF1E6D]">Индустриальная экосистема УрФУ</span>
+        <h1 data-i18n="pr_hero_title" class="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight leading-tight">
+          УрФУ для бизнеса: кадры, проектное обучение и передовой R&D
+        </h1>
+        <p data-i18n="pr_hero_desc" class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+          Более 500 компаний-партнёров решают свои кадровые и технологические задачи вместе с УрФУ: от запуска базовых кафедр и студенческих ИТ-проектов до масштабных НИОКР.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 shrink-0 w-full sm:w-auto text-xs">
+        <div class="p-5 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800">
+          <div class="text-3xl font-black urfu-text-gradient">500+</div>
+          <div class="font-semibold text-gray-600 dark:text-gray-300 mt-1">Индустриальных партнёров</div>
+        </div>
+        <div class="p-5 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800">
+          <div class="text-3xl font-black urfu-text-gradient">4 200+</div>
+          <div class="font-semibold text-gray-600 dark:text-gray-300 mt-1">Реальных кейсов в год</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 1. ФОРМАТЫ СОТРУДНИЧЕСТВА ================= -->
+    <section id="formats" class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 bento-card space-y-7">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Навигатор для компаний</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mt-1">Выберите формат работы с УрФУ</h2>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 bg-[#F4F5F8] dark:bg-slate-800 p-1.5 rounded-2xl text-xs sm:text-sm font-bold">
+          <button type="button" onclick="selectPartnerTrack('project')" id="ptr_project" class="px-4 py-2.5 rounded-xl urfu-gradient text-white transition">Проектное обучение</button>
+          <button type="button" onclick="selectPartnerTrack('target')" id="ptr_target" class="px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">Целевое и Карьера</button>
+          <button type="button" onclick="selectPartnerTrack('rnd')" id="ptr_rnd" class="px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">НИОКР и Инжиниринг</button>
+          <button type="button" onclick="selectPartnerTrack('dpo')" id="ptr_dpo" class="px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">Корпоративное ДПО</button>
+        </div>
+      </div>
+
+      <div id="partnerTrackBox" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#F4F5F8] dark:bg-slate-800/70 rounded-3xl p-6 sm:p-8 border border-gray-200/60 dark:border-slate-700"></div>
+    </section>
+
+    <!-- ================= 2. ВИТРИНА ГЕНЕРАЛЬНЫХ ПАРТНЁРОВ УрФУ ================= -->
+    <section id="partners-grid" class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Индустриальные лидеры</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mt-1">Ключевые партнёры и базовые кафедры УрФУ</h2>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 bg-white dark:bg-slate-800 p-1.5 rounded-2xl border border-gray-200/60 dark:border-slate-700 text-xs font-bold">
+          <button type="button" onclick="filterPartners('all')" id="pcat_all" class="px-3.5 py-2 rounded-xl urfu-gradient text-white transition">Все отрасли</button>
+          <button type="button" onclick="filterPartners('it')" id="pcat_it" class="px-3.5 py-2 rounded-xl text-gray-700 dark:text-gray-300 transition">IT и телеком</button>
+          <button type="button" onclick="filterPartners('ind')" id="pcat_ind" class="px-3.5 py-2 rounded-xl text-gray-700 dark:text-gray-300 transition">Промышленность и атом</button>
+          <button type="button" onclick="filterPartners('fin')" id="pcat_fin" class="px-3.5 py-2 rounded-xl text-gray-700 dark:text-gray-300 transition">Финансы и девелопмент</button>
+        </div>
+      </div>
+
+      <div id="partnersCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+    </section>
+
+    <!-- ================= 3. ЦЕНТР КАРЬЕРЫ + ЭНДАУМЕНТ-ФОНД УрФУ ================= -->
+    <section id="career-center" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-6 bg-[#1A1D24] text-white rounded-[32px] p-8 flex flex-col justify-between bento-card relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full urfu-gradient opacity-20 blur-3xl pointer-events-none"></div>
+        <div class="space-y-4 relative z-10">
+          <span class="px-3 py-1 rounded-full text-xs font-bold urfu-gradient">Центр карьеры УрФУ</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold leading-tight">Найдите лучших стажёров и выпускников за 1 клик</h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            Публикуйте вакансии и стажировки на единой цифровой платформе карьеры УрФУ, проводите «Дни компании», хакатоны и ярмарки вакансий «Пик IT» и «Время карьеры».
+          </p>
+          <button type="button" onclick="openPartnerModal('Размещение вакансии или стажировки в Центре карьеры УрФУ')" class="inline-flex items-center px-5 py-2.5 rounded-xl bg-white text-[#1A1D24] text-xs font-extrabold hover:bg-gray-100 transition cursor-pointer">
+            Разместить вакансию / стажировку →
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 pt-6 mt-6 border-t border-white/10 relative z-10 text-xs">
+          <div>
+            <div class="text-2xl font-black text-[#FF6B35]">92%</div>
+            <div class="text-gray-300 mt-0.5">трудоустройство по специальности</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-[#FF1E6D]">8 500+</div>
+            <div class="text-gray-300 mt-0.5">выпускников ежегодно</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-white">Топ-5</div>
+            <div class="text-gray-300 mt-0.5">в рейтинге зарплат выпускников</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="endowment" class="lg:col-span-6 bg-white dark:bg-[#171E2E] rounded-[32px] p-8 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Целевой капитал развития университета</span>
+          <h3 class="text-2xl font-extrabold mt-1 text-[#1A1D24] dark:text-white">Эндаумент-фонд УрФУ</h3>
+          <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 mt-1.5">
+            Вклад бизнеса и выпускников не расходуется, а передается в доверительное управление: ежегодный инвестиционный доход идет на стипендии и науку УрФУ.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 space-y-3 text-xs">
+          <label for="endowSlider" class="flex items-center justify-between font-bold">
+            <span>Сумма вклада в целевой капитал:</span>
+            <span id="endowAmount" class="text-lg font-black text-[#FF1E6D]">5 000 000 ₽</span>
+          </label>
+          <input id="endowSlider" type="range" min="500000" max="25000000" step="500000" value="5000000" oninput="calcEndowment()" class="w-full accent-[#FF1E6D] cursor-pointer" />
+          <div class="pt-2 border-t border-gray-200 dark:border-slate-700 flex items-center justify-between">
+            <span class="text-gray-600 dark:text-gray-300">Ежегодный доход на стипендии (~12%):</span>
+            <strong id="endowYield" class="text-sm font-black text-emerald-700 dark:text-emerald-400">+600 000 ₽ каждый год</strong>
+          </div>
+        </div>
+
+        <button type="button" onclick="openEndowmentModal()" class="w-full py-3.5 rounded-2xl urfu-gradient text-white font-bold text-xs hover:opacity-95 transition cursor-pointer">
+          Стать партнёром или меценатом УрФУ →
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= МОДАЛЬНОЕ ОКНО ПАРТНЁРА (П. 3.6 И 5 ТЗ) ================= -->
+  <div id="partnerModal" role="dialog" aria-modal="true" aria-labelledby="partnerModalTitle" aria-hidden="true" onclick="closePartnerModal()" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#1E273B] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-gray-100 dark:border-slate-700 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between">
+        <h4 id="partnerModalTitle" class="font-extrabold text-lg">Заявка от компании-партнёра</h4>
+        <button type="button" onclick="closePartnerModal()" aria-label="Закрыть модальное окно" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center text-sm font-bold">✕</button>
+      </div>
+      <form onsubmit="submitPartnerForm(event)" class="space-y-3 text-xs sm:text-sm">
+        <label for="prNameInput" class="sr-only">Название компании и контактное лицо</label>
+        <input id="prNameInput" required type="text" placeholder="Название компании и контактное лицо" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+        <label for="prEmailInput" class="sr-only">Корпоративный Email или телефон</label>
+        <input id="prEmailInput" required type="email" placeholder="Корпоративный Email или телефон" class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none" />
+        <label for="partnerModalText" class="sr-only">Описание вашего запроса</label>
+        <textarea id="partnerModalText" required rows="3" placeholder="Опишите ваш запрос (проектная задача, целевое обучение, вакансия или вклад в Эндаумент)..." class="w-full px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 focus:outline-none"></textarea>
+        <button type="submit" class="w-full py-3.5 rounded-xl urfu-gradient text-white font-bold text-sm shadow-md hover:opacity-95 transition">
+          Отправить в Дирекцию по развитию партнёрств УрФУ
+        </button>
+      </form>
+      <div id="partnerSuccess" aria-live="polite" class="hidden p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
+        ✓ Заявка принята! Персональный куратор УрФУ свяжется с вами в течение рабочего дня.
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ПОДВАЛ ================= -->
+  <footer class="bg-white dark:bg-[#171E2E] border-t border-gray-200/80 dark:border-slate-800 py-10">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600 dark:text-gray-300">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg urfu-gradient flex items-center justify-center text-white font-black">У</div>
+        <span class="font-extrabold text-base text-[#1A1D24] dark:text-white">УрФУ</span>
+        <span>• Раздел «Партнёрам и бизнесу»</span>
+      </div>
+      <div class="flex items-center gap-4 font-bold">
+        <a href="pres.html" class="text-[#FF6B35] hover:underline">🎯 Презентация проекта</a>
+        <a href="science.html" class="hover:text-[#FF1E6D]">Наука и НИОКР</a>
+        <a href="index.html" data-i18n="btn_back_home" class="text-[#FF1E6D] hover:underline">← На главную</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.URFU_I18N) {
+        Object.assign(window.URFU_I18N.RU, {
+          pr_bc: 'Партнёрам, бизнесу и работодателям',
+          pr_hero_title: 'УрФУ для бизнеса: кадры, проектное обучение и передовой R&D',
+          pr_hero_desc: 'Более 500 компаний-партнёров решают свои кадровые и технологические задачи вместе с УрФУ: от запуска базовых кафедр и студенческих ИТ-проектов до масштабных НИОКР.'
+        });
+        Object.assign(window.URFU_I18N.EN, {
+          pr_bc: 'Partners, Business & Employers',
+          pr_hero_title: 'UrFU for Business: Talent, Project-Based Learning & Advanced R&D',
+          pr_hero_desc: 'Over 500 partner companies solve their HR and technological tasks with UrFU: from basic departments and student IT projects to large-scale R&D.'
+        });
+        Object.assign(window.URFU_I18N.ZH, {
+          pr_bc: '合作伙伴、企业与雇主',
+          pr_hero_title: '乌拉尔联邦大学赋能商业：人才培养、项目制学习与先进研发',
+          pr_hero_desc: '500多家合作企业与乌拉尔联大共同解决人才与技术挑战：从基础教研室、学生IT项目到大规模研发。'
+        });
+        Object.assign(window.URFU_I18N.AR, {
+          pr_bc: 'الشركاء والأعمال وأصحاب العمل',
+          pr_hero_title: 'UrFU للأعمال: المواهب والتعلم القائم على المشاريع والبحث والتطوير',
+          pr_hero_desc: 'أكثر من 500 شركة شريكة تحل تحدياتها التقنية والتوظيفية مع UrFU.'
+        });
+        const lang = window.urfuStorage ? window.urfuStorage.get(window.URFU_KEYS.LANG, 'RU') : 'RU';
+        window.setLanguage(lang);
+      }
+    });
+
+    const partnerTracks = {
+      project: {
+        badge: 'Более 1 200 команд в семестр',
+        title: 'Закажите разработку прототипа в рамках Проектного обучения УрФУ',
+        desc: 'Междисциплинарные команды студентов 2–4 курсов под руководством кураторов из индустрии решают реальные инженерные, IT и маркетинговые задачи вашей компании в течение семестра.',
+        metrics: ['Бесплатный пилотный проект для компании', 'Прямой отбор лучших студентов в штат', 'Защита перед экспертами бизнеса']
+      },
+      target: {
+        badge: 'Платформа «Работа в России» и Центр карьеры',
+        title: 'Целевое обучение, корпоративные стипендии и стажировки',
+        desc: 'Заключайте договоры о целевом обучении со студентами УрФУ, учреждайте именные корпоративные стипендии и формируйте кадровый резерв с 1 курса.',
+        metrics: ['Гарантированная отработка выпускника от 3 лет', 'Адаптация учебного плана под стек компании', 'Доступ к базе резюме 36 000+ студентов']
+      },
+      rnd: {
+        badge: 'Инжиниринговый центр и 120+ лабораторий',
+        title: 'Контрактные НИОКР, испытания и реверс-инжиниринг',
+        desc: 'Разработка импортозамещающих технологий, конструкторской документации, новых материалов и программно-аппаратных комплексов по техзаданию заказчика.',
+        metrics: ['4,5 млрд ₽ годовой объем НИОКР', 'Сертифицированные центры коллективного пользования', 'Софинансирование по федеральным программам']
+      },
+      dpo: {
+        badge: 'Бизнес-школа УрФУ и более 300 программ ДПО',
+        title: 'Корпоративное обучение, переподготовка и MBA',
+        desc: 'Повышение квалификации инженеров, ИТ-специалистов и топ-менеджмента предприятий по индивидуальным программам с участием практиков отрасли.',
+        metrics: ['Дипломы и удостоверения установленного образца', 'Обучение на территории заказчика или в кампусе УрФУ', 'Цифровые тренажеры и VR-симуляторы']
+      }
+    };
+
+    function selectPartnerTrack(key) {
+      ['project', 'target', 'rnd', 'dpo'].forEach(k => {
+        const btn = document.getElementById('ptr_' + k);
+        btn.className = k === key
+          ? 'px-4 py-2.5 rounded-xl urfu-gradient text-white transition'
+          : 'px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition';
+      });
+
+      const t = partnerTracks[key];
+      document.getElementById('partnerTrackBox').innerHTML = `
+        <div class="lg:col-span-8 space-y-3">
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-100 dark:bg-pink-950 text-[#FF1E6D]">${t.badge}</span>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-[#1A1D24] dark:text-white">${t.title}</h3>
+          <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed">${t.desc}</p>
+          <button type="button" onclick="openPartnerModal('${t.title}')" class="mt-2 inline-flex items-center px-5 py-2.5 rounded-xl urfu-gradient text-white text-xs font-bold shadow-sm hover:opacity-95 transition cursor-pointer">
+            Оставить заявку по этому формату →
+          </button>
+        </div>
+        <div class="lg:col-span-4 space-y-2.5 bg-white dark:bg-slate-900 p-5 rounded-2xl border border-gray-100 dark:border-slate-700 text-xs font-semibold">
+          ${t.metrics.map(m => `<div class="flex items-center gap-2"><span class="text-[#FF1E6D] font-black">✓</span><span class="text-gray-700 dark:text-gray-300">${m}</span></div>`).join('')}
+        </div>
+      `;
+    }
+
+    const partnersList = [
+      { name: 'СКБ Контур', cat: 'it', tag: 'IT-экосистема', role: 'Совместный бакалавриат «Фундаментальная информатика и ИТ» в ИРИТ-РтФ и ИЕНиМ, стипендии и акселераторы.' },
+      { name: 'Сбер', cat: 'fin', tag: 'Финтех и ИИ', role: 'Лаборатории искусственного интеллекта, облачные сервисы и программы переподготовки цифровых кадров.' },
+      { name: 'Госкорпорация «Росатом»', cat: 'ind', tag: 'Атомная отрасль', role: 'Опорный вуз Росатома: подготовка инженеров-физиков в ФТИ и УралЭНИН, передовые ядерные исследования.' },
+      { name: 'Яндекс', cat: 'it', tag: 'Технологии и образование', role: 'Образовательные треки по анализу данных, машинному обучению и промышленной разработке ПО.' },
+      { name: 'ТМК и Группа Синара', cat: 'ind', tag: 'Машиностроение и металлургия', role: 'Генеральные партнёры кампуса «Новокольцовский», заказчики НИОКР в ИНМТ и организаторы форума «Горизонты».' },
+      { name: 'УГМК и ЕВРАЗ', cat: 'ind', tag: 'Горно-металлургический комплекс', role: 'Целевое обучение инженеров, модернизация лабораторий автоматизации и металлургии.' },
+      { name: 'Naumen и УЦСБ', cat: 'it', tag: 'Кибербезопасность и Enterprise IT', role: 'Базовые кафедры информационной безопасности, хакатоны и трудоустройство студентов со 2 курса.' },
+      { name: 'Атомстройкомплекс и Брусника', cat: 'fin', tag: 'Девелопмент и урбанистика', role: 'Партнёры Института строительства и архитектуры (ИСА): BIM-проектирование и новые строительные материалы.' }
+    ];
+
+    let activePartnerCat = 'all';
+
+    function filterPartners(cat) {
+      activePartnerCat = cat;
+      ['all', 'it', 'ind', 'fin'].forEach(c => {
+        const btn = document.getElementById('pcat_' + c);
+        btn.className = c === cat
+          ? 'px-3.5 py-2 rounded-xl urfu-gradient text-white transition'
+          : 'px-3.5 py-2 rounded-xl text-gray-700 dark:text-gray-300 transition';
+      });
+
+      const list = partnersList.filter(p => activePartnerCat === 'all' || p.cat === activePartnerCat);
+      document.getElementById('partnersCards').innerHTML = list.map(p => `
+        <div class="bg-white dark:bg-[#171E2E] rounded-[28px] p-6 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between gap-4">
+          <div>
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-pink-50 dark:bg-pink-950/60 text-[#FF1E6D]">${p.tag}</span>
+            <h4 class="font-extrabold text-lg mt-3 text-[#1A1D24] dark:text-white">${p.name}</h4>
+            <p class="text-xs text-gray-700 dark:text-gray-300 mt-1.5 leading-relaxed">${p.role}</p>
+          </div>
+          <div class="pt-3 border-t border-gray-100 dark:border-slate-800 text-xs font-bold text-[#FF1E6D]">
+            Стратегический партнёр УрФУ
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function calcEndowment() {
+      const val = parseInt(document.getElementById('endowSlider').value, 10);
+      const yieldVal = Math.round(val * 0.12);
+      document.getElementById('endowAmount').textContent = val.toLocaleString('ru-RU') + ' ₽';
+      document.getElementById('endowYield').textContent = '+' + yieldVal.toLocaleString('ru-RU') + ' ₽ каждый год';
+    }
+
+    function openPartnerModal(title) {
+      document.getElementById('partnerSuccess').classList.add('hidden');
+      document.getElementById('partnerModalTitle').textContent = title;
+      document.getElementById('partnerModalText').value = '';
+      if (window.trapModalFocus) window.trapModalFocus('partnerModal');
+      else document.getElementById('partnerModal').classList.remove('hidden');
+    }
+
+    function openEndowmentModal() {
+      const val = parseInt(document.getElementById('endowSlider').value, 10).toLocaleString('ru-RU');
+      openPartnerModal('Вклад в Эндаумент-фонд УрФУ');
+      document.getElementById('partnerModalText').value = `Планируемый вклад в целевой капитал УрФУ: ${val} ₽.`;
+    }
+
+    function closePartnerModal() {
+      const m = document.getElementById('partnerModal');
+      m.classList.add('hidden');
+      m.setAttribute('aria-hidden', 'true');
+      if (window.restoreModalFocus) window.restoreModalFocus();
+    }
+
+    function submitPartnerForm(e) {
+      e.preventDefault();
+      document.getElementById('partnerSuccess').classList.remove('hidden');
+      setTimeout(() => closePartnerModal(), 1500);
+    }
+
+    selectPartnerTrack('project');
+    filterPartners('all');
+  </script>
+</body>
+</html>

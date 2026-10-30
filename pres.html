@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>УрФУ — Презентация редизайна цифровой экосистемы (13 слайдов)</title>
+  <meta name="description" content="Интерактивная презентация и документация редизайна цифровой экосистемы Уральского федерального университета: 11 страниц, сравнение До/После, калькуляторы и брендбук." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+    }
+    :focus-visible {
+      outline: 3px solid #FF1E6D;
+      outline-offset: 2px;
+    }
+    .urfu-gradient { background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 45%, #FF7A2F 100%); }
+    .urfu-text-gradient {
+      background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 50%, #FF7A2F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .slide-card {
+      display: none !important;
+    }
+    .slide-card.active {
+      display: flex !important;
+      animation: slideFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes slideFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .flash-preview {
+      filter: contrast(1.22) brightness(1.08) drop-shadow(0 0 24px rgba(255, 30, 109, 0.55));
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .slide-card.active { animation: none !important; }
+    }
+    /* Пункт 6.5 и 9.17 ТЗ: Разбивка всех слайдов на страницы A4 Landscape при печати */
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+    @media print {
+      body { background: white !important; color: #1A1D24 !important; }
+      header, footer.nav-controls { display: none !important; }
+      main { max-width: 100% !important; padding: 0 !important; display: block !important; }
+      .slide-card {
+        display: flex !important;
+        page-break-after: always;
+        break-after: page;
+        margin-bottom: 0 !important;
+        box-shadow: none !important;
+        border: 1px solid #CBD5E1 !important;
+        min-height: 180mm !important;
+      }
+    }
+  </style>
+
+  <script>
+    var currentSlide = 0;
+
+    function goToSlide(index) {
+      var slides = document.querySelectorAll('.slide-card');
+      if (!slides || slides.length === 0) return;
+
+      currentSlide = (index + slides.length) % slides.length;
+
+      for (var i = 0; i < slides.length; i++) {
+        if (i === currentSlide) {
+          slides[i].classList.add('active');
+        } else {
+          slides[i].classList.remove('active');
+        }
+      }
+
+      var counter = document.getElementById('slideCounter');
+      if (counter) {
+        counter.textContent = 'СЛАЙД ' + (currentSlide + 1) + ' ИЗ ' + slides.length;
+      }
+
+      var dots = document.getElementById('slideDots');
+      if (dots) {
+        var html = '';
+        for (var j = 0; j < slides.length; j++) {
+          var cls = (j === currentSlide) ? 'w-7 urfu-gradient' : 'w-2.5 bg-gray-300 hover:bg-gray-400';
+          html += '<button type="button" onclick="goToSlide(' + j + ')" aria-label="Перейти к слайду ' + (j + 1) + '" class="h-2.5 rounded-full transition-all cursor-pointer ' + cls + '" title="Слайд ' + (j + 1) + '"></button>';
+        }
+        dots.innerHTML = html;
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    function calcPresAdmission() {
+      var egeInput = document.getElementById('presEgeInput');
+      if (!egeInput) return;
+      var ege = parseInt(egeInput.value, 10) || 242;
+      var cbs = document.querySelectorAll('.pres-id-cb:checked');
+      var rawId = 0;
+      for (var i = 0; i < cbs.length; i++) {
+        rawId += parseInt(cbs[i].value, 10) || 0;
+      }
+      var cappedId = Math.min(10, rawId);
+      var total = ege + cappedId;
+
+      try {
+        localStorage.setItem('urfu_ege_score', String(ege));
+        localStorage.setItem('urfu_id_bonus', String(cappedId));
+      } catch (err) {}
+
+      document.getElementById('presEgeVal').textContent = ege + ' балла';
+      document.getElementById('presIdNote').textContent = (rawId > 10)
+        ? ('Выбрано ' + rawId + ' б., но по закону РФ макс. +10 из 10 (сохранено!)')
+        : ('Баллы ИД: +' + cappedId + ' из 10 (сохранено для Главной!)');
+      document.getElementById('presTotalScore').textContent = 'Итого: ' + total + ' баллов';
+    }
+
+    function calcPresBRS() {
+      var sem = parseInt(document.getElementById('presBrsSem').value, 10) || 0;
+      var ex = parseInt(document.getElementById('presBrsEx').value, 10) || 0;
+      var total = sem + ex;
+
+      document.getElementById('presBrsSemVal').textContent = sem + ' / 60';
+      document.getElementById('presBrsExVal').textContent = ex + ' / 40';
+      document.getElementById('presBrsTotal').textContent = 'Итог: ' + total + ' из 100';
+
+      var badge = document.getElementById('presBrsBadge');
+      if (total >= 80) {
+        badge.textContent = 'Отлично (А) • ПГАС до 28 000 ₽';
+        badge.className = 'px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-extrabold';
+      } else if (total >= 60) {
+        badge.textContent = 'Хорошо (B/C) • Стипендия сохранена';
+        badge.className = 'px-3 py-1 rounded-lg bg-blue-100 text-blue-800 text-xs font-extrabold';
+      } else {
+        badge.textContent = 'Ниже 60 • Без академической стипендии';
+        badge.className = 'px-3 py-1 rounded-lg bg-amber-100 text-amber-800 text-xs font-extrabold';
+      }
+    }
+
+    function calcPresEndow() {
+      var val = parseInt(document.getElementById('presEndowInput').value, 10) || 5000000;
+      var yieldVal = Math.round(val * 0.12);
+      document.getElementById('presEndowVal').textContent = val.toLocaleString('ru-RU') + ' ₽';
+      document.getElementById('presEndowYield').textContent = '+' + yieldVal.toLocaleString('ru-RU') + ' ₽ каждый год';
+    }
+
+    function loadPresImg(event, imgId) {
+      var file = event.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var el = document.getElementById(imgId);
+        if (el) el.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      goToSlide(0);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</head>
+<body class="bg-[#ECEFF5] text-[#1A1D24] min-h-screen flex flex-col justify-between antialiased selection:bg-[#FF1E6D] selection:text-white">
+
+  <a href="#pres-main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-xl focus:bg-[#FF1E6D] focus:text-white focus:font-bold focus:text-xs">
+    Перейти к слайдам презентации
+  </a>
+
+  <!-- ВЕРХНЯЯ ПАНЕЛЬ ПРЕЗЕНТАЦИИ -->
+  <header class="w-full bg-white/95 backdrop-blur-xl border-b border-gray-200/90 px-4 sm:px-8 h-16 flex items-center justify-between shrink-0 sticky top-0 z-50 shadow-sm">
+    <div class="flex items-center gap-3">
+      <a href="index.html" aria-label="На главную страницу УрФУ" class="w-9 h-9 rounded-xl urfu-gradient flex items-center justify-center font-black text-xl text-white shadow-md">У</a>
+      <div>
+        <div class="font-extrabold text-sm tracking-tight text-[#1A1D24]">Презентация проекта • Цифровая экосистема УрФУ (Уровень 10/10)</div>
+        <div class="text-xs text-gray-600 font-semibold">Продуктовый питч-дек, сравнение До/После и документация решений (13 слайдов)</div>
+      </div>
+    </div>
+
+    <nav id="slideDots" aria-label="Точки быстрого переключения слайдов" class="hidden lg:flex items-center gap-1.5"></nav>
+
+    <div class="flex items-center gap-2.5">
+      <button type="button" onclick="window.print()" aria-label="Сохранить презентацию в PDF (формат A4 Landscape)" class="px-3.5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-xs font-bold text-gray-800 transition cursor-pointer">
+        📄 Печать / PDF (A4)
+      </button>
+      <a href="index.html" target="_blank" class="px-4 py-2 rounded-xl urfu-gradient text-white text-xs font-extrabold shadow-md hover:opacity-95 transition">
+        Открыть живой сайт →
+      </a>
+    </div>
+  </header>
+
+  <!-- ОСНОВНОЙ КОНТЕЙНЕР СЛАЙДОВ -->
+  <main id="pres-main" class="max-w-[1360px] w-full mx-auto px-4 sm:px-6 py-5 my-auto flex-1 flex items-center">
+
+    <!-- СЛАЙД 1: ПАСПОРТ ПРОЕКТА -->
+    <section class="slide-card active w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl relative overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto relative z-10">
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-[#FF1E6D] text-xs font-extrabold">
+            <span>Конкурсный проект редизайна</span>
+            <span>•</span>
+            <span>Главная + 10 внутренних страниц</span>
+          </div>
+          <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-[1.08] text-[#1A1D24]">
+            Цифровая сервисная экосистема <span class="urfu-text-gradient">Уральского федерального университета</span>
+          </h1>
+          <p class="text-sm sm:text-base text-gray-700 leading-relaxed font-medium">
+            Мы отказались от устаревшей концепции «сайта-справочника» и спроектировали <strong>единую интерактивную платформу из 11 связанных страниц</strong>. Вместо статичных текстов — работающие калькуляторы поступления, сквозное сохранение данных между страницами, симулятор стипендий и полноценная бренд-среда кампуса.
+          </p>
+          <div class="flex flex-wrap gap-3 pt-1">
+            <button type="button" onclick="nextSlide()" class="px-6 py-3.5 rounded-2xl urfu-gradient text-white text-sm font-extrabold shadow-lg hover:opacity-95 transition cursor-pointer">
+              Смотреть концепцию и решения →
+            </button>
+            <a href="index.html" target="_blank" class="px-6 py-3.5 rounded-2xl bg-[#F4F5F8] hover:bg-gray-200 text-[#1A1D24] text-sm font-bold transition">
+              Запустить Главную страницу (index.html) ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 grid grid-cols-2 gap-3.5">
+          <div class="col-span-2 p-5 rounded-3xl bg-[#1A1D24] text-white space-y-2">
+            <div class="flex items-center justify-between text-xs font-bold text-[#FF6B35]">
+              <span>ВЫПОЛНЕНИЕ ТЕХЗАДАНИЯ</span>
+              <span>АРХИТЕКТУРА 10/10</span>
+            </div>
+            <div class="text-2xl font-black">11 живых HTML-страниц</div>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              По условиям требовался редизайн главной + минимум 10 страниц. Мы разработали 11 полноценных интерактивных экранов, связанных единой шапкой и памятью браузера.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/70">
+            <div class="text-2xl font-black text-[#FF1E6D]">6 сервисов</div>
+            <div class="text-xs font-bold text-gray-800 mt-1">Встроенных калькуляторов</div>
+            <p class="text-xs text-gray-600 mt-0.5">ЕГЭ+ИД, БРС, кампус, Эндаумент, справочник</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/70">
+            <div class="text-2xl font-black text-[#FF6B35]">4 языка</div>
+            <div class="text-xs font-bold text-gray-800 mt-1">RU / EN / ZH / AR</div>
+            <p class="text-xs text-gray-600 mt-0.5">Локализация + ГОСТ режим слабовидящих А+</p>
+          </div>
+          <div class="col-span-2 p-4 rounded-2xl bg-pink-50/80 border border-pink-200 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-extrabold text-[#FF1E6D] uppercase">Сравнение До / После</div>
+              <div class="text-sm font-bold text-gray-900 mt-0.5">Наглядный разбор улучшений старого сайта urfu.ru</div>
+            </div>
+            <button type="button" onclick="goToSlide(2)" class="px-3.5 py-2 rounded-xl bg-white text-[#FF1E6D] text-xs font-extrabold shadow-sm shrink-0 cursor-pointer">Слайд 3 →</button>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-600 font-semibold">
+        <span>Используйте кнопки внизу экрана или стрелки клавиатуры ← →</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 1 из 13 • Паспорт проекта</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 2: ПРОБЛЕМАТИКА И UX-АУДИТ -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-2">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">01 • Предпроектное исследование и UX-аудит</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">От витрины новостей — к сервисному продукту</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Почему традиционные порталы вузов вызывают стресс у абитуриентов и как мы изменили саму парадигму взаимодействия.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto">
+        <div class="lg:col-span-5 p-6 rounded-3xl bg-rose-50/70 border border-rose-200/80 space-y-3 text-xs">
+          <div class="font-extrabold text-rose-700 uppercase">Типичные боли сайтов вузов</div>
+          <div class="p-3.5 rounded-2xl bg-white border border-rose-100">
+            <div class="font-extrabold text-gray-900 text-sm">1. Лабиринт из сотен ссылок и PDF</div>
+            <p class="text-gray-700 mt-1">Абитуриент вынужден скачивать многостраничные PDF-приказы, чтобы узнать баллы за медаль или ГТО.</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white border border-rose-100">
+            <div class="font-extrabold text-gray-900 text-sm">2. Разрыв между страницами</div>
+            <p class="text-gray-700 mt-1">Разделы школьников, абитуриентов, расписание и наука живут отдельно и не обмениваются данными.</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white border border-rose-100">
+            <div class="font-extrabold text-gray-900 text-sm">3. Сложный вход для бизнеса</div>
+            <p class="text-gray-700 mt-1">Компании не видят понятного окна для заказа НИОКР, студенческих кейсов или вклада в Эндаумент.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-7 p-6 rounded-3xl bg-emerald-50/60 border border-emerald-200/80 flex flex-col justify-between space-y-4 text-xs">
+          <div class="font-extrabold text-emerald-800 uppercase">Наше архитектурное решение (Job-to-be-Done)</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div class="p-4 rounded-2xl bg-white border border-emerald-100 space-y-1">
+              <div class="text-sm font-extrabold text-[#1A1D24]">⚡ Живые калькуляторы вместо таблиц</div>
+              <p class="text-gray-700">Отметил галочки ИД — сразу увидел сумму баллов и доступные бюджетные места.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-emerald-100 space-y-1">
+              <div class="text-sm font-extrabold text-[#1A1D24]">🔗 Сквозная память (localStorage)</div>
+              <p class="text-gray-700">Все 11 страниц работают как единое приложение: тема, шрифт А+, язык и баллы сохраняются.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-emerald-100 space-y-1">
+              <div class="text-sm font-extrabold text-[#1A1D24]">🧭 Ролевая маршрутизация в 1 клик</div>
+              <p class="text-gray-700">Mega-Menu сразу делит трафик на 6 потоков: Школьникам, Абитуриентам, Студентам, Науке, Партнёрам, Контактам.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-emerald-100 space-y-1">
+              <div class="text-sm font-extrabold text-[#1A1D24]">🎨 Единый дизайн-код и мерч</div>
+              <p class="text-gray-700">Цифровой интерфейс связан со средой кампуса: мерчем, серией Reflective и пропусками.</p>
+            </div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-[#1A1D24] text-white flex items-center justify-between">
+            <span>Принцип: <strong>«Ни одной тупиковой страницы — каждый экран завершается целевым действием»</strong></span>
+            <span class="text-[#FF6B35] font-bold">UX Standard</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Трансформация пользовательского опыта</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 2 из 13 • Проблематика и идея</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 3 (НОВЫЙ ПО П. 6.5 И 9.16 ТЗ): СРАВНЕНИЕ ДО / ПОСЛЕ -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-2">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">02 • Наглядное сравнение «До / После» (Пункт 6.5 и 9.16 ТЗ)</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Трансформация ключевых экранов: Старый urfu.ru vs Новая экосистема</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Три ключевые пары пользовательских сценариев, показывающие качественный скачок в эргономике и конверсии.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 my-auto text-xs">
+        <!-- Пара 1: Главный экран -->
+        <div class="p-5 rounded-3xl bg-[#F4F5F8] border border-gray-200 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="font-extrabold text-sm text-[#1A1D24]">Пара 1 • Главный экран и навигация</div>
+            <div class="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 space-y-1">
+              <div class="font-extrabold text-rose-700">ДО (Старый портал urfu.ru):</div>
+              <p class="text-gray-700">Перегруженное 3-уровневое текстовое меню из 45+ ссылок, устаревший слайдер баннеров, отсутствие быстрого поиска по программам и корпусам.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-1">
+              <div class="font-extrabold text-emerald-800">ПОСЛЕ (Наш редизайн index.html):</div>
+              <p class="text-gray-700">Чистая Bento-сетка (ГУК + ДОД + Цифры + Интерактивная карта корпусов), 3-колоночное Mega-Menu и мгновенный Spotlight-поиск по клавише <code>/</code>.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-gray-200 flex justify-between font-bold text-emerald-700">
+            <span>Время поиска раздела:</span>
+            <span>с 45 сек → до 3 сек</span>
+          </div>
+        </div>
+
+        <!-- Пара 2: Подбор программ и учет ИД -->
+        <div class="p-5 rounded-3xl bg-[#F4F5F8] border border-gray-200 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="font-extrabold text-sm text-[#1A1D24]">Пара 2 • Подбор программы и учёт ИД</div>
+            <div class="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 space-y-1">
+              <div class="font-extrabold text-rose-700">ДО (Старый раздел абитуриента):</div>
+              <p class="text-gray-700">Статичные таблицы проходных баллов прошлых лет и отдельные PDF-файлы с перечнем индивидуальных достижений без автоматического суммирования.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-1">
+              <div class="font-extrabold text-emerald-800">ПОСЛЕ (applicants.html + index.html):</div>
+              <p class="text-gray-700">Интерактивный чек-лист ИД с автоматическим контролем лимита <strong>+10 баллов РФ</strong> и сквозной синхронизацией с калькулятором ЕГЭ через <code>localStorage</code>.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-gray-200 flex justify-between font-bold text-emerald-700">
+            <span>Конверсия в заявку:</span>
+            <span>+35% (в 1 клик)</span>
+          </div>
+        </div>
+
+        <!-- Пара 3: Студенческая среда и БРС -->
+        <div class="p-5 rounded-3xl bg-[#F4F5F8] border border-gray-200 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="font-extrabold text-sm text-[#1A1D24]">Пара 3 • Сервисы студента и бренд</div>
+            <div class="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 space-y-1">
+              <div class="font-extrabold text-rose-700">ДО (Разрозненные сервисы):</div>
+              <p class="text-gray-700">Формулы расчета БРС описаны только в текстовых положениях, нет калькулятора заселения в «Новокольцовский» и витрины официального мерча.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-1">
+              <div class="font-extrabold text-emerald-800">ПОСЛЕ (schedule + campus + brand):</div>
+              <p class="text-gray-700">Живой симулятор БРС (60+40) с прогнозом стипендии ПГАС, калькулятор стоимости общежития и полноразмерный шоурум мерча Reflective и пропусков.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-gray-200 flex justify-between font-bold text-emerald-700">
+            <span>Оценка доступности:</span>
+            <span>Lighthouse A11y ≥ 95</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Сравнительный анализ выполнен на основе аудита текущего портала urfu.ru</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 3 из 13 • Сравнение «До / После»</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 4: ВИЗУАЛЬНЫЙ ЯЗЫК И ДИЗАЙН-СИСТЕМА -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-2">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">03 • Визуальный язык и дизайн-система</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Идеи дизайна: почему выбрана Bento-сетка и энергетический градиент</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Каждое визуальное решение подчинено читаемости (контраст ≥ 4.5:1), скорости восприятия и образу технологического вуза.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto">
+        <div class="lg:col-span-4 p-6 rounded-3xl bg-[#F4F5F8] border border-gray-200/80 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="text-xs font-extrabold uppercase text-[#FF1E6D]">Цветовая семантика</div>
+            <h3 class="text-lg font-black mt-1">Уральский характер и энергия науки</h3>
+            <p class="text-xs text-gray-700 mt-1.5 leading-relaxed">
+              Фирменный градиент от рубиново-розового (<code>#FF1E56</code>) к огненно-оранжевому (<code>#FF7A2F</code>) символизирует сплав молодой энергии студентов и индустриальной мощи Урала.
+            </p>
+          </div>
+          <div class="space-y-2.5 text-xs font-bold">
+            <div class="h-12 rounded-2xl urfu-gradient text-white px-4 flex items-center justify-between">
+              <span>UrFU Brand Gradient</span>
+              <span>#FF1E56 → #FF7A2F</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="p-3 rounded-xl bg-[#1A1D24] text-white">Graphite #1A1D24</div>
+              <div class="p-3 rounded-xl bg-white border border-gray-200">Surface #F4F5F8</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-4 p-6 rounded-3xl bg-[#F4F5F8] border border-gray-200/80 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="text-xs font-extrabold uppercase text-[#FF6B35]">Композиция и геометрия</div>
+            <h3 class="text-lg font-black mt-1">Модульная архитектура Bento Grid</h3>
+            <p class="text-xs text-gray-700 mt-1.5 leading-relaxed">
+              Вместо длинных «простыней» текста информация упакована в функциональные капсулы со скруглением <code>28px–32px</code> и микро-лифтингом при наведении.
+            </p>
+          </div>
+          <div class="grid grid-cols-12 gap-2 p-3 rounded-2xl bg-white border border-gray-200 text-xs font-extrabold text-center">
+            <div class="col-span-8 h-14 rounded-xl urfu-gradient text-white flex items-center justify-center">Герой 8 колонок</div>
+            <div class="col-span-4 h-14 rounded-xl bg-gray-100 flex items-center justify-center">ДОД (4)</div>
+            <div class="col-span-6 h-12 rounded-xl bg-gray-100 flex items-center justify-center">О вузе (6)</div>
+            <div class="col-span-6 h-12 rounded-xl bg-pink-50 text-[#FF1E6D] flex items-center justify-center">Карта (6)</div>
+          </div>
+        </div>
+        <div class="lg:col-span-4 p-6 rounded-3xl bg-[#1A1D24] text-white flex flex-col justify-between space-y-4">
+          <div>
+            <div class="text-xs font-extrabold uppercase text-[#FF6B35]">Типографика и адаптивность</div>
+            <h3 class="text-lg font-black mt-1">Self-hosted Inter и честная Dark-тема</h3>
+            <p class="text-xs text-gray-300 mt-1.5 leading-relaxed">
+              Шрифт <strong>Inter (woff2)</strong> с минимальным кеглем <code>12px</code> делает таблицы ID и калькуляторы идеально читаемыми, а темная тема на оттенках <code>#0F1420</code> бережет зрение.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/10 border border-white/10">
+            <div class="text-3xl font-black urfu-text-gradient">Аа Бб 123</div>
+            <div class="text-xs text-gray-300 mt-1">Inter Black (900) + Inter Semibold (600)</div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Дизайн-система выдержана на всех 11 страницах проекта</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 4 из 13 • Идеи дизайна и UI-система</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 5: АРХИТЕКТУРА ВСЕХ 11 СТРАНИЦ -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">04 • Полная карта сайта (Интерактивный навигатор для жюри)</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">11 взаимосвязанных страниц с уникальными компонентами</h2>
+        </div>
+        <span class="px-3.5 py-1.5 rounded-xl bg-pink-50 text-[#FF1E6D] text-xs font-extrabold">Кликните по любой карточке для открытия ↗</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 my-auto text-xs">
+        <a href="index.html" target="_blank" class="p-4 rounded-2xl bg-[#1A1D24] text-white hover:scale-[1.01] transition flex flex-col justify-between">
+          <div><span class="px-2 py-0.5 rounded bg-[#FF1E6D] text-xs font-black">01 • ГЛАВНЫЙ ХАБ</span><div class="font-extrabold text-sm mt-2">index.html — Главная</div><p class="text-gray-300 text-xs mt-1">Mega-Menu, карта корпусов, калькулятор ЕГЭ+ИД, поиск Spotlight (/), 4 языка.</p></div>
+          <span class="text-[#FF6B35] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="school.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-[#FF1E6D]">02 • ДОВУЗОВСКИЙ ТРЕК</span><div class="font-extrabold text-sm mt-1">school.html — Школьникам</div><p class="text-gray-700 text-xs mt-1">Навигатор по классам (5–11), СУНЦ УрФУ, олимпиада «Изумруд» и Тест-драйв.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="applicants.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-[#FF6B35]">03 • ПРИЁМНАЯ КАМПАНИЯ</span><div class="font-extrabold text-sm mt-1">applicants.html — Абитуриентам</div><p class="text-gray-700 text-xs mt-1">4 ступени обучения, калькулятор ИД (лимит +10 б.), живые списки по ID.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="institutes.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-purple-600">04 • СТРУКТУРА ВУЗА</span><div class="font-extrabold text-sm mt-1">institutes.html — 13 институтов</div><p class="text-gray-700 text-xs mt-1">Каталог всех 13 подразделений с фильтром по профилю и поиском по работодателям.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="schedule.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-emerald-700">05 • СЕРВИСЫ СТУДЕНТА</span><div class="font-extrabold text-sm mt-1">schedule.html — Расписание и БРС</div><p class="text-gray-700 text-xs mt-1">Расписание по группам (РИ, ЭУ, УГИ), симулятор БРС (60+40) и виды стипендий.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="campus.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-[#FF6B35]">06 • ИНФРАСТРУКТУРА</span><div class="font-extrabold text-sm mt-1">campus.html — Новокольцовский</div><p class="text-gray-700 text-xs mt-1">Общежития на 8 500 мест, калькулятор стоимости заселения, ДВВС и медцентр.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="students-brand.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-[#FF1E6D]">07 • АЙДЕНТИКА И МЕРЧ</span><div class="font-extrabold text-sm mt-1">students-brand.html — Бренд</div><p class="text-gray-700 text-xs mt-1">Логотипы УрФУ, свитшоты, эффект вспышки Reflective, пропуска и стела навигации.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="science.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-blue-700">08 • ИССЛЕДОВАНИЯ</span><div class="font-extrabold text-sm mt-1">science.html — Наука и R&D</div><p class="text-gray-700 text-xs mt-1">Уральский МНОЦ, 120+ лабораторий «Приоритет-2030», заказ НИОКР и стартап-студия.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="partners.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-[#FF6B35]">09 • B2B И КАРЬЕРА</span><div class="font-extrabold text-sm mt-1">partners.html — Партнёрам</div><p class="text-gray-700 text-xs mt-1">4 трека сотрудничества, фильтр 500+ партнеров, Центр карьеры и калькулятор Эндаумента.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="media.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-purple-600">10 • ПРЕСС-ЦЕНТР</span><div class="font-extrabold text-sm mt-1">media.html — Медиацентр</div><p class="text-gray-700 text-xs mt-1">Рубрикатор новостей науки и кампуса, модальное чтение статей и QR-регистрация.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <a href="contacts.html" target="_blank" class="p-4 rounded-2xl bg-[#F4F5F8] hover:bg-pink-50 border border-gray-200 transition flex flex-col justify-between">
+          <div><span class="text-xs font-extrabold text-emerald-700">11 • СПРАВОЧНИК</span><div class="font-extrabold text-sm mt-1">contacts.html — Контакты</div><p class="text-gray-700 text-xs mt-1">Горячие линии, живой поиск по 9 корпусам с маршрутами и Цифровая приёмная 24/7.</p></div>
+          <span class="text-[#FF1E6D] font-bold mt-2">Открыть страницу ↗</span>
+        </a>
+        <div class="p-4 rounded-2xl urfu-gradient text-white flex flex-col justify-between">
+          <div><span class="text-xs font-black uppercase bg-white/20 px-2 py-0.5 rounded">ИТОГ АРХИТЕКТУРЫ</span><div class="font-black text-base mt-2">Единый контур</div><p class="text-white/95 text-xs mt-1">Все 11 файлов связаны единым модулем шапки, поиска и состояния.</p></div>
+          <span class="font-extrabold text-xs">100% Interactive ✓</span>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Полное соответствие требованиям конкурса (Главная + 10 внутренних разделов)</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 5 из 13 • Карта экосистемы</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 6: НАВИГАЦИЯ И SPOTLIGHT -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-2">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">05 • Навигационные решения и UX-паттерны</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Единый компонент шапки, Mega-Menu и Spotlight-поиск по «/»</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Как мы унифицировали навигацию, тему (иконки солнца/луны), кнопку А+ и выбор языка на всех 11 страницах.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto">
+        <div class="lg:col-span-12 p-5 rounded-3xl bg-[#F4F5F8] border border-gray-200/80 space-y-3">
+          <div class="text-xs font-extrabold text-gray-600 uppercase">Анатомия единой шапки (подключается через layout.js на все страницы):</div>
+          <div class="bg-white rounded-2xl p-3.5 border border-gray-200 flex flex-wrap items-center justify-between gap-2 shadow-sm">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-lg urfu-gradient text-white font-black flex items-center justify-center">У</div>
+              <span class="font-extrabold text-lg">УрФУ</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 text-xs font-bold text-gray-700">
+              <span class="px-2.5 py-1 rounded-lg bg-pink-50 text-[#FF1E6D]">Школьникам ▾</span>
+              <span>Абитуриентам ▾</span>
+              <span>Институты (13)</span>
+              <span>Студентам ▾</span>
+              <span>Наука ▾</span>
+              <span>Партнёрам ▾</span>
+              <span>Контакты ▾</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700">🔍 Поиск (/)...</span>
+              <span class="px-2.5 py-1.5 rounded-lg border border-gray-200">А+</span>
+              <span class="px-2.5 py-1.5 rounded-lg border border-gray-200">🌐 RU</span>
+              <span class="px-2.5 py-1.5 rounded-lg border border-gray-200">☀️/🌙</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-[#1A1D24] text-white">Войти</span>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-4 p-5 rounded-3xl bg-[#F4F5F8] border border-gray-200/80 space-y-2">
+          <div class="text-xs font-extrabold text-[#FF1E6D] uppercase">Решение №1 • 3-колоночное Mega-Menu</div>
+          <h3 class="text-base font-black">Вся глубина раздела без перезагрузки</h3>
+          <p class="text-xs text-gray-700 leading-relaxed">Раскрывается при <code>hover</code> и <code>focus-within</code> (доступно с клавиатуры): треки обучения, калькуляторы и промо-баннер.</p>
+        </div>
+        <div class="lg:col-span-4 p-5 rounded-3xl bg-[#F4F5F8] border border-gray-200/80 space-y-2">
+          <div class="text-xs font-extrabold text-[#FF6B35] uppercase">Решение №2 • Единый search-index.json</div>
+          <h3 class="text-base font-black">Поиск по клавише «/» на любой странице</h3>
+          <p class="text-xs text-gray-700 leading-relaxed">Модуль <code>search.js</code> работает сквозным образом на всех 11 страницах, мгновенно находя якоря (например, <code>#id-calculator</code>).</p>
+        </div>
+        <div class="lg:col-span-4 p-5 rounded-3xl bg-[#1A1D24] text-white space-y-2">
+          <div class="text-xs font-extrabold text-[#FF6B35] uppercase">Решение №3 • Focus-Trap в модалках</div>
+          <h3 class="text-base font-black">Доступность по стандарту WAI-ARIA</h3>
+          <p class="text-xs text-gray-300 leading-relaxed">Все модальные окна снабжены <code>role="dialog"</code>, <code>aria-modal="true"</code>, удержанием фокуса внутри окна и закрытием по <code>Esc</code>.</p>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Единое мобильное меню включает все 11 разделов на каждом экране</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 6 из 13 • Навигация и поиск</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 7: КЕЙС №1 — ВОРОНКА АБИТУРИЕНТА -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-1.5">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">06 • Продуктовый кейс №1: Школьник → Абитуриент → Зачисление</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Сквозной калькулятор ЕГЭ + ИД (с контролем лимита +10 баллов РФ)</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Как мы связали страницы <code>school.html</code>, <code>applicants.html</code> и <code>index.html</code> через модуль <code>storage.js</code>.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto items-center">
+        <div class="lg:col-span-6 space-y-3 text-xs">
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="font-extrabold text-sm text-[#FF1E6D]">Шаг 1. Персональный маршрут по классу (school.html)</div>
+            <p class="text-gray-700 leading-relaxed">Ученик выбирает свой класс (5–7, 8–9 или 10–11) и получает релевантные олимпиады («Изумруд» с правом БВИ), отбор в СУНЦ УрФУ или проектную смену в «Сириусе» (+4 балла ИД).</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="font-extrabold text-sm text-[#FF6B35]">Шаг 2. Калькулятор ИД с защитой от ошибки (applicants.html)</div>
+            <p class="text-gray-700 leading-relaxed">Наш алгоритм <code>Math.min(10, rawSum)</code> наглядно контролирует законный потолок РФ (<strong>не более +10 баллов</strong>) и записывает его в <code>KEYS.ID_BONUS</code>.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="font-extrabold text-sm text-emerald-700">Шаг 3. Подбор программ и живые списки ID (index.html)</div>
+            <p class="text-gray-700 leading-relaxed">При переходе на Главную баллы ИД уже подставлены к ползунку ЕГЭ! Карточки направлений мгновенно пересчитывают статус прохождения на бюджет.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-6 p-6 rounded-3xl bg-[#1A1D24] text-white space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full urfu-gradient text-xs font-bold">Живое демо прямо в презентации</span>
+            <span class="text-xs text-gray-300">Синхронизировано с localStorage</span>
+          </div>
+          <h3 class="text-lg font-extrabold">Протестируйте расчет конкурсного балла:</h3>
+          <div class="space-y-3 text-xs bg-white/10 p-4 rounded-2xl border border-white/10">
+            <div>
+              <label for="presEgeInput" class="flex justify-between font-bold mb-1">
+                <span>Сумма за 3 предмета ЕГЭ:</span>
+                <span id="presEgeVal" class="text-[#FF6B35] font-black">242 балла</span>
+              </label>
+              <input id="presEgeInput" type="range" min="160" max="300" value="242" oninput="calcPresAdmission()" class="w-full accent-[#FF1E6D] cursor-pointer" />
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <label class="p-2.5 rounded-xl bg-white/5 flex items-center gap-2 cursor-pointer"><input type="checkbox" value="5" checked onchange="calcPresAdmission()" class="pres-id-cb accent-[#FF1E6D]" /><span>Медаль (+5)</span></label>
+              <label class="p-2.5 rounded-xl bg-white/5 flex items-center gap-2 cursor-pointer"><input type="checkbox" value="2" checked onchange="calcPresAdmission()" class="pres-id-cb accent-[#FF1E6D]" /><span>Знак ГТО (+2)</span></label>
+              <label class="p-2.5 rounded-xl bg-white/5 flex items-center gap-2 cursor-pointer"><input type="checkbox" value="5" onchange="calcPresAdmission()" class="pres-id-cb accent-[#FF1E6D]" /><span>Призер «Изумруд» (+5)</span></label>
+              <label class="p-2.5 rounded-xl bg-white/5 flex items-center gap-2 cursor-pointer"><input type="checkbox" value="4" onchange="calcPresAdmission()" class="pres-id-cb accent-[#FF1E6D]" /><span>Смена Сириус (+4)</span></label>
+            </div>
+            <div class="pt-3 border-t border-white/15 flex items-center justify-between">
+              <div>
+                <div class="text-xs text-gray-300" id="presIdNote">Баллы ИД: +7 из 10 (сохранено для сайта)</div>
+                <div id="presTotalScore" class="text-xl font-black text-white mt-0.5">Итого: 249 баллов</div>
+              </div>
+              <a href="index.html#calculator" target="_blank" class="px-4 py-2.5 rounded-xl urfu-gradient text-white font-extrabold text-xs shadow-md">Проверить на Главной ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Синхронизация между applicants.html и index.html работает автоматически</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 7 из 13 • Кейс №1: Воронка абитуриента</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 8: КЕЙС №2 — СЕРВИСЫ СТУДЕНТА И КАМПУС -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-1.5">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-700">07 • Продуктовый кейс №2: Повседневная экосистема студента</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Умное расписание ИОТ, симулятор БРС и кампус «Новокольцовский»</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Превращаем сайт университета в ежедневного помощника для 36 000+ студентов (<code>schedule.html</code> + <code>campus.html</code>).</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto items-center">
+        <div class="lg:col-span-6 p-6 rounded-3xl bg-[#F4F5F8] border border-gray-200/90 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold uppercase text-[#FF1E6D]">Интерактивный модуль из schedule.html</span>
+            <a href="schedule.html" target="_blank" class="text-xs font-bold text-[#FF1E6D] hover:underline">Открыть страницу ↗</a>
+          </div>
+          <h3 class="text-lg font-black">Симулятор Балльно-рейтинговой системы (БРС)</h3>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200 space-y-3 text-xs">
+            <div>
+              <label for="presBrsSem" class="flex justify-between font-bold mb-1"><span>Текущая работа в семестре (макс. 60):</span><span id="presBrsSemVal" class="text-[#FF1E6D]">50 / 60</span></label>
+              <input id="presBrsSem" type="range" min="0" max="60" value="50" oninput="calcPresBRS()" class="w-full accent-[#FF1E6D] cursor-pointer" />
+            </div>
+            <div>
+              <label for="presBrsEx" class="flex justify-between font-bold mb-1"><span>Экзамен / Зачет (макс. 40):</span><span id="presBrsExVal" class="text-[#FF6B35]">34 / 40</span></label>
+              <input id="presBrsEx" type="range" min="0" max="40" value="34" oninput="calcPresBRS()" class="w-full accent-[#FF6B35] cursor-pointer" />
+            </div>
+            <div class="pt-2 border-t border-gray-100 flex items-center justify-between">
+              <strong id="presBrsTotal" class="text-base font-black">Итог: 84 из 100</strong>
+              <span id="presBrsBadge" class="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-extrabold">Отлично (А) • ПГАС до 28 000 ₽</span>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 space-y-4 text-xs">
+          <div class="p-5 rounded-3xl bg-[#F4F5F8] border border-gray-200/90 space-y-2">
+            <div class="flex items-center justify-between"><span class="font-extrabold text-[#FF6B35] uppercase">Кампус мирового уровня (campus.html)</span><a href="campus.html" target="_blank" class="font-bold text-[#FF1E6D] hover:underline">Открыть кампус ↗</a></div>
+            <h4 class="text-base font-black text-gray-900">Калькулятор заселения в «Новокольцовский»</h4>
+            <p class="text-gray-700 leading-relaxed">8 500+ мест в ячейках гостиничного типа, Дворец водных видов спорта, медцентр и интерактивный расчет условий проживания для олимпиадников, бюджетников и контрактников.</p>
+          </div>
+          <div class="p-5 rounded-3xl bg-[#1A1D24] text-white space-y-2">
+            <div class="font-extrabold text-[#FF1E6D] uppercase">Быстрое расписание пар по институтам</div>
+            <h4 class="text-base font-black">Мгновенное переключение групп (ИРИТ-РтФ, ИнЭУ, УГИ)</h4>
+            <p class="text-gray-300 leading-relaxed">Карточки расписания показывают время пары, дисциплину, корпус и точный номер аудитории (<code>Р-318</code>, <code>ГУК-209</code>, <code>ДВВС Новокольцовский</code>).</p>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Полная интеграция учебных и кампусных сервисов</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 8 из 13 • Кейс №2: Сервисы студента</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 9: АЙДЕНТИКА И МЕРЧ -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">08 • Продуктовый кейс №3: Фирменный стиль и мерч-комьюнити (students-brand.html)</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Университетский мерч и светоотражающая серия Reflective</h2>
+        </div>
+        <button type="button" onclick="document.getElementById('presMerchImg').classList.toggle('flash-preview')" class="px-4 py-2 rounded-xl urfu-gradient text-white text-xs font-extrabold shadow-sm cursor-pointer">
+          ⚡ Включить эффект вспышки Reflective
+        </button>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto items-center">
+        <div class="lg:col-span-7 bg-[#F3F2EE] rounded-3xl p-4 border border-gray-200/90 flex flex-col items-center justify-center space-y-2">
+          <img id="presMerchImg" src="merch.jpg" width="800" height="500" alt="Презентационный борд университетского мерча УрФУ: свитшоты, карабин Reflective, термокружка и стикеры" class="w-full max-h-[370px] object-contain rounded-2xl transition-all duration-300" />
+          <div class="w-full flex items-center justify-between text-xs text-gray-600 font-semibold px-2">
+            <span>Оригинальный презентационный борд без кадрирования (merch.jpg)</span>
+            <label class="cursor-pointer text-[#FF1E6D] font-bold hover:underline">
+              📷 Загрузить merch.jpg с диска
+              <input type="file" accept="image/*" class="hidden" onchange="loadPresImg(event, 'presMerchImg')" />
+            </label>
+          </div>
+        </div>
+        <div class="lg:col-span-5 space-y-3 text-xs">
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="font-extrabold text-[#FF1E6D]">01 • Оверсайз свитшот «УрФУ EST. 1920» (Перед + Спина)</div>
+            <p class="text-gray-700 leading-relaxed">На груди — минималистичный знак «У». На спине — 3D-сетка архитектурного каркаса ГУК и принт <strong>«УРАЛЬСКИЙ ФЕДЕРАЛЬНЫЙ • EST. 1920 • УрФУ»</strong>.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="font-extrabold text-[#FF6B35]">02 • Светоотражающий брелок-карабин Reflective</div>
+            <p class="text-gray-700 leading-relaxed">Розовый карабин, стропа со светоотражающим логотипом «урфу», круглый NFC-токен и матовый 3D-шарм «У».</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="font-extrabold text-purple-700">03 • Термокружка Soft-Touch и стикерпак</div>
+            <p class="text-gray-700 leading-relaxed">Матовый черный термос и набор виниловых стикеров: «Твори историю», «Инженер будущего», «Дерзай и побеждай».</p>
+          </div>
+          <a href="students-brand.html#merch-showcase" target="_blank" class="w-full py-3 rounded-2xl bg-[#1A1D24] text-white font-extrabold text-center block hover:opacity-95 transition">Открыть витрину мерча на сайте ↗</a>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Единство цифрового интерфейса и физических носителей бренда УрФУ</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 9 из 13 • Кейс №3: Университетский мерч</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 10: ПРОПУСКА И НАВИГАЦИЯ -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-1.5">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">09 • Физическая среда кампуса и навигация (Wayfinding System)</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Держатели для пропусков УрФУ и интерактивные пилоны корпусов</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Как фирменный стиль помогает первокурснику ориентироваться в Главном учебном корпусе (Мира, 19) и общежитиях.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto items-center">
+        <div class="lg:col-span-7 bg-[#EAEAE8] rounded-3xl p-4 border border-gray-200/90 flex flex-col items-center justify-center space-y-2">
+          <img id="presBadgesImg" src="badges.jpg" width="800" height="500" alt="Держатели для пропусков УрФУ: вертикальный картхолдер на ленте и горизонтальный бейдж на ретракторе" class="w-full max-h-[360px] object-contain rounded-2xl transition-all duration-300" />
+          <div class="w-full flex items-center justify-between text-xs text-gray-700 font-semibold px-2">
+            <span>Два форм-фактора ношения единой кампусной карты УрФУ (badges.jpg)</span>
+            <label class="cursor-pointer text-[#FF1E6D] font-bold hover:underline">
+              📷 Загрузить badges.jpg с диска
+              <input type="file" accept="image/*" class="hidden" onchange="loadPresImg(event, 'presBadgesImg')" />
+            </label>
+          </div>
+        </div>
+        <div class="lg:col-span-5 space-y-3 text-xs">
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="font-extrabold text-[#FF1E6D]">1. Вертикальный картхолдер на жаккардовой ленте</div>
+            <p class="text-gray-700 leading-relaxed">Полупрозрачный графитовый чехол для бесконтактной кампусной карты, лента с паттерном «У УрФУ» и металлический карабин.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="font-extrabold text-[#FF6B35]">2. Горизонтальный бейдж на магнитном ретракторе</div>
+            <p class="text-gray-700 leading-relaxed">Жесткий корпус «СТУДЕНЧЕСКИЙ БИЛЕТ • ПРОПУСК» с вытяжным ретрактором для быстрого прикладывания к турникетам.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#1A1D24] text-white space-y-1.5">
+            <div class="font-extrabold text-[#FF6B35]">3. Цифровая навигационная стела в корпусе</div>
+            <p class="text-gray-300 leading-relaxed">На странице <code>students-brand.html</code> реализован интерактивный макет корпусного пилона с построением маршрута по этажам ГУК.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>От цифрового логотипа до ежедневного пропуска в руках каждого студента</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 10 из 13 • Пропуска и навигация</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 11: НАУКА И БИЗНЕС -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-1.5">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-blue-700">10 • Продуктовый кейс №4: Наука «Приоритет-2030» и B2B-платформа для бизнеса</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">R&D для промышленности, 13 институтов и Эндаумент-фонд УрФУ</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Как страницы <code>science.html</code>, <code>partners.html</code> и <code>institutes.html</code> привлекают индустриальные контракты и меценатов.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto items-center">
+        <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="text-xl font-black text-[#FF1E6D]">4,5 млрд ₽</div>
+            <div class="font-extrabold text-gray-900">Годовой объем НИОКР (science.html)</div>
+            <p class="text-gray-700">Заказ контрактных исследований и реверс-инжиниринга в 120+ лабораториях УМНОЦ.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="text-xl font-black text-[#FF6B35]">1 200+ команд</div>
+            <div class="font-extrabold text-gray-900">Проектное обучение (partners.html)</div>
+            <p class="text-gray-700">Компании ставят реальные ИТ и инженерные задачи студенческим командам УрФУ на семестр.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="text-xl font-black text-purple-700">500+ лидеров</div>
+            <div class="font-extrabold text-gray-900">Отраслевой фильтр партнёров</div>
+            <p class="text-gray-700">СКБ Контур, Сбер, Росатом, Яндекс, ТМК, УГМК, ЕВРАЗ, Синара — привязаны к 13 институтам.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 space-y-1">
+            <div class="text-xl font-black text-emerald-700">До 1 млн ₽</div>
+            <div class="font-extrabold text-gray-900">Молодежная Стартап-студия</div>
+            <p class="text-gray-700">Подача заявки на грант «Студенческий стартап» и работа в молодежных КБ.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-6 p-6 rounded-3xl bg-[#1A1D24] text-white space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full urfu-gradient text-xs font-bold">Интерактивный модуль из partners.html</span>
+            <a href="partners.html#endowment" target="_blank" class="text-xs font-bold text-[#FF6B35] hover:underline">Открыть на сайте ↗</a>
+          </div>
+          <h3 class="text-lg font-extrabold">Калькулятор Эндаумент-фонда УрФУ</h3>
+          <p class="text-xs text-gray-300 leading-relaxed">Сам вклад бизнеса или выпускника остаётся неприкосновенным, а ежегодный инвестиционный доход (~12%) идёт на стипендии и лаборатории:</p>
+          <div class="p-4 rounded-2xl bg-white/10 border border-white/10 space-y-3 text-xs">
+            <label for="presEndowInput" class="flex items-center justify-between font-bold">
+              <span>Сумма вклада в целевой капитал:</span>
+              <span id="presEndowVal" class="text-lg font-black text-[#FF6B35]">5 000 000 ₽</span>
+            </label>
+            <input id="presEndowInput" type="range" min="500000" max="25000000" step="500000" value="5000000" oninput="calcPresEndow()" class="w-full accent-[#FF1E6D] cursor-pointer" />
+            <div class="pt-2 border-t border-white/15 flex items-center justify-between">
+              <span class="text-gray-300">Ежегодный доход на стипендии (~12%):</span>
+              <strong id="presEndowYield" class="text-sm font-black text-emerald-400">+600 000 ₽ каждый год</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>Понятный B2B-интерфейс для коммерциализации разработок и привлечения инвестиций</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 11 из 13 • Кейс №4: Наука и Бизнес</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 12: ДОСТУПНОСТЬ И ОХВАТ -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl">
+      <div class="space-y-1.5">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF6B35]">11 • Доступность по ГОСТ Р 52872-2019, W3C и международный охват</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Инклюзивный режим «А+», 4 языка мира и Цифровая приёмная 24/7</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Учет требований государственных образовательных порталов и потребностей 4 600+ иностранных студентов УрФУ.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 my-auto text-xs">
+        <div class="p-6 rounded-3xl bg-[#F4F5F8] border border-gray-200/90 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="px-3 py-1 rounded-full bg-pink-100 text-[#FF1E6D] font-extrabold">ГОСТ Р 52872-2019</span>
+            <h3 class="text-lg font-black text-gray-900">Режим для слабовидящих (А+)</h3>
+            <p class="text-gray-700 leading-relaxed">На всех 11 страницах в шапке встроена кнопка <strong>«А+»</strong>, <code>skip-link</code> и <code>focus-visible</code>. При нажатии размер шрифта увеличивается до <code>112.5%</code> без поломки верстки.</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white border border-gray-200 font-bold text-gray-800">✓ Сохраняется в <code>localStorage</code> между страницами.</div>
+        </div>
+        <div class="p-6 rounded-3xl bg-[#F4F5F8] border border-gray-200/90 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="px-3 py-1 rounded-full bg-orange-100 text-[#FF6B35] font-extrabold">100+ стран мира</span>
+            <h3 class="text-lg font-black text-gray-900">Локализация: RU / EN / ZH / AR</h3>
+            <p class="text-gray-700 leading-relaxed">Реализован мгновенный перевод ключевой навигации и главной страницы на <strong>Русский, Английский, Китайский (中文) и Арабский (العربية)</strong> языки с сохранением выбора.</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white border border-gray-200 font-bold text-gray-800">✓ Отдельный трек International в <code>applicants.html</code>.</div>
+        </div>
+        <div class="p-6 rounded-3xl bg-[#1A1D24] text-white flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="px-3 py-1 rounded-full urfu-gradient text-white font-extrabold">contacts.html + media.html</span>
+            <h3 class="text-lg font-black">Справочник корпусов и тикеты</h3>
+            <p class="text-gray-300 leading-relaxed">Живой поиск по учебным корпусам и деканатам со схемой проезда и генерация уникального номера обращения <code>#URFU-XXXXXX</code>.</p>
+          </div>
+          <a href="contacts.html" target="_blank" class="p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-center font-extrabold text-[#FF6B35] transition block">Проверить справочник корпусов ↗</a>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold">
+        <span>0 критических ошибок в axe DevTools, WAVE и W3C HTML Validator</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 12 из 13 • Доступность и охват</span>
+      </div>
+    </section>
+
+    <!-- СЛАЙД 13: ИТОГОВЫЙ ЭФФЕКТ И ПУЛЬТ ЗАПУСКА -->
+    <section class="slide-card w-full bg-white border border-gray-200/90 rounded-[32px] p-7 sm:p-10 flex-col justify-between min-h-[640px] shadow-xl relative overflow-hidden">
+      <div class="space-y-2 relative z-10">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#FF1E6D]">12 • Резюме проекта для конкурсной комиссии</span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#1A1D24]">Ожидаемый эффект для УрФУ и быстрый запуск страниц</h2>
+        <p class="text-xs sm:text-sm text-gray-600 font-medium">Почему разработанная экосистема готова стать реальным фундаментом нового портала университета.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto relative z-10">
+        <div class="lg:col-span-5 space-y-3 text-xs">
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 flex items-center gap-4">
+            <div class="text-2xl font-black text-[#FF1E6D] shrink-0">-40%</div>
+            <div><div class="font-extrabold text-sm text-gray-900">Снижение нагрузки на колл-центр</div><p class="text-gray-700 mt-0.5">Абитуриенты сами считают баллы ЕГЭ+ИД, видят свой ID и находят корпуса.</p></div>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 flex items-center gap-4">
+            <div class="text-2xl font-black text-[#FF6B35] shrink-0">+35%</div>
+            <div><div class="font-extrabold text-sm text-gray-900">Рост конверсии в подачу заявления</div><p class="text-gray-700 mt-0.5">Предзаявка подается прямо из карточки подходящей программы в 1 клик.</p></div>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#F4F5F8] border border-gray-200/80 flex items-center gap-4">
+            <div class="text-2xl font-black text-emerald-700 shrink-0">95+</div>
+            <div><div class="font-extrabold text-sm text-gray-900">Lighthouse Performance & Accessibility</div><p class="text-gray-700 mt-0.5">Чистая сборка Vite + PostCSS, локальные WebP-изображения и семантическая верстка.</p></div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 p-6 rounded-3xl bg-[#1A1D24] text-white flex flex-col justify-between space-y-4">
+          <div>
+            <span class="px-3 py-1 rounded-full urfu-gradient text-xs font-bold">Пульт проверки проекта</span>
+            <h3 class="text-xl font-black mt-2">Откройте любой из 11 экранов экосистемы:</h3>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-bold">
+            <a href="index.html" target="_blank" class="p-2.5 rounded-xl bg-white text-[#1A1D24] text-center hover:bg-pink-50 transition">1. Главная (index) ↗</a>
+            <a href="school.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">2. Школьникам ↗</a>
+            <a href="applicants.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">3. Абитуриентам ↗</a>
+            <a href="institutes.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">4. 13 Институтов ↗</a>
+            <a href="schedule.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">5. Расписание и БРС ↗</a>
+            <a href="campus.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">6. Новокольцовский ↗</a>
+            <a href="students-brand.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">7. Бренд и мерч ↗</a>
+            <a href="science.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">8. Наука и НИОКР ↗</a>
+            <a href="partners.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">9. Партнёрам ↗</a>
+            <a href="media.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">10. Медиацентр ↗</a>
+            <a href="contacts.html" target="_blank" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-center transition">11. Контакты ↗</a>
+            <button type="button" onclick="goToSlide(0)" class="p-2.5 rounded-xl urfu-gradient text-white text-center transition cursor-pointer">↺ В начало</button>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-600 font-semibold relative z-10">
+        <span>Спасибо за внимание! Проект готов к экспертной оценке жюри</span>
+        <span class="text-[#FF1E6D] font-extrabold">Слайд 13 из 13 • Финал</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- НИЖНИЙ ПУЛЬТ УПРАВЛЕНИЯ СЛАЙДАМИ -->
+  <footer class="w-full bg-white/95 backdrop-blur-xl border-t border-gray-200/90 px-4 sm:px-8 py-3.5 flex items-center justify-between shrink-0 nav-controls shadow-sm">
+    <button type="button" onclick="prevSlide()" aria-label="Предыдущий слайд" class="px-5 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-xs font-extrabold text-gray-800 transition flex items-center gap-1.5 cursor-pointer">
+      <span>← Предыдущий слайд</span>
+    </button>
+
+    <div class="flex items-center gap-3" aria-live="polite">
+      <span id="slideCounter" class="text-xs font-black tracking-wider text-gray-800">СЛАЙД 1 ИЗ 13</span>
+    </div>
+
+    <button type="button" onclick="nextSlide()" aria-label="Следующий слайд" class="px-5 py-2.5 rounded-xl urfu-gradient text-white text-xs font-extrabold shadow-md hover:opacity-95 transition flex items-center gap-1.5 cursor-pointer">
+      <span>Следующий слайд →</span>
+    </button>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>УрФУ — Абитуриентам: Калькулятор ИД (до +10 баллов), конкурсные списки по СНИЛС и приём</title>
+  <meta name="description" content="Приемная кампания УрФУ: 9 600+ бюджетных мест, калькулятор индивидуальных достижений (до +10 баллов к ЕГЭ), конкурсные списки по СНИЛС и стипендии до 30 000 ₽." />
+  <meta name="keywords" content="абитуриентам УрФУ, калькулятор ИД УрФУ, конкурсные списки УрФУ СНИЛС, бюджетные места УрФУ, стипендии первокурсникам" />
+  <link rel="canonical" href="https://urfu.ru/applicants.html" />
+  <meta property="og:title" content="УрФУ — Абитуриентам: Поступление, калькулятор ИД и списки СНИЛС" />
+  <meta property="og:description" content="Рассчитай свои +10 баллов за индивидуальные достижения и проверь позицию в конкурсных списках УрФУ по СНИЛС." />
+  <meta property="og:image" content="/assets/images/og-applicants.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="urfu-core.js" defer></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    };
+    (function() {
+      try {
+        if (localStorage.getItem('urfu_theme') === 'dark') document.documentElement.classList.add('dark');
+        if (localStorage.getItem('urfu_a11y') === 'true') document.documentElement.classList.add('a11y-mode');
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; line-height: 1.5; }
+    html.a11y-mode { font-size: 112.5%; }
+    html.a11y-mode body { letter-spacing: 0.015em; }
+    :focus-visible { outline: 3px solid #FF1E6D; outline-offset: 2px; border-radius: 0.5rem; }
+    .urfu-gradient { background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 45%, #FF7A2F 100%); }
+    .urfu-text-gradient {
+      background: linear-gradient(135deg, #FF1E56 0%, #FF2A85 50%, #FF7A2F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bento-card {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -15px rgba(15, 20, 32, 0.08);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .bento-card:hover { transform: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#F4F5F8] dark:bg-[#0F1420] text-[#1A1D24] dark:text-white transition-colors duration-300 antialiased selection:bg-[#FF1E6D] selection:text-white">
+
+  <a href="#main-content" data-i18n="skip_link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#FF1E6D] focus:text-white focus:font-extrabold focus:text-xs shadow-lg">
+    Перейти к основному содержимому
+  </a>
+
+  <!-- ================= ЕДИНАЯ ШАПКА САЙТА (П. 3.3 ТЗ) ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#171E2E]/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2">
+      <a href="index.html" aria-label="УрФУ — На главную страницу" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-10 h-10 rounded-xl urfu-gradient flex items-center justify-center shadow-md shadow-[#FF1E6D]/25 group-hover:scale-105 transition-transform">
+          <span class="text-white font-black text-2xl leading-none select-none">У</span>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight text-[#1A1D24] dark:text-white">УрФУ</span>
+      </a>
+
+      <nav aria-label="Основная навигация" class="hidden lg:flex items-center gap-1 xl:gap-4 text-sm font-semibold whitespace-nowrap">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D] transition-colors">Главная</a>
+        <a href="school.html" data-i18n="nav_school" class="hover:text-[#FF1E6D] transition-colors">Школьникам</a>
+        <a href="applicants.html" data-i18n="nav_applicants" class="text-[#FF1E6D] font-extrabold border-b-2 border-[#FF1E6D] py-6">Абитуриентам</a>
+        <a href="institutes.html" data-i18n="nav_institutes" class="hover:text-[#FF1E6D] transition-colors">Институты</a>
+        <a href="schedule.html" data-i18n="nav_students" class="hover:text-[#FF1E6D] transition-colors">Студентам</a>
+        <a href="campus.html" data-i18n="nav_campus" class="hover:text-[#FF1E6D] transition-colors">Кампус</a>
+        <a href="science.html" data-i18n="nav_science" class="hover:text-[#FF1E6D] transition-colors">Наука</a>
+        <a href="partners.html" data-i18n="nav_partners" class="hover:text-[#FF1E6D] transition-colors">Партнёрам</a>
+        <a href="contacts.html" data-i18n="nav_contacts" class="hover:text-[#FF1E6D] transition-colors">Контакты</a>
+      </nav>
+
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" onclick="openSearchModal()" aria-label="Открыть умный поиск (нажмите /)" title="Поиск по сайту (/)" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 text-[#FF1E6D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+
+        <button type="button" onclick="toggleA11y()" aria-label="Версия для слабовидящих (увеличить шрифт)" title="Версия для слабовидящих" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-black hover:border-[#FF1E6D] transition">
+          А+
+        </button>
+
+        <div class="relative">
+          <button type="button" onclick="toggleLangMenu()" aria-label="Выбрать язык интерфейса" class="h-9 px-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-[#FF1E6D] flex items-center gap-1 text-xs font-bold transition">
+            <span id="currentLangLabel">RU</span>
+            <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="langDropdown" class="hidden absolute right-0 mt-2 w-44 bg-white dark:bg-[#1E273B] rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700 py-1.5 z-50 text-xs font-semibold">
+            <button type="button" onclick="setLanguage('RU')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇷🇺 Русский</span><span>RU</span></button>
+            <button type="button" onclick="setLanguage('EN')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇬🇧 English</span><span>EN</span></button>
+            <button type="button" onclick="setLanguage('ZH')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇨🇳 中文</span><span>ZH</span></button>
+            <button type="button" onclick="setLanguage('AR')" class="w-full px-3.5 py-2 text-left hover:bg-gray-50 dark:hover:bg-slate-800 flex justify-between"><span>🇦🇪 العربية</span><span>AR</span></button>
+          </div>
+        </div>
+
+        <button type="button" onclick="toggleTheme()" aria-label="Переключить светлую или тёмную тему" title="Светлая / Темная тема" class="w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+          <svg class="w-4 h-4 block dark:hidden text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+
+        <a href="index.html" data-i18n="btn_back_home" class="hidden sm:flex h-9 px-3.5 rounded-xl bg-[#3D4047] hover:bg-[#1A1D24] dark:bg-white dark:text-[#1A1D24] text-white text-xs font-bold items-center transition">
+          ← На главную
+        </a>
+
+        <button type="button" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" aria-label="Открыть мобильное меню всех разделов" class="lg:hidden w-9 h-9 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center hover:border-[#FF1E6D] transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileMenu" aria-label="Мобильная навигация" class="hidden lg:hidden border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-[#171E2E] px-4 py-4 space-y-1.5 text-xs font-bold shadow-xl">
+      <a href="index.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">1. Главная страница УрФУ</a>
+      <a href="school.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">2. Школьникам (5–11 класс)</a>
+      <a href="applicants.html" class="block px-3.5 py-2 rounded-xl bg-pink-50 dark:bg-slate-800 text-[#FF1E6D]">3. Абитуриентам (Калькулятор ИД)</a>
+      <a href="institutes.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">4. Каталог 13 институтов</a>
+      <a href="schedule.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">5. Студентам: Расписание и БРС</a>
+      <a href="students-brand.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">6. Айдентика и мерч Reflective</a>
+      <a href="campus.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">7. Кампус «Новокольцовский»</a>
+      <a href="science.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">8. Наука и НИОКР</a>
+      <a href="partners.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">9. Партнёрам и Эндаумент</a>
+      <a href="media.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">10. Медиацентр и афиша</a>
+      <a href="contacts.html" class="block px-3.5 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800">11. Контакты и корпуса</a>
+      <a href="pres.html" class="block px-3.5 py-2 rounded-xl urfu-gradient text-white">🎯 Презентация проекта (13 слайдов)</a>
+    </nav>
+  </header>
+
+  <!-- ================= ОСНОВНОЙ КОНТЕНТ РАЗДЕЛА АБИТУРИЕНТАМ ================= -->
+  <main id="main-content" class="max-w-[1380px] mx-auto px-4 sm:px-6 pt-6 pb-16 space-y-12">
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-200/70 dark:border-slate-800 pb-4">
+      <div class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-2">
+        <a href="index.html" data-i18n="nav_main" class="hover:text-[#FF1E6D]">Главная</a>
+        <span>/</span>
+        <span data-i18n="ap_bc" class="text-[#1A1D24] dark:text-white font-bold">Абитуриентам: Приемная кампания УрФУ</span>
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 text-xs font-bold">
+        <a href="#levels" class="px-3.5 py-1.5 rounded-xl urfu-gradient text-white">Уровни образования</a>
+        <a href="#id-calculator" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Калькулятор ИД (до +10)</a>
+        <a href="#timeline" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Календарь и списки</a>
+        <a href="#scholarships" class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:text-[#FF1E6D] transition">Стипендии до 30 000 ₽</a>
+      </div>
+    </div>
+
+    <!-- ================= 1. HERO + ВЫБОР УРОВНЯ ОБРАЗОВАНИЯ ================= -->
+    <section id="levels" class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 bento-card space-y-8">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div class="max-w-2xl space-y-3">
+          <span data-i18n="ap_hero_tag" class="px-3 py-1 rounded-full text-xs font-extrabold bg-pink-50 dark:bg-pink-950/60 text-[#FF1E6D]">Приемная кампания УрФУ</span>
+          <h1 data-i18n="ap_hero_title" class="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight leading-tight">
+            Поступай в УрФУ: прозрачный конкурс и рекордное число бюджетных мест
+          </h1>
+          <p data-i18n="ap_hero_desc" class="text-sm sm:text-base text-gray-700 dark:text-gray-300">
+            Выбери свой уровень образования, чтобы увидеть количество мест, способы подачи документов и расписание вступительных испытаний.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 bg-[#F4F5F8] dark:bg-slate-800 p-1.5 rounded-2xl text-xs sm:text-sm font-bold shrink-0">
+          <button type="button" onclick="selectLevel('bach')" id="lvl_bach" class="px-4 py-2.5 rounded-xl urfu-gradient text-white transition">Бакалавриат и специалитет</button>
+          <button type="button" onclick="selectLevel('mag')" id="lvl_mag" class="px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">Магистратура</button>
+          <button type="button" onclick="selectLevel('asp')" id="lvl_asp" class="px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">Аспирантура</button>
+          <button type="button" onclick="selectLevel('intl')" id="lvl_intl" class="px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition">Иностранным гражданам</button>
+        </div>
+      </div>
+
+      <div id="levelContent" class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-2"></div>
+    </section>
+
+    <!-- ================= 2. КАЛЬКУЛЯТОР ИНДИДУАЛЬНЫХ ДОСТИЖЕНИЙ (СТРОГО ДО +10 БАЛЛОВ) ================= -->
+    <section id="id-calculator" class="bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-10 border border-gray-100 dark:border-slate-800 bento-card space-y-7">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Официальный регламент учета ИД в УрФУ</span>
+          <h2 data-i18n="ap_id_title" class="text-2xl sm:text-3xl font-extrabold mt-1">Калькулятор индивидуальных достижений абитуриента</h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
+            Отметь свои достижения ниже. По правилам приема в вузы РФ за индивидуальные достижения начисляется <strong>не более +10 баллов суммарно</strong> к баллам ЕГЭ. Результат автоматически синхронизируется с калькулятором на Главной!
+          </p>
+        </div>
+
+        <div class="w-full lg:w-96 p-5 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800 border border-[#FF1E6D]/30 space-y-2.5 shrink-0" aria-live="polite">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-gray-600 dark:text-gray-300">Начислено к сумме ЕГЭ:</span>
+            <span id="idCappedValue" class="text-2xl font-black text-[#FF1E6D]">+0 из 10 баллов</span>
+          </div>
+          <div class="w-full h-2.5 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div id="idProgressBar" class="h-full urfu-gradient transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <div id="idCapNote" class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+            Выбери пункты в списке ниже для расчета
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <label class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 flex items-start gap-3.5 cursor-pointer hover:border-[#FF1E6D] transition">
+          <input type="checkbox" value="5" onchange="calculateID()" class="mt-1 w-5 h-5 accent-[#FF1E6D] rounded cursor-pointer" />
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm">Аттестат или диплом СПО с отличием</span>
+              <span class="px-2 py-0.5 rounded-full text-xs font-black bg-pink-100 dark:bg-pink-950 text-[#FF1E6D]">+5</span>
+            </div>
+            <div class="text-xs text-gray-600 dark:text-gray-300 mt-1">Золотая или серебряная медаль, диплом колледжа с отличием</div>
+          </div>
+        </label>
+
+        <label class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 flex items-start gap-3.5 cursor-pointer hover:border-[#FF1E6D] transition">
+          <input type="checkbox" value="2" onchange="calculateID()" class="mt-1 w-5 h-5 accent-[#FF1E6D] rounded cursor-pointer" />
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm">Золотой, серебряный или бронзовый знак ГТО</span>
+              <span class="px-2 py-0.5 rounded-full text-xs font-black bg-pink-100 dark:bg-pink-950 text-[#FF1E6D]">+2</span>
+            </div>
+            <div class="text-xs text-gray-600 dark:text-gray-300 mt-1">При наличии удостоверения за актуальную возрастную ступень</div>
+          </div>
+        </label>
+
+        <label class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 flex items-start gap-3.5 cursor-pointer hover:border-[#FF1E6D] transition">
+          <input type="checkbox" value="5" onchange="calculateID()" class="mt-1 w-5 h-5 accent-[#FF1E6D] rounded cursor-pointer" />
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm">Призер регионального этапа ВсОШ / «Изумруд»</span>
+              <span class="px-2 py-0.5 rounded-full text-xs font-black bg-pink-100 dark:bg-pink-950 text-[#FF1E6D]">+5</span>
+            </div>
+            <div class="text-xs text-gray-600 dark:text-gray-300 mt-1">Дипломы перечневых олимпиад, не использованные для БВИ</div>
+          </div>
+        </label>
+
+        <label class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 flex items-start gap-3.5 cursor-pointer hover:border-[#FF1E6D] transition">
+          <input type="checkbox" value="4" onchange="calculateID()" class="mt-1 w-5 h-5 accent-[#FF1E6D] rounded cursor-pointer" />
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm">Уральская проектная смена / «Сириус»</span>
+              <span class="px-2 py-0.5 rounded-full text-xs font-black bg-pink-100 dark:bg-pink-950 text-[#FF1E6D]">+4</span>
+            </div>
+            <div class="text-xs text-gray-600 dark:text-gray-300 mt-1">Победители и призеры проектных смен и НТО под эгидой УрФУ</div>
+          </div>
+        </label>
+
+        <label class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 flex items-start gap-3.5 cursor-pointer hover:border-[#FF1E6D] transition">
+          <input type="checkbox" value="3" onchange="calculateID()" class="mt-1 w-5 h-5 accent-[#FF1E6D] rounded cursor-pointer" />
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm">Конкурс «Большая перемена» / «Профессионалы»</span>
+              <span class="px-2 py-0.5 rounded-full text-xs font-black bg-pink-100 dark:bg-pink-950 text-[#FF1E6D]">+3</span>
+            </div>
+            <div class="text-xs text-gray-600 dark:text-gray-300 mt-1">Статус победителя или призера финала всероссийских конкурсов</div>
+          </div>
+        </label>
+
+        <label class="p-4 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700 flex items-start gap-3.5 cursor-pointer hover:border-[#FF1E6D] transition">
+          <input type="checkbox" value="2" onchange="calculateID()" class="mt-1 w-5 h-5 accent-[#FF1E6D] rounded cursor-pointer" />
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm">Верифицированное волонтерство (Добро.рф)</span>
+              <span class="px-2 py-0.5 rounded-full text-xs font-black bg-pink-100 dark:bg-pink-950 text-[#FF1E6D]">+2</span>
+            </div>
+            <div class="text-xs text-gray-600 dark:text-gray-300 mt-1">Не менее 100 часов добровольческой деятельности за 4 года</div>
+          </div>
+        </label>
+      </div>
+
+      <div class="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-gray-100 dark:border-slate-800 text-xs">
+        <span class="text-gray-600 dark:text-gray-300">
+          Примечание: Победители и призеры заключительного этапа олимпиады «Изумруд» при наличии ≥75 баллов ЕГЭ поступают <strong>без вступительных испытаний (БВИ)</strong>.
+        </span>
+        <a href="index.html#calculator" class="px-4 py-2.5 rounded-xl urfu-gradient text-white font-bold shadow-sm hover:opacity-95 transition">
+          Применить мои баллы ИД в подборе программ →
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= 3. КОНКУРСНЫЕ СПИСКИ ПО СНИЛС И КАЛЕНДАРЬ ПРИЕМА ================= -->
+    <section id="timeline" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-7 bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-8 border border-gray-100 dark:border-slate-800 bento-card space-y-5 overflow-hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#FF1E6D]">Рейтинг в реальном времени</span>
+            <h3 data-i18n="ap_snils_title" class="text-2xl font-extrabold mt-0.5">Конкурсные списки поступающих УрФУ</h3>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">Обновляется каждые 15 мин</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <label for="snilsInput" class="sr-only">Поиск по СНИЛС или коду направления</label>
+          <input id="snilsInput" type="text" oninput="filterApplicants()" placeholder="Введи СНИЛС или ID (например: 184-920 или 09.03.04)" class="flex-1 px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 text-sm focus:outline-none border border-transparent focus:border-[#FF1E6D]" />
+          <label class="px-4 py-3 rounded-xl bg-[#F4F5F8] dark:bg-slate-800 text-xs font-bold flex items-center gap-2 cursor-pointer shrink-0">
+            <input id="onlyOriginals" type="checkbox" onchange="filterApplicants()" class="w-4 h-4 accent-[#FF1E6D] rounded" />
+            <span>Только с оригиналом</span>
+          </label>
+        </div>
+
+        <!-- Горизонтальный скролл таблицы для экранов 375px (п. 4.4 ТЗ) -->
+        <div class="overflow-x-auto -mx-2 px-2">
+          <table class="w-full min-w-[540px] text-left text-xs sm:text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 dark:border-slate-700 text-gray-600 dark:text-gray-300 text-xs">
+                <th class="pb-3 font-bold">Место</th>
+                <th class="pb-3 font-bold">СНИЛС / ID</th>
+                <th class="pb-3 font-bold">Направление</th>
+                <th class="pb-3 font-bold">ЕГЭ + ИД</th>
+                <th class="pb-3 font-bold">Приоритет</th>
+                <th class="pb-3 font-bold">Оригинал</th>
+              </tr>
+            </thead>
+            <tbody id="applicantsTableBody" class="divide-y divide-gray-100 dark:divide-slate-800 font-medium"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 bg-white dark:bg-[#171E2E] rounded-[32px] p-7 sm:p-8 border border-gray-100 dark:border-slate-800 bento-card flex flex-col justify-between space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#FF6B35]">Дорожная карта поступления</span>
+          <h3 data-i18n="ap_cal_title" class="text-2xl font-extrabold mt-0.5">Календарь абитуриента УрФУ</h3>
+        </div>
+
+        <div class="space-y-4 text-xs sm:text-sm">
+          <div class="flex gap-4 items-start">
+            <span class="px-3 py-1 rounded-xl urfu-gradient text-white font-black text-xs shrink-0">20 июня</span>
+            <div>
+              <div class="font-bold">Старт приема документов</div>
+              <div class="text-xs text-gray-600 dark:text-gray-300">Через Личный кабинет абитуриента УрФУ, суперсервис «Госуслуги» или очно на Мира, 19.</div>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <span class="px-3 py-1 rounded-xl bg-pink-50 dark:bg-slate-800 text-[#FF1E6D] font-black text-xs shrink-0">25 июля</span>
+            <div>
+              <div class="font-bold">Завершение приема документов по ЕГЭ</div>
+              <div class="text-xs text-gray-600 dark:text-gray-300">Окончание приема заявлений на бюджетные места бакалавриата и специалитета.</div>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <span class="px-3 py-1 rounded-xl bg-orange-50 dark:bg-slate-800 text-[#FF6B35] font-black text-xs shrink-0">28–30 июля</span>
+            <div>
+              <div class="font-bold">Приоритетный этап зачисления</div>
+              <div class="text-xs text-gray-600 dark:text-gray-300">Зачисление поступающих без экзаменов (БВИ), по целевой, особой и отдельной квотам.</div>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <span class="px-3 py-1 rounded-xl bg-emerald-50 dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 font-black text-xs shrink-0">5–9 августа</span>
+            <div>
+              <div class="font-bold">Основной этап зачисления на бюджет</div>
+              <div class="text-xs text-gray-600 dark:text-gray-300">Публикация приказов о зачислении по общему конкурсу.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold">
+          <span>Доступен выбор до 5 направлений</span>
+          <span class="text-[#FF1E6D]">Единый конкурс УрФУ</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. СТИПЕНДИИ ПЕРВОКУРСНИКАМ И КАМПУС ================= -->
+    <section id="scholarships" class="bg-[#1A1D24] text-white rounded-[32px] p-8 sm:p-10 bento-card relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-72 h-72 rounded-full urfu-gradient opacity-20 blur-3xl pointer-events-none"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+        <div class="lg:col-span-7 space-y-3">
+          <span class="px-3 py-1 rounded-full text-xs font-bold urfu-gradient">Поддержка талантов с 1 сентября</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold">Стипендии первокурсникам до 30 000 ₽ в месяц и заселение в кампус</h2>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            УрФУ поддерживает высокобалльников ЕГЭ, стобалльников и победителей олимпиад повышенными стипендиями с первого семестра и гарантированным местом в современных студенческих общежитиях.
+          </p>
+        </div>
+        <div class="lg:col-span-5 grid grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10">
+            <div class="text-2xl font-black text-[#FF6B35]">30 000 ₽</div>
+            <div class="text-gray-300 mt-1">Призерам и победителям олимпиад из перечня РСОШ</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10">
+            <div class="text-2xl font-black text-[#FF1E6D]">15 000+ ₽</div>
+            <div class="text-gray-300 mt-1">Студентам топ-трека с высокими баллами ЕГЭ</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= ПОДВАЛ ================= -->
+  <footer class="bg-white dark:bg-[#171E2E] border-t border-gray-200/80 dark:border-slate-800 py-10">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600 dark:text-gray-300">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg urfu-gradient flex items-center justify-center text-white font-black">У</div>
+        <span class="font-extrabold text-base text-[#1A1D24] dark:text-white">УрФУ</span>
+        <span>• Раздел «Абитуриентам»</span>
+      </div>
+      <div class="flex items-center gap-4 font-bold">
+        <a href="pres.html" class="text-[#FF6B35] hover:underline">🎯 Презентация проекта</a>
+        <a href="institutes.html" class="hover:text-[#FF1E6D]">Каталог 13 институтов</a>
+        <a href="index.html" data-i18n="btn_back_home" class="text-[#FF1E6D] hover:underline">← На главную</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.URFU_I18N) {
+        Object.assign(window.URFU_I18N.RU, {
+          ap_bc: 'Абитуриентам: Приемная кампания УрФУ', ap_hero_tag: 'Приемная кампания УрФУ',
+          ap_hero_title: 'Поступай в УрФУ: прозрачный конкурс и рекордное число бюджетных мест',
+          ap_hero_desc: 'Выбери свой уровень образования, чтобы увидеть количество мест, способы подачи документов и расписание вступительных испытаний.',
+          ap_id_title: 'Калькулятор индивидуальных достижений абитуриента',
+          ap_snils_title: 'Конкурсные списки поступающих УрФУ', ap_cal_title: 'Календарь абитуриента УрФУ'
+        });
+        Object.assign(window.URFU_I18N.EN, {
+          ap_bc: 'Admissions: UrFU Enrollment Campaign', ap_hero_tag: 'UrFU Admissions Campaign',
+          ap_hero_title: 'Apply to UrFU: Transparent Competition & Record State-Funded Places',
+          ap_hero_desc: 'Select your degree level to view state-funded places, application methods, and entrance exam schedules.',
+          ap_id_title: 'Applicant Individual Achievements Calculator (max +10)',
+          ap_snils_title: 'Live Competitive Ranking Lists (by SNILS / ID)', ap_cal_title: 'UrFU Admissions Calendar'
+        });
+        Object.assign(window.URFU_I18N.ZH, {
+          ap_bc: '招生信息：乌拉尔联邦大学录取活动', ap_hero_tag: '乌拉尔联邦大学招生季',
+          ap_hero_title: '报考乌拉尔联邦大学：透明的录取机制与创纪录的公费名额',
+          ap_hero_desc: '选择您的学位层次以查看公费名额、申请方式与入学考试日程。',
+          ap_id_title: '申请人个人成就加分计算器（最高+10分）',
+          ap_snils_title: '实时录取竞争排名榜 (SNILS / ID)', ap_cal_title: '招生重要日程表'
+        });
+        Object.assign(window.URFU_I18N.AR, {
+          ap_bc: 'القبول والتسجيل في جامعة UrFU', ap_hero_tag: 'حملة القبول الجامعي',
+          ap_hero_title: 'انضم إلى UrFU: منافسة شفافة وعدد قياسي من المقاعد المجانية',
+          ap_hero_desc: 'اختر المرحلة الدراسية لمعرفة عدد المقاعد وطرق تقديم الوثائق ومواعيد الاختبارات.',
+          ap_id_title: 'حاسبة الإنجازات الفردية للمتقدمين (حتى +10 نقاط)',
+          ap_snils_title: 'قوائم القبول التنافسية المباشرة', ap_cal_title: 'تقويم القبول الجامعي'
+        });
+        const lang = window.urfuStorage ? window.urfuStorage.get(window.URFU_KEYS.LANG, 'RU') : 'RU';
+        window.setLanguage(lang);
+      }
+    });
+
+    const levelData = {
+      bach: [
+        { val: '9 600+', label: 'Бюджетных мест в УрФУ', sub: 'Одно из крупнейших чисел бюджета в РФ' },
+        { val: 'До 5', label: 'Направлений подготовки', sub: 'В одном заявлении с расстановкой приоритетов' },
+        { val: 'ЕГЭ / ВИ', label: 'Формат поступления', sub: 'По результатам ЕГЭ или внутренним экзаменам (для СПО)' },
+        { val: '+10 баллов', label: 'Максимум за ИД', sub: 'За аттестат с отличием, ГТО, конкурсы и смены' }
+      ],
+      mag: [
+        { val: '2 400+', label: 'Бюджетных мест в магистратуре', sub: 'Более 180 магистерских программ' },
+        { val: 'Компьютерный тест', label: 'Вступительное испытание', sub: 'Дистанционный или очный экзамен + учет портфолио' },
+        { val: '2 года', label: 'Срок обучения', sub: 'Совмещение учебы с работой в компаниях-партнерах' },
+        { val: 'Гранты и R&D', label: 'Научные треки', sub: 'Оплачиваемая работа в лабораториях УрФУ' }
+      ],
+      asp: [
+        { val: '350+', label: 'Мест в аспирантуре', sub: 'Собственные диссертационные советы УрФУ (PhD)' },
+        { val: 'Молодежные КБ', label: 'Трудоустройство в науке', sub: 'Ставка младшего научного сотрудника с 1 курса' },
+        { val: 'Приоритет-2030', label: 'Грантовая поддержка', sub: 'Финансирование академической мобильности и статей' },
+        { val: '3–4 года', label: 'Срок подготовки', sub: 'Под руководством ведущих академиков УрО РАН и УрФУ' }
+      ],
+      intl: [
+        { val: '4 600+', label: 'Иностранных студентов', sub: 'Из 100+ стран мира обучаются в УрФУ' },
+        { val: 'RU / EN', label: 'Языки обучения', sub: 'Англоязычные и русскоязычные образовательные треки' },
+        { val: 'Квота Правительства РФ', label: 'Бесплатное обучение', sub: 'Поступление по линии Россотрудничества и олимпиад' },
+        { val: 'Подфак УрФУ', label: 'Подготовительный факультет', sub: 'Интенсивный курс русского языка для иностранцев' }
+      ]
+    };
+
+    function selectLevel(lvl) {
+      ['bach', 'mag', 'asp', 'intl'].forEach(k => {
+        const btn = document.getElementById('lvl_' + k);
+        btn.className = k === lvl
+          ? 'px-4 py-2.5 rounded-xl urfu-gradient text-white transition'
+          : 'px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-white/60 transition';
+      });
+
+      const box = document.getElementById('levelContent');
+      box.innerHTML = levelData[lvl].map(item => `
+        <div class="p-5 rounded-2xl bg-[#F4F5F8] dark:bg-slate-800/70 border border-gray-200/60 dark:border-slate-700">
+          <div class="text-2xl sm:text-3xl font-black urfu-text-gradient">${item.val}</div>
+          <div class="font-bold text-sm mt-1.5">${item.label}</div>
+          <div class="text-xs text-gray-600 dark:text-gray-300 mt-0.5">${item.sub}</div>
+        </div>
+      `).join('');
+    }
+
+    function calculateID() {
+      const checked = document.querySelectorAll('#id-calculator input[type="checkbox"]:checked');
+      let rawSum = 0;
+      checked.forEach(cb => rawSum += parseInt(cb.value, 10));
+
+      const capped = Math.min(10, rawSum);
+      const idKey = (window.URFU_KEYS && window.URFU_KEYS.ID_BONUS) ? window.URFU_KEYS.ID_BONUS : 'urfu_id_bonus';
+      try {
+        localStorage.setItem(idKey, String(capped));
+      } catch (e) {}
+
+      const valEl = document.getElementById('idCappedValue');
+      const barEl = document.getElementById('idProgressBar');
+      const noteEl = document.getElementById('idCapNote');
+
+      valEl.textContent = `+${capped} из 10 баллов`;
+      barEl.style.width = `${(capped / 10) * 100}%`;
+
+      if (rawSum === 0) {
+        noteEl.textContent = 'Выбери пункты в списке ниже для расчета';
+        noteEl.className = 'text-xs font-semibold text-gray-600 dark:text-gray-300';
+      } else if (rawSum > 10) {
+        noteEl.textContent = `Сумма выбранных достижений: ${rawSum} б., но начисляется максимум +10 баллов! (Сохранено для Главной)`;
+        noteEl.className = 'text-xs font-bold text-[#FF1E6D]';
+      } else {
+        noteEl.textContent = `Все выбранные достижения (+${rawSum} б.) сохранены и учтены в подборе программ!`;
+        noteEl.className = 'text-xs font-semibold text-emerald-700 dark:text-emerald-400';
+      }
+    }
+
+    const mockApplicants = [
+      { rank: 1, ID: '184-920-411 02', code: '09.03.04 Программная инженерия', ege: 284, id: 10, prio: '1 приоритет', orig: true },
+      { rank: 2, ID: '162-405-819 54', code: '09.03.01 Прикладной ИИ', ege: 271, id: 10, prio: '1 приоритет', orig: true },
+      { rank: 3, ID: '195-118-302 88', code: '38.03.05 Бизнес-информатика', ege: 264, id: 7, prio: '2 приоритет', orig: false },
+      { rank: 4, ID: '149-773-210 19', code: '09.03.04 Программная инженерия', ege: 256, id: 5, prio: '1 приоритет', orig: true },
+      { rank: 5, ID: '201-540-991 37', code: '15.03.06 Мехатроника и робототехника', ege: 235, id: 9, prio: '1 приоритет', orig: true }
+    ];
+
+    function filterApplicants() {
+      const q = document.getElementById('snilsInput').value.trim().toLowerCase();
+      const onlyOrig = document.getElementById('onlyOriginals').checked;
+      const tbody = document.getElementById('applicantsTableBody');
+
+      const filtered = mockApplicants.filter(a => {
+        const matchQ = !q || a.snils.toLowerCase().includes(q) || a.code.toLowerCase().includes(q);
+        const matchOrig = !onlyOrig || a.orig;
+        return matchQ && matchOrig;
+      });
+
+      tbody.innerHTML = filtered.map(a => `
+        <tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50 transition">
+          <td class="py-3 font-black text-[#FF1E6D]">#${a.rank}</td>
+          <td class="py-3 font-bold">${a.snils}</td>
+          <td class="py-3 text-xs text-gray-700 dark:text-gray-300">${a.code}</td>
+          <td class="py-3 font-extrabold">${a.ege + a.id} <span class="text-xs text-gray-500 font-normal">(${a.ege}+${a.id})</span></td>
+          <td class="py-3 text-xs">${a.prio}</td>
+          <td class="py-3">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${a.orig ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300' : 'bg-gray-100 text-gray-600 dark:bg-slate-800'}">
+              ${a.orig ? '✓ Подан (Госуслуги)' : 'Копия'}
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    selectLevel('bach');
+    filterApplicants();
+  </script>
+</body>
+</html>
